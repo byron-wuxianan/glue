@@ -25,3 +25,11 @@ Thumbs.db
 *.bak
 _temp_*
 test-login.html
+
+# Automation scripts and screenshots (deployment helpers)
+auto-*.js
+deploy-*.js
+github-*.js
+push-via-api.js
+init-catalog.js
+*.png

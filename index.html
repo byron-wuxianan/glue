@@ -316,6 +316,40 @@ td select.bom-model-select:focus { outline: none; border-color: var(--c-primary)
 .batch-bar .btn-clear-sel { background: transparent; color: var(--c-text-muted); border: none; cursor: pointer; }
 .batch-bar .btn-clear-sel:hover { color: var(--c-text); }
 
+/* BOM warning banner */
+.bom-warning-banner {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    background: linear-gradient(135deg, #fff7ed 0%, #fffbf0 100%);
+    border: 1px solid #fdba74; border-left: 4px solid #f59e0b;
+    border-radius: var(--r-md); padding: 14px 18px; margin-bottom: 14px;
+    animation: pulseWarning 2s ease-in-out infinite;
+}
+@keyframes pulseWarning {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.15); }
+    50% { box-shadow: 0 0 0 6px rgba(245, 158, 11, 0); }
+}
+.bom-warning-content { display: flex; align-items: flex-start; gap: 10px; flex: 1; }
+.bom-warning-icon { font-size: 20px; line-height: 1.4; }
+.bom-warning-text { flex: 1; }
+.bom-warning-text strong { color: #92400e; font-size: 13px; display: block; margin-bottom: 6px; }
+.bom-warning-models { display: flex; flex-wrap: wrap; gap: 6px; }
+.bom-warning-model {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: #fef3c7; color: #92400e; border: 1px solid #fcd34d;
+    border-radius: 20px; padding: 3px 12px; font-size: 12px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+}
+.bom-warning-model:hover { background: #fde68a; border-color: #f59e0b; }
+.bom-warning-model .add-link { font-size: 11px; opacity: 0.8; }
+/* BOM missing badge in production table */
+.bom-missing-badge {
+    display: inline-block; background: #fef3c7; color: #92400e;
+    border: 1px solid #fcd34d; border-radius: 10px;
+    padding: 1px 8px; font-size: 10px; font-weight: 700; margin-left: 6px;
+    cursor: pointer; transition: all 0.2s;
+}
+.bom-missing-badge:hover { background: #fde68a; border-color: #f59e0b; }
+
 /* Batch edit modal fields */
 .batch-edit-field { margin-bottom: 14px; }
 .batch-edit-field label { display: block; font-size: 12px; font-weight: 600; color: var(--c-text-secondary); margin-bottom: 5px; }
@@ -675,6 +709,17 @@ td select.bom-model-select:focus { outline: none; border-color: var(--c-primary)
 
         <!-- ==================== MODULE 2: BOM ==================== -->
         <div id="module2" class="module-content">
+            <!-- 未配置BOM的机型提醒 -->
+            <div id="bomWarningBanner" class="bom-warning-banner" style="display:none;">
+                <div class="bom-warning-content">
+                    <span class="bom-warning-icon">⚠️</span>
+                    <div class="bom-warning-text">
+                        <strong>以下机型尚未配置BOM，请尽快添加胶水用量：</strong>
+                        <div id="bomWarningModels" class="bom-warning-models"></div>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-sm" onclick="addBOMForFirstMissing()">+ 立即添加</button>
+            </div>
             <div class="card">
                 <div class="card-header">
                     <h2>📋 BOM配置 — 每行一条胶水用量记录</h2>
@@ -1292,6 +1337,7 @@ function switchModule(n) {
     document.getElementById('module' + n).classList.add('active');
     document.getElementById('pageTitle').textContent = titles[n] || '';
     if (n === 3 && chartInstance) chartInstance.resize();
+    if (n === 2) updateBOMWarning();
     // close sidebar on mobile
     if (window.innerWidth <= 768) toggleSidebar(false);
 }
@@ -1389,13 +1435,20 @@ function renderProduction() {
         const qty = getMonthQty(m);
         const posCount = m.positions.length;
         const glueSet = new Set(m.positions.map(p => p.glueModel).filter(Boolean));
+        const bomMissing = posCount === 0;
+        const nameCell = bomMissing
+            ? `${escHtml(m.name)} <span class="bom-missing-badge" onclick="switchModule(2);setTimeout(()=>addBOMForModel(${m.id}),200)" title="点击去配置BOM">⚠ 未配置BOM</span>`
+            : escHtml(m.name);
+        const posCell = bomMissing
+            ? `<span style="color:#f59e0b;font-weight:700;">${posCount} ⚠</span>`
+            : posCount;
         return `<tr>
             <td style="text-align:center;color:var(--c-text-muted);">${idx + 1}</td>
-            <td class="fw-bold">${escHtml(m.name)}</td>
+            <td class="fw-bold">${nameCell}</td>
             <td><input type="number" value="${qty}" min="0" style="width:100px;text-align:center;${qty>0?'border-color:var(--c-success);background:var(--c-success-light);font-weight:700;':''}"
                 onchange="onProdQtyChange(${m.id}, this.value)"
                 onfocus="this.select()"></td>
-            <td style="text-align:center;">${posCount}</td>
+            <td style="text-align:center;">${posCell}</td>
             <td style="text-align:center;">${glueSet.size}</td>
             <td style="text-align:center;">
                 <button class="btn btn-icon danger btn-xs" onclick="onDeleteModel(${m.id})" title="删除此机型">🗑</button>
@@ -1431,7 +1484,8 @@ async function addModelByName(name) {
     try {
         const data = await apiRequest('/models', { method: 'POST', body: JSON.stringify({ name, positions: [] }) });
         models.push({ id: data.id, name, positions: [], qtyMap: {} });
-        refreshAll(); showToast('已添加机型：' + name, 'success');
+        refreshAll(); showToast('已添加机型：' + name + '，请到模块二配置BOM', 'warning');
+        updateBOMWarning();
     } catch(e) { showToast('添加失败', 'error'); }
 }
 
@@ -1742,6 +1796,7 @@ async function addBOMRow() {
                 const firstInput = row.querySelector('input'); if (firstInput) firstInput.focus(); }
         }, 100);
         showToast('已添加新行，请填写', 'success');
+        updateBOMWarning(); renderProduction();
     } catch(e) { showToast('添加失败', 'error'); }
 }
 
@@ -1750,8 +1805,55 @@ async function deleteBOMRow(modelId, posId) {
     const m = models.find(m => m.id === modelId);
     if (!m) return;
     m.positions = m.positions.filter(p => p.id !== posId);
-    try { await saveModel(m); renderBOM(); calculate(); showToast('已删除', 'success'); }
+    try { await saveModel(m); renderBOM(); calculate(); updateBOMWarning(); renderProduction(); showToast('已删除', 'success'); }
     catch(e) { showToast('删除失败', 'error'); }
+}
+
+// ============================================================
+// BOM WARNING: detect models without BOM configuration
+// ============================================================
+function getModelsMissingBOM() {
+    return models.filter(m => !m.positions || m.positions.length === 0);
+}
+
+function updateBOMWarning() {
+    const banner = document.getElementById('bomWarningBanner');
+    const modelsContainer = document.getElementById('bomWarningModels');
+    if (!banner || !modelsContainer) return;
+    const missing = getModelsMissingBOM();
+    if (missing.length === 0) {
+        banner.style.display = 'none';
+        return;
+    }
+    banner.style.display = 'flex';
+    modelsContainer.innerHTML = missing.map(m =>
+        '<span class="bom-warning-model" onclick="addBOMForModel(' + m.id + ')" title="点击为该机型添加BOM">' +
+        escHtml(m.name) + ' <span class="add-link">+ 添加</span></span>'
+    ).join('');
+}
+
+async function addBOMForModel(modelId) {
+    const m = models.find(m => m.id === modelId);
+    if (!m) return;
+    const newPos = { id: posIdCounter++, name: '', glueModel: '', gluePartNo: '', glueDesc: '', perUnitUsage: 0, containerSize: 0, unitCapacity: 0 };
+    m.positions.push(newPos);
+    try {
+        await saveModel(m);
+        renderBOM(); calculate(); updateBOMWarning(); renderProduction();
+        switchModule(2);
+        setTimeout(() => {
+            const row = document.getElementById('bomRow' + newPos.id);
+            if (row) { row.classList.add('row-new'); row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                const firstInput = row.querySelector('input'); if (firstInput) firstInput.focus(); }
+        }, 200);
+        showToast('已为 ' + m.name + ' 添加BOM行，请填写', 'success');
+    } catch(e) { showToast('添加失败', 'error'); }
+}
+
+async function addBOMForFirstMissing() {
+    const missing = getModelsMissingBOM();
+    if (missing.length === 0) { showToast('所有机型均已配置BOM', 'info'); return; }
+    await addBOMForModel(missing[0].id);
 }
 
 async function onBOMCellChange(modelId, posId, field, value) {
@@ -2186,6 +2288,7 @@ function refreshAll() {
     document.getElementById('navCount1').textContent = models.length;
     document.getElementById('navCount2').textContent = models.reduce((s, m) => s + (m.positions || []).length, 0);
     document.getElementById('navCount3').textContent = inventoryList.length;
+    updateBOMWarning();
 }
 
 // ============================================================
