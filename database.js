@@ -4825,3 +4825,4 @@ const GLUE_DATABASE = {
           }
     ],
 };
+if (typeof module !== 'undefined' && module.exports) module.exports = GLUE_DATABASE;

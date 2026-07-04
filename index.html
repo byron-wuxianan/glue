@@ -6,180 +6,517 @@
 <title>胶水采购需求管理系统</title>
 <script src="chart.umd.min.js"></script>
 <style>
+/* ============================================================
+   DESIGN TOKENS & RESET
+   ============================================================ */
 :root {
-    --primary: #2563eb; --primary-light: #dbeafe; --primary-dark: #1e40af;
-    --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb; --gray-300: #d1d5db;
-    --gray-500: #6b7280; --gray-700: #374151; --gray-900: #111827;
-    --red: #ef4444; --red-light: #fef2f2; --red-dark: #dc2626;
-    --green: #10b981; --green-light: #d1fae5; --orange: #f59e0b; --orange-light: #fef3c7;
-    --white: #ffffff; --shadow: 0 1px 3px rgba(0,0,0,0.1); --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
-    --radius: 10px; --radius-sm: 6px;
-    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif;
+    --c-bg: #f5f6fa;              --c-surface: #ffffff;
+    --c-border: #e8ecf1;          --c-border-light: #f0f2f5;
+    --c-text: #1a1d28;            --c-text-secondary: #6b7280;
+    --c-text-muted: #9ca3af;
+    --c-primary: #4f6ef7;         --c-primary-hover: #3b5de7;
+    --c-primary-light: #eef1ff;   --c-primary-bg: #f5f7ff;
+    --c-success: #10b981;         --c-success-light: #ecfdf5;
+    --c-success-bg: #d1fae5;
+    --c-warning: #f59e0b;         --c-warning-light: #fffbeb;
+    --c-warning-bg: #fef3c7;
+    --c-danger: #ef4444;          --c-danger-light: #fef2f2;
+    --c-danger-bg: #fee2e2;
+    --c-info: #6366f1;
+    --r-sm: 6px; --r-md: 10px; --r-lg: 14px;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+    --shadow: 0 2px 8px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --sidebar-w: 224px;
+    --header-h: 56px;
+    --transition: 0.18s ease;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: var(--font); background: var(--gray-50); color: var(--gray-900); line-height: 1.6; }
-.container { max-width: 1300px; margin: 0 auto; padding: 20px; }
 
-/* Header */
-.header { background: var(--white); border-bottom: 1px solid var(--gray-200); padding: 16px 24px; margin-bottom: 20px;
-    display: flex; justify-content: space-between; align-items: center; border-radius: var(--radius); box-shadow: var(--shadow); }
-.header h1 { font-size: 22px; display: flex; align-items: center; gap: 10px; }
-.header h1 span { font-size: 12px; color: var(--gray-500); font-weight: normal; margin-left: 8px; padding: 3px 8px; background: var(--gray-100); border-radius: 20px; }
-.header-actions { display: flex; gap: 8px; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 14px; -webkit-font-smoothing: antialiased; }
+body { font-family: var(--font); background: var(--c-bg); color: var(--c-text); line-height: 1.5; min-height: 100vh; }
 
-/* Buttons */
-.btn { padding: 8px 16px; border-radius: var(--radius-sm); border: none; cursor: pointer; font-size: 13px; font-weight: 500;
-    display: inline-flex; align-items: center; gap: 6px; transition: all 0.15s; font-family: var(--font); }
-.btn-primary { background: var(--primary); color: white; }
-.btn-primary:hover { background: var(--primary-dark); }
-.btn-outline { background: var(--white); color: var(--gray-700); border: 1px solid var(--gray-300); }
-.btn-outline:hover { background: var(--gray-50); border-color: var(--primary); color: var(--primary); }
-.btn-danger { background: var(--red-light); color: var(--red-dark); }
-.btn-danger:hover { background: var(--red); color: white; }
-.btn-sm { padding: 5px 10px; font-size: 12px; }
+/* ============================================================
+   LOGIN OVERLAY
+   ============================================================ */
+.login-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, #1a2744 0%, #2d4ba0 40%, #4f6ef7 100%);
+    display: flex; align-items: center; justify-content: center; z-index: 10000;
+}
+.login-overlay::before {
+    content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+    background: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.04) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 80%, rgba(79,110,247,0.1) 0%, transparent 60%);
+}
+.login-box {
+    background: white; border-radius: var(--r-lg); box-shadow: 0 24px 80px rgba(0,0,0,0.25);
+    width: 420px; max-width: 92vw; overflow: hidden; position: relative; z-index: 1;
+}
+.login-header {
+    background: linear-gradient(135deg, #1a2744, #3b5de7); color: white;
+    padding: 36px 32px 28px; text-align: center;
+}
+.login-header .icon { font-size: 40px; margin-bottom: 8px; display: block; }
+.login-header h2 { font-size: 22px; font-weight: 700; margin-bottom: 4px; letter-spacing: 0.5px; }
+.login-header p { font-size: 13px; opacity: 0.7; font-weight: 400; }
+.login-body { padding: 32px; }
+.login-field { margin-bottom: 18px; }
+.login-field label { display: block; font-size: 13px; font-weight: 600; color: var(--c-text-secondary); margin-bottom: 6px; }
+.login-field input {
+    width: 100%; padding: 11px 14px; border: 1.5px solid var(--c-border);
+    border-radius: var(--r-md); font-size: 14px; font-family: var(--font);
+    transition: border-color var(--transition), box-shadow var(--transition);
+    background: var(--c-bg);
+}
+.login-field input:focus { outline: none; border-color: var(--c-primary); box-shadow: 0 0 0 3px var(--c-primary-light); background: white; }
+.login-btn {
+    width: 100%; padding: 12px; background: linear-gradient(135deg, #4f6ef7, #3b5de7); color: white;
+    border: none; border-radius: var(--r-md); font-size: 15px; font-weight: 600; cursor: pointer;
+    font-family: var(--font); transition: all var(--transition); letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(79,110,247,0.35);
+}
+.login-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(79,110,247,0.45); }
+.login-btn:active { transform: translateY(0); }
+.login-toggle { text-align: center; margin-top: 18px; font-size: 13px; color: var(--c-text-muted); }
+.login-toggle a { color: var(--c-primary); cursor: pointer; text-decoration: none; font-weight: 600; }
+.login-toggle a:hover { text-decoration: underline; }
+.login-error { color: var(--c-danger); font-size: 12px; text-align: center; margin-bottom: 14px; display: none; }
+.login-hint { font-size: 11px; color: var(--c-text-muted); text-align: center; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--c-border); }
 
-/* KPI Cards */
-.kpi-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
-.kpi-card { background: var(--white); border-radius: var(--radius); padding: 18px 20px; box-shadow: var(--shadow);
-    border-left: 4px solid var(--primary); }
-.kpi-card.green { border-left-color: var(--green); }
-.kpi-card.orange { border-left-color: var(--orange); }
-.kpi-card.red { border-left-color: var(--red); }
-.kpi-label { font-size: 12px; color: var(--gray-500); margin-bottom: 4px; }
-.kpi-value { font-size: 28px; font-weight: 700; color: var(--gray-900); }
-.kpi-unit { font-size: 13px; font-weight: 400; color: var(--gray-500); margin-left: 4px; }
+/* ============================================================
+   APP LAYOUT
+   ============================================================ */
+.app-layout { display: flex; min-height: 100vh; }
 
-/* Cards */
-.card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 20px; overflow: hidden; }
-.card-header { padding: 14px 20px; border-bottom: 1px solid var(--gray-200); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-.card-header h2 { font-size: 16px; display: flex; align-items: center; gap: 6px; }
-.card-body { padding: 20px; }
+/* --- Sidebar --- */
+.sidebar {
+    width: var(--sidebar-w); background: linear-gradient(180deg, #1a2744 0%, #1e3055 100%);
+    color: rgba(255,255,255,0.9); display: flex; flex-direction: column;
+    position: fixed; top: 0; left: 0; bottom: 0; z-index: 100;
+    box-shadow: 2px 0 20px rgba(0,0,0,0.15);
+}
+.sidebar-brand {
+    padding: 20px 20px 16px; border-bottom: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; gap: 10px;
+}
+.sidebar-brand .brand-icon { font-size: 24px; }
+.sidebar-brand h1 { font-size: 15px; font-weight: 700; letter-spacing: 0.5px; }
+.sidebar-brand .brand-sub { font-size: 10px; opacity: 0.5; display: block; margin-top: 1px; }
 
-/* Tables */
-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-th { background: var(--gray-50); padding: 10px 12px; text-align: left; font-weight: 600; color: var(--gray-700);
-    border-bottom: 2px solid var(--gray-200); white-space: nowrap; font-size: 12px; }
-td { padding: 8px 12px; border-bottom: 1px solid var(--gray-100); }
-tr:hover { background: var(--gray-50); }
-.text-red { color: var(--red); }
-.text-green { color: var(--green); }
-.fw-bold { font-weight: 600; }
-.bg-green-light { background: var(--green-light); }
-.empty-state { text-align: center; padding: 40px; color: var(--gray-500); }
+.sidebar-nav { flex: 1; padding: 12px 10px; overflow-y: auto; }
+.sidebar-nav-item {
+    display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-radius: var(--r-md);
+    cursor: pointer; transition: all var(--transition); font-size: 13px; font-weight: 500;
+    margin-bottom: 2px; color: rgba(255,255,255,0.6);
+}
+.sidebar-nav-item:hover { background: rgba(255,255,255,0.08); color: white; }
+.sidebar-nav-item.active {
+    background: rgba(79,110,247,0.3); color: white; font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.sidebar-nav-item .nav-icon { font-size: 17px; width: 22px; text-align: center; flex-shrink: 0; }
+.sidebar-nav-item .nav-badge {
+    margin-left: auto; background: rgba(255,255,255,0.15); border-radius: 10px;
+    padding: 1px 8px; font-size: 11px; font-weight: 600;
+}
 
-/* Inputs */
-input[type="text"], input[type="number"] { border: 1px solid var(--gray-300); border-radius: var(--radius-sm);
-    padding: 5px 8px; font-size: 13px; font-family: var(--font); }
-input[type="text"]:focus, input[type="number"]:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px var(--primary-light); }
-input.tight { width: 80px; text-align: center; }
-input.mid { width: 130px; }
-input.wide { width: 100%; }
+.sidebar-footer {
+    padding: 14px 16px; border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; gap: 10px;
+}
+.sidebar-footer .user-avatar {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: linear-gradient(135deg, #4f6ef7, #7c8cf8);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; color: white; flex-shrink: 0;
+}
+.sidebar-footer .user-info { flex: 1; min-width: 0; }
+.sidebar-footer .user-name { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sidebar-footer .user-role { font-size: 11px; opacity: 0.5; }
+.sidebar-footer .logout-btn {
+    background: none; border: none; color: rgba(255,255,255,0.4); cursor: pointer;
+    font-size: 16px; padding: 4px; border-radius: 4px; transition: all var(--transition);
+}
+.sidebar-footer .logout-btn:hover { color: white; background: rgba(255,255,255,0.1); }
 
-/* Model card */
-.model-card { border: 1px solid var(--gray-200); border-radius: var(--radius-sm); margin-bottom: 12px; overflow: hidden; }
-.model-card-header { background: var(--gray-50); padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
-.model-info { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.model-name { font-weight: 600; font-size: 15px; }
-.model-qty-label { font-size: 13px; color: var(--gray-500); }
-.model-qty-input { width: 90px; text-align: center; }
-.model-actions { display: flex; gap: 6px; }
-.model-card-body { padding: 12px 16px; }
+/* --- Main Content --- */
+.main-content { flex: 1; margin-left: var(--sidebar-w); display: flex; flex-direction: column; min-height: 100vh; }
 
-/* Copy BOM badge */
-.copy-bom-badge { display: inline-flex; align-items: center; gap: 3px; padding: 3px 10px; border-radius: 12px;
-    font-size: 11px; font-weight: 600; cursor: pointer; background: var(--primary-light); color: var(--primary-dark);
-    border: 1px solid transparent; transition: all 0.15s; }
-.copy-bom-badge:hover { background: var(--primary); color: white; border-color: var(--primary-dark); }
+/* Top bar */
+.top-bar {
+    height: var(--header-h); background: var(--c-surface); border-bottom: 1px solid var(--c-border);
+    display: flex; align-items: center; padding: 0 24px; gap: 16px;
+    position: sticky; top: 0; z-index: 50; box-shadow: var(--shadow-sm);
+}
+.top-bar .page-title { font-size: 15px; font-weight: 700; }
+.top-bar .page-subtitle { font-size: 12px; color: var(--c-text-muted); margin-left: 4px; }
+.top-bar .spacer { flex: 1; }
 
-/* Search dropdown */
-.search-container { position: relative; max-width: 500px; }
-.search-input { width: 100%; padding: 10px 14px; border: 1px solid var(--gray-300); border-radius: var(--radius-sm); font-size: 14px; font-family: var(--font); }
-.search-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px var(--primary-light); }
-.search-results { position: absolute; top: 100%; left: 0; right: 0; background: white; border: 1px solid var(--gray-300); border-radius: 0 0 var(--radius-sm) var(--radius-sm); box-shadow: var(--shadow-md); max-height: 300px; overflow-y: auto; z-index: 200; display: none; }
-.search-result-item { padding: 10px 14px; cursor: pointer; border-bottom: 1px solid var(--gray-100); display: flex; justify-content: space-between; align-items: center; transition: background 0.1s; }
-.search-result-item:hover { background: var(--primary-light); }
-.search-result-item:last-child { border-bottom: none; }
-.search-result-item .model-badge { font-size: 11px; color: var(--gray-500); }
-.search-result-item.added { opacity: 0.5; cursor: not-allowed; }
+/* Month navigation */
+.month-nav { display: flex; align-items: center; gap: 6px; }
+.month-nav-btn {
+    width: 30px; height: 30px; border: 1px solid var(--c-border); border-radius: var(--r-sm);
+    background: white; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    font-size: 13px; color: var(--c-text-secondary); transition: all var(--transition);
+}
+.month-nav-btn:hover { background: var(--c-primary-light); border-color: var(--c-primary); color: var(--c-primary); }
+.month-picker {
+    border: 1px solid var(--c-border); border-radius: var(--r-sm); padding: 5px 10px;
+    font-size: 13px; font-family: var(--font); color: var(--c-text); background: white;
+    cursor: pointer; outline: none;
+}
+.month-picker:focus { border-color: var(--c-primary); box-shadow: 0 0 0 2px var(--c-primary-light); }
+.month-display { font-size: 14px; font-weight: 700; color: var(--c-primary); min-width: 90px; text-align: center; }
+.month-badge {
+    font-size: 11px; padding: 4px 10px; border-radius: 12px; font-weight: 600; white-space: nowrap;
+}
+.month-badge.has-data { background: var(--c-success-light); color: #065f46; }
+.month-badge.no-data { background: var(--c-bg); color: var(--c-text-muted); }
 
-/* Month toolbar */
-.month-toolbar { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow);
-    padding: 12px 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-.month-nav { display: flex; align-items: center; gap: 12px; }
+.btn-group { display: flex; gap: 6px; }
 
-/* Module tabs */
-.module-tabs { display: flex; gap: 4px; margin-bottom: 20px; background: var(--white); border-radius: var(--radius); padding: 6px; box-shadow: var(--shadow); }
-.module-tab { flex: 1; padding: 12px 16px; text-align: center; cursor: pointer; border-radius: var(--radius-sm);
-    font-size: 14px; font-weight: 500; color: var(--gray-500); transition: all 0.2s; }
-.module-tab:hover { background: var(--gray-50); color: var(--gray-700); }
-.module-tab.active { background: var(--primary); color: white; box-shadow: var(--shadow); }
+/* --- Content Area --- */
+.content-area { flex: 1; padding: 24px; overflow-y: auto; max-width: 1400px; margin: 0 auto; width: 100%; }
+
+/* ============================================================
+   COMPONENTS: KPIs
+   ============================================================ */
+.kpi-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px; margin-bottom: 20px;
+}
+.kpi-card {
+    background: var(--c-surface); border-radius: var(--r-md); padding: 18px 20px;
+    box-shadow: var(--shadow-sm); border: 1px solid var(--c-border);
+    transition: all var(--transition); position: relative; overflow: hidden;
+}
+.kpi-card::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%;
+    background: var(--c-border); border-radius: 3px 0 0 3px; transition: all var(--transition);
+}
+.kpi-card:hover { box-shadow: var(--shadow); transform: translateY(-1px); }
+.kpi-card.primary::before { background: var(--c-primary); }
+.kpi-card.success::before { background: var(--c-success); }
+.kpi-card.warning::before { background: var(--c-warning); }
+.kpi-card.danger::before { background: var(--c-danger); }
+.kpi-card .kpi-label { font-size: 12px; color: var(--c-text-muted); margin-bottom: 4px; font-weight: 500; }
+.kpi-card .kpi-value { font-size: 28px; font-weight: 800; color: var(--c-text); letter-spacing: -0.5px; line-height: 1.2; }
+.kpi-card .kpi-unit { font-size: 13px; font-weight: 400; color: var(--c-text-muted); margin-left: 3px; }
+
+/* ============================================================
+   COMPONENTS: Cards & Panels
+   ============================================================ */
+.card {
+    background: var(--c-surface); border-radius: var(--r-md); box-shadow: var(--shadow-sm);
+    border: 1px solid var(--c-border); margin-bottom: 18px; overflow: hidden;
+}
+.card-header {
+    padding: 14px 20px; border-bottom: 1px solid var(--c-border-light);
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
+    background: var(--c-bg);
+}
+.card-header h2 { font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+.card-body { padding: 0; }
+
+/* ============================================================
+   COMPONENTS: Buttons
+   ============================================================ */
+.btn {
+    padding: 7px 14px; border-radius: var(--r-sm); border: none; cursor: pointer;
+    font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 5px;
+    transition: all var(--transition); font-family: var(--font); letter-spacing: 0.3px; white-space: nowrap;
+}
+.btn-primary { background: var(--c-primary); color: white; box-shadow: 0 2px 6px rgba(79,110,247,0.3); }
+.btn-primary:hover { background: var(--c-primary-hover); box-shadow: 0 4px 12px rgba(79,110,247,0.4); transform: translateY(-1px); }
+.btn-outline { background: white; color: var(--c-text-secondary); border: 1px solid var(--c-border); }
+.btn-outline:hover { background: var(--c-bg); border-color: var(--c-primary); color: var(--c-primary); }
+.btn-danger { background: var(--c-danger-light); color: var(--c-danger); }
+.btn-danger:hover { background: var(--c-danger); color: white; }
+.btn-ghost { background: transparent; color: var(--c-text-muted); border: 1px solid transparent; }
+.btn-ghost:hover { background: var(--c-bg); color: var(--c-text); border-color: var(--c-border); }
+.btn-sm { padding: 4px 9px; font-size: 11px; }
+.btn-xs { padding: 2px 7px; font-size: 10px; border-radius: 4px; }
+.btn-icon { padding: 5px 7px; min-width: 28px; justify-content: center; }
+.btn-icon.danger { color: var(--c-text-muted); }
+.btn-icon.danger:hover { color: var(--c-danger); background: var(--c-danger-light); }
+
+/* ============================================================
+   COMPONENTS: Tables (Enhanced)
+   ============================================================ */
+.table-wrapper { overflow-x: auto; position: relative; }
+.table-wrapper.scrollable { max-height: 500px; overflow-y: auto; }
+.table-wrapper.scrollable thead { position: sticky; top: 0; z-index: 10; }
+
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+thead th {
+    background: var(--c-bg); padding: 10px 12px; text-align: left; font-weight: 700;
+    color: var(--c-text-secondary); border-bottom: 2px solid var(--c-border);
+    white-space: nowrap; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;
+}
+tbody td { padding: 8px 12px; border-bottom: 1px solid var(--c-border-light); vertical-align: middle; }
+tbody tr { transition: background var(--transition); }
+tbody tr:hover { background: var(--c-primary-bg); }
+tbody tr:nth-child(even) { background: rgba(245, 246, 250, 0.5); }
+tbody tr:nth-child(even):hover { background: var(--c-primary-bg); }
+tbody tr.row-new { animation: highlightNew 1.5s ease-out; }
+@keyframes highlightNew {
+    from { background: var(--c-success-light); }
+    to { background: transparent; }
+}
+
+/* Table inputs */
+td input[type="text"], td input[type="number"] {
+    border: 1px solid transparent; border-radius: 4px; padding: 5px 8px;
+    font-size: 12px; font-family: var(--font); background: transparent; width: 100%;
+    transition: all var(--transition); color: var(--c-text);
+}
+td input:focus { outline: none; border-color: var(--c-primary); background: white; box-shadow: 0 0 0 2px var(--c-primary-light); }
+td input.changed { background: var(--c-warning-light); border-color: var(--c-warning); }
+td input.tight { width: 72px; text-align: center; }
+td input.mid { width: 120px; }
+td select.bom-model-select {
+    border: 1px solid transparent; border-radius: 4px; padding: 5px 6px;
+    font-size: 12px; font-family: var(--font); background: transparent; cursor: pointer;
+    min-width: 110px; max-width: 150px;
+}
+td select.bom-model-select:focus { outline: none; border-color: var(--c-primary); box-shadow: 0 0 0 2px var(--c-primary-light); }
+
+.empty-row td { text-align: center; color: var(--c-text-muted); padding: 32px 20px; }
+
+/* Status pills */
+.status-pill {
+    display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px;
+    border-radius: 12px; font-size: 11px; font-weight: 700;
+}
+.status-pill.need { background: var(--c-danger-light); color: var(--c-danger); }
+.status-pill.ok { background: var(--c-success-light); color: #065f46; }
+.status-pill.expired { background: var(--c-warning-light); color: #92400e; }
+
+/* Row actions */
+.row-actions { display: flex; gap: 4px; justify-content: center; }
+
+/* BOM row checkbox */
+.row-checkbox { width: 16px; height: 16px; cursor: pointer; accent-color: var(--c-primary); }
+.row-checkbox.th-checkbox { margin: 0; }
+
+/* Batch action bar */
+.batch-bar {
+    display: none; align-items: center; gap: 10px; padding: 10px 20px;
+    background: var(--c-primary-light); border-bottom: 1px solid var(--c-border);
+    animation: batchBarIn 0.2s ease;
+}
+.batch-bar.show { display: flex; }
+@keyframes batchBarIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+.batch-bar .batch-count { font-size: 12px; font-weight: 700; color: var(--c-primary); }
+.batch-bar .btn { font-size: 11px; }
+.batch-bar .btn-copy { background: var(--c-primary); color: white; }
+.batch-bar .btn-copy:hover { background: var(--c-primary-hover); }
+.batch-bar .btn-clear-sel { background: transparent; color: var(--c-text-muted); border: none; cursor: pointer; }
+.batch-bar .btn-clear-sel:hover { color: var(--c-text); }
+
+/* Batch edit modal fields */
+.batch-edit-field { margin-bottom: 14px; }
+.batch-edit-field label { display: block; font-size: 12px; font-weight: 600; color: var(--c-text-secondary); margin-bottom: 5px; }
+.batch-edit-field input, .batch-edit-field select {
+    width: 100%; padding: 9px 12px; border: 1px solid var(--c-border); border-radius: var(--r-sm);
+    font-size: 13px; font-family: var(--font);
+}
+.batch-edit-field input:focus, .batch-edit-field select:focus { outline: none; border-color: var(--c-primary); box-shadow: 0 0 0 3px var(--c-primary-light); }
+.batch-edit-hint { font-size: 11px; color: var(--c-text-muted); margin-top: 3px; }
+
+/* ============================================================
+   COMPONENTS: Search
+   ============================================================ */
+.search-box {
+    position: relative; display: flex; align-items: center;
+}
+.search-box input {
+    padding: 7px 32px 7px 12px; border: 1px solid var(--c-border); border-radius: var(--r-sm);
+    font-size: 12px; font-family: var(--font); width: 200px; transition: all var(--transition);
+    background: white;
+}
+.search-box input:focus { outline: none; border-color: var(--c-primary); box-shadow: 0 0 0 2px var(--c-primary-light); width: 240px; }
+.search-box .search-icon {
+    position: absolute; right: 8px; font-size: 13px; color: var(--c-text-muted); pointer-events: none;
+}
+.search-box input:not(:placeholder-shown) + .search-icon + .search-clear,
+.search-box.has-value .search-clear { display: flex; }
+.search-clear {
+    position: absolute; right: 24px; width: 18px; height: 18px; border-radius: 50%;
+    background: var(--c-border); border: none; cursor: pointer; display: none;
+    align-items: center; justify-content: center; font-size: 10px; color: var(--c-text-muted);
+    transition: all var(--transition);
+}
+.search-clear:hover { background: var(--c-text-muted); color: white; }
+
+/* ============================================================
+   COMPONENTS: Modals (Enhanced)
+   ============================================================ */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.45); backdrop-filter: blur(3px);
+    display: none; align-items: center; justify-content: center; z-index: 5000;
+}
+.modal-overlay.show { display: flex; }
+.modal {
+    background: white; border-radius: var(--r-lg); box-shadow: var(--shadow-lg);
+    width: 640px; max-width: 95vw; max-height: 90vh; overflow-y: auto;
+    animation: modalIn 0.2s ease-out;
+}
+@keyframes modalIn { from { opacity: 0; transform: scale(0.96) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+.modal-header {
+    padding: 18px 24px; border-bottom: 1px solid var(--c-border);
+    display: flex; justify-content: space-between; align-items: center;
+}
+.modal-header h3 { font-size: 15px; font-weight: 700; }
+.modal-body { padding: 24px; }
+.modal-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--c-border); margin-bottom: 16px; }
+.modal-tab {
+    padding: 8px 20px; cursor: pointer; font-size: 13px; color: var(--c-text-muted);
+    border-bottom: 2px solid transparent; font-weight: 500; transition: all var(--transition);
+}
+.modal-tab.active { color: var(--c-primary); border-bottom-color: var(--c-primary); font-weight: 700; }
+.modal-tab:hover { color: var(--c-primary); }
+
+/* File drop zone */
+.drop-zone {
+    border: 2px dashed var(--c-border); border-radius: var(--r-md); padding: 32px;
+    text-align: center; color: var(--c-text-muted); cursor: pointer; transition: all var(--transition);
+    font-size: 13px; font-weight: 500;
+}
+.drop-zone:hover { border-color: var(--c-primary); background: var(--c-primary-bg); color: var(--c-primary); }
+
+.csv-textarea {
+    width: 100%; min-height: 160px; border: 1px solid var(--c-border); border-radius: var(--r-md);
+    padding: 12px; font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+    font-size: 12px; resize: vertical; transition: all var(--transition); line-height: 1.6;
+}
+.csv-textarea:focus { outline: none; border-color: var(--c-primary); box-shadow: 0 0 0 3px var(--c-primary-light); }
+
+/* ============================================================
+   COMPONENTS: Toast (Enhanced)
+   ============================================================ */
+.toast-container { position: fixed; top: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
+.toast-item {
+    padding: 12px 18px; border-radius: var(--r-md); font-size: 13px; font-weight: 600;
+    box-shadow: var(--shadow-lg); pointer-events: auto;
+    animation: toastIn 0.3s ease-out, toastOut 0.25s 2s ease-in forwards;
+    display: flex; align-items: center; gap: 8px; max-width: 360px;
+}
+.toast-item.success { background: #065f46; color: white; }
+.toast-item.error { background: var(--c-danger); color: white; }
+.toast-item.info { background: var(--c-primary); color: white; }
+.toast-item.warning { background: #92400e; color: white; }
+@keyframes toastIn { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes toastOut { from { opacity: 1; } to { opacity: 0; transform: translateX(20px); } }
+
+/* ============================================================
+   COMPONENTS: Save Indicator
+   ============================================================ */
+.save-indicator {
+    display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600;
+    padding: 3px 10px; border-radius: 12px; transition: all var(--transition);
+}
+.save-indicator.saved { color: var(--c-success); background: var(--c-success-light); }
+.save-indicator.saving { color: var(--c-warning); background: var(--c-warning-light); }
+.save-indicator.error { color: var(--c-danger); background: var(--c-danger-light); }
+.save-dot { width: 6px; height: 6px; border-radius: 50%; }
+.save-indicator.saved .save-dot { background: var(--c-success); }
+.save-indicator.saving .save-dot { background: var(--c-warning); animation: pulse 1s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+/* ============================================================
+   MISC
+   ============================================================ */
+.text-red { color: var(--c-danger); }
+.text-green { color: var(--c-success); }
+.text-muted { color: var(--c-text-muted); font-size: 12px; }
+.fw-bold { font-weight: 700; }
 .module-content { display: none; }
 .module-content.active { display: block; }
+.summary-row { background: var(--c-primary-light); font-weight: 700; }
+.summary-row td { border-top: 2px solid var(--c-primary); }
+.toolbar-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; gap: 10px; flex-wrap: wrap; border-bottom: 1px solid var(--c-border-light); }
 
-/* Modal */
-.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5);
-    display: none; align-items: center; justify-content: center; z-index: 5000; }
-.modal { background: white; border-radius: var(--radius); box-shadow: var(--shadow-md); width: 600px; max-width: 95vw; max-height: 90vh; overflow-y: auto; }
-.modal-header { padding: 16px 20px; border-bottom: 1px solid var(--gray-200); display: flex; justify-content: space-between; align-items: center; }
-.modal-body { padding: 20px; }
-.modal-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--gray-200); }
-.modal-tab { padding: 8px 20px; cursor: pointer; font-size: 13px; color: var(--gray-500); border-bottom: 2px solid transparent; }
-.modal-tab.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 600; }
-.csv-textarea { width: 100%; min-height: 180px; border: 1px solid var(--gray-300); border-radius: var(--radius-sm); padding: 10px;
-    font-family: monospace; font-size: 12px; resize: vertical; }
-.csv-textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px var(--primary-light); }
+/* Copy BOM badge */
+.copy-bom-badge {
+    display: inline-flex; align-items: center; gap: 3px; padding: 3px 10px; border-radius: 12px;
+    font-size: 11px; font-weight: 600; cursor: pointer; background: var(--c-primary-light); color: var(--c-primary);
+    border: 1px solid transparent; transition: all var(--transition);
+}
+.copy-bom-badge:hover { background: var(--c-primary); color: white; border-color: var(--c-primary-hover); }
 
-/* Toast */
-.toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--gray-900); color: white;
-    padding: 12px 24px; border-radius: var(--radius-sm); font-size: 14px; z-index: 9999; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
-.toast.show { opacity: 1; }
+/* Glue Catalog */
+.catalog-section { margin-bottom: 18px; }
+.catalog-summary { padding: 14px 20px; border-bottom: 1px solid var(--c-border-light); cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+.catalog-summary:hover { background: var(--c-bg); }
+
+/* Catalog editable cells */
+.catalog-edit-input {
+    border: 1px solid transparent; border-radius: 4px; padding: 4px 6px;
+    font-size: 12px; font-family: var(--font); background: transparent; width: 100%;
+    transition: all var(--transition);
+}
+.catalog-edit-input:focus { outline: none; border-color: var(--c-primary); background: white; box-shadow: 0 0 0 2px var(--c-primary-light); }
+
+/* Autocomplete dropdown */
+.autocomplete-wrap { position: relative; }
+.autocomplete-list {
+    position: absolute; top: 100%; left: 0; right: 0; z-index: 100;
+    background: white; border: 1px solid var(--c-border); border-radius: var(--r-sm);
+    box-shadow: var(--shadow-lg); max-height: 200px; overflow-y: auto; display: none;
+}
+.autocomplete-list.show { display: block; }
+.autocomplete-item {
+    padding: 7px 12px; cursor: pointer; font-size: 12px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--c-border-light); transition: background var(--transition);
+}
+.autocomplete-item:last-child { border-bottom: none; }
+.autocomplete-item:hover, .autocomplete-item.active { background: var(--c-primary-light); color: var(--c-primary); }
+.autocomplete-item .ac-main { font-weight: 600; }
+.autocomplete-item .ac-sub { font-size: 10px; color: var(--c-text-muted); }
 
 /* Chart */
-.chart-wrapper { max-height: 300px; }
+.chart-wrapper { padding: 0 20px 16px; }
 
-/* Login */
-.login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 50%, #1e40af 100%);
-    display: flex; align-items: center; justify-content: center; z-index: 10000; }
-.login-box { background: white; border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); width: 400px; max-width: 90vw; overflow: hidden; }
-.login-header { background: linear-gradient(135deg, #1e3a5f, #2563eb); color: white; padding: 30px 30px 24px; text-align: center; }
-.login-header h2 { font-size: 22px; margin-bottom: 6px; }
-.login-header p { font-size: 13px; opacity: 0.8; }
-.login-body { padding: 28px 30px; }
-.login-field { margin-bottom: 16px; }
-.login-field label { display: block; font-size: 13px; font-weight: 600; color: var(--gray-700); margin-bottom: 6px; }
-.login-field input { width: 100%; padding: 10px 14px; border: 1px solid var(--gray-300); border-radius: var(--radius-sm);
-    font-size: 14px; font-family: var(--font); }
-.login-field input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-light); }
-.login-btn { width: 100%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: var(--radius-sm);
-    font-size: 15px; font-weight: 600; cursor: pointer; font-family: var(--font); transition: background 0.15s; }
-.login-btn:hover { background: var(--primary-dark); }
-.login-toggle { text-align: center; margin-top: 16px; font-size: 13px; color: var(--gray-500); }
-.login-toggle a { color: var(--primary); cursor: pointer; text-decoration: none; font-weight: 500; }
-.login-toggle a:hover { text-decoration: underline; }
-.login-error { color: var(--red); font-size: 13px; text-align: center; margin-bottom: 12px; display: none; }
-.login-hint { font-size: 11px; color: var(--gray-500); text-align: center; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--gray-100); }
+/* User management */
+.user-list-table td { vertical-align: middle; }
 
-/* User badge */
-.user-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; background: var(--primary-light);
-    border-radius: 20px; font-size: 12px; font-weight: 600; color: var(--primary-dark); }
-.user-badge .avatar { width: 22px; height: 22px; border-radius: 50%; background: var(--primary); color: white;
-    display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; }
+/* Keyboard shortcuts hint */
+.kbd {
+    display: inline-block; padding: 1px 5px; background: var(--c-bg); border: 1px solid var(--c-border);
+    border-radius: 3px; font-size: 10px; font-family: monospace; color: var(--c-text-secondary);
+    font-weight: 600;
+}
 
-/* Save status */
-.save-status { font-size: 11px; color: var(--gray-500); display: inline-flex; align-items: center; gap: 4px; }
-.save-status.saved { color: var(--green); }
-.save-status.saving { color: var(--orange); }
-
-/* Copy BOM modal */
-#copyBomOverlay .modal { max-width: 500px; }
+/* Mobile sidebar toggle */
+.sidebar-toggle {
+    display: none; position: fixed; top: 12px; left: 12px; z-index: 200;
+    width: 36px; height: 36px; border-radius: 8px; background: var(--c-surface);
+    border: 1px solid var(--c-border); box-shadow: var(--shadow);
+    cursor: pointer; align-items: center; justify-content: center; font-size: 18px;
+}
+.sidebar-overlay { display: none; }
 
 /* Responsive */
-.table-wrapper { overflow-x: auto; }
 @media (max-width: 768px) {
-    .header { flex-direction: column; gap: 10px; text-align: center; }
-    .model-card-header { flex-direction: column; align-items: flex-start; }
-    .kpi-row { grid-template-columns: repeat(2, 1fr); }
-    .header-actions { flex-wrap: wrap; justify-content: center; }
+    .sidebar { transform: translateX(-100%); transition: transform 0.25s ease; }
+    .sidebar.open { transform: translateX(0); }
+    .sidebar-toggle { display: flex; }
+    .sidebar-overlay {
+        display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.4); z-index: 99;
+    }
+    .sidebar-overlay.open { display: block; }
+    .main-content { margin-left: 0; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .top-bar { padding: 0 16px; gap: 8px; }
+    .content-area { padding: 16px; }
+    .month-nav-btn { width: 28px; height: 28px; }
+    .month-display { font-size: 13px; min-width: 70px; }
 }
 </style>
 </head>
@@ -189,7 +526,8 @@ input.wide { width: 100%; }
 <div class="login-overlay" id="loginOverlay">
     <div class="login-box">
         <div class="login-header">
-            <h2>🧴 胶水采购需求管理系统</h2>
+            <span class="icon">🧴</span>
+            <h2>胶水采购需求管理系统</h2>
             <p>多人协作版 · 数据实时同步</p>
         </div>
         <div class="login-body">
@@ -197,11 +535,11 @@ input.wide { width: 100%; }
             <div id="loginForm">
                 <div class="login-field">
                     <label>用户名</label>
-                    <input type="text" id="loginUser" placeholder="请输入用户名" onkeydown="if(event.key==='Enter')doLogin()">
+                    <input type="text" id="loginUser" placeholder="请输入用户名" onkeydown="if(event.key==='Enter')doLogin()" autocomplete="username">
                 </div>
                 <div class="login-field">
                     <label>密码</label>
-                    <input type="password" id="loginPass" placeholder="请输入密码" onkeydown="if(event.key==='Enter')doLogin()">
+                    <input type="password" id="loginPass" placeholder="请输入密码" onkeydown="if(event.key==='Enter')doLogin()" autocomplete="current-password">
                 </div>
                 <button class="login-btn" onclick="doLogin()">登 录</button>
                 <div class="login-toggle">
@@ -216,7 +554,7 @@ input.wide { width: 100%; }
                 </div>
                 <div class="login-field">
                     <label>密码</label>
-                    <input type="password" id="regPass" placeholder="请设置密码">
+                    <input type="password" id="regPass" placeholder="请设置密码（至少4位）">
                 </div>
                 <div class="login-field">
                     <label>确认密码</label>
@@ -231,243 +569,316 @@ input.wide { width: 100%; }
     </div>
 </div>
 
-<!-- ==================== USER MANAGEMENT MODAL ==================== -->
+<!-- ==================== APP LAYOUT ==================== -->
+<div class="app-layout" id="appLayout" style="display:none;">
+
+    <!-- Sidebar -->
+    <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <span class="brand-icon">🧴</span>
+            <div>
+                <h1>胶水采购管理</h1>
+                <span class="brand-sub">Multi-user · Real-time</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="sidebar-nav-item active" id="nav1" onclick="switchModule(1)">
+                <span class="nav-icon">🏭</span> 模块一：产量录入
+                <span class="nav-badge" id="navCount1">0</span>
+            </div>
+            <div class="sidebar-nav-item" id="nav2" onclick="switchModule(2)">
+                <span class="nav-icon">🧴</span> 模块二：BOM配置
+                <span class="nav-badge" id="navCount2">0</span>
+            </div>
+            <div class="sidebar-nav-item" id="nav3" onclick="switchModule(3)">
+                <span class="nav-icon">📦</span> 模块三：库存 & 采购
+                <span class="nav-badge" id="navCount3">0</span>
+            </div>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-avatar" id="userAvatar">A</div>
+            <div class="user-info">
+                <div class="user-name" id="userName">Admin</div>
+                <div class="user-role" id="userRole">管理员</div>
+            </div>
+            <button class="logout-btn" onclick="doLogout()" title="退出登录">⏻</button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <span class="page-title" id="pageTitle">模块一：机型及月生产数量</span>
+            <span class="spacer"></span>
+
+            <span class="save-indicator saved" id="saveStatus">
+                <span class="save-dot"></span> 已连接
+            </span>
+
+            <div class="month-nav">
+                <button class="month-nav-btn" onclick="changeMonth(-1)" title="上个月">◀</button>
+                <input type="month" class="month-picker" id="monthPicker" onchange="onMonthChange()" title="选择月份">
+                <span class="month-display" id="monthDisplay">2026年7月</span>
+                <button class="month-nav-btn" onclick="changeMonth(1)" title="下个月">▶</button>
+            </div>
+
+            <div class="btn-group">
+                <span class="month-badge no-data" id="monthDataBadge">暂无数据</span>
+                <button class="btn btn-ghost btn-sm" onclick="copyFromPrevMonth()" title="从上月复制数据">📋 从上月复制</button>
+                <button class="btn btn-ghost btn-sm" onclick="gotoThisMonth()" title="回到本月">📍 本月</button>
+                <button class="btn btn-outline btn-sm" onclick="openUserMgmt()" title="用户管理">👥 用户</button>
+                <button class="btn btn-ghost btn-sm" onclick="doLogout()" title="退出登录">退出</button>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <div class="content-area">
+
+        <!-- ==================== MODULE 1: Production ==================== -->
+        <div id="module1" class="module-content active">
+            <div class="kpi-grid">
+                <div class="kpi-card primary"><div class="kpi-label">机型总数</div><div class="kpi-value" id="kpiProdModels">0</div></div>
+                <div class="kpi-card success"><div class="kpi-label">已排产机型</div><div class="kpi-value" id="kpiProdScheduled">0</div></div>
+                <div class="kpi-card warning"><div class="kpi-label"><span id="kpiProdMonthLabel">当月</span>总产量</div><div class="kpi-value" id="kpiProdTotal">0<span class="kpi-unit">台</span></div></div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2>📋 机型及月生产数量</h2>
+                    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                        <div class="search-box">
+                            <input type="text" id="prodSearchInput" placeholder="搜索机型..." oninput="onSearchInput(this);renderProduction()">
+                            <span class="search-icon">🔍</span>
+                            <button class="search-clear" data-target="prodSearchInput" onclick="clearSearch(this)" title="清除">✕</button>
+                        </div>
+                        <button class="btn btn-outline btn-sm" onclick="openProdImport()">📥 批量导入</button>
+                        <button class="btn btn-primary btn-sm" onclick="addManualModel()">+ 添加机型</button>
+                    </div>
+                </div>
+                <div class="table-wrapper scrollable" style="max-height:520px;">
+                    <table>
+                        <thead><tr>
+                            <th style="width:40px;">#</th>
+                            <th>机型名称</th>
+                            <th style="width:120px;">月产量（台）</th>
+                            <th style="width:100px;">BOM位置数</th>
+                            <th style="width:100px;">胶水种类</th>
+                            <th style="width:80px;">操作</th>
+                        </tr></thead>
+                        <tbody id="prodTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== MODULE 2: BOM ==================== -->
+        <div id="module2" class="module-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2>📋 BOM配置 — 每行一条胶水用量记录</h2>
+                    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                        <div class="search-box">
+                            <input type="text" id="bomSearchInput" placeholder="搜索 机型/位置/胶水..." oninput="onSearchInput(this);renderBOM()">
+                            <span class="search-icon">🔍</span>
+                            <button class="search-clear" data-target="bomSearchInput" onclick="clearSearch(this)" title="清除">✕</button>
+                        </div>
+                        <button class="btn btn-outline btn-sm" onclick="openBomImport()">📥 批量导入</button>
+                        <button class="btn btn-primary btn-sm" onclick="addBOMRow()">+ 添加行</button>
+                    </div>
+                </div>
+                <div class="batch-bar" id="bomBatchBar">
+                    <input type="checkbox" class="row-checkbox th-checkbox" id="bomSelectAll" onclick="toggleSelectAllBOM()" title="全选/取消">
+                    <span class="batch-count" id="bomBatchCount">已选 0 行</span>
+                    <button class="btn btn-copy btn-sm" onclick="batchCopyBOM()">📋 批量复制</button>
+                    <button class="btn btn-outline btn-sm" onclick="batchEditBOM()">✏️ 批量编辑</button>
+                    <button class="btn btn-danger btn-sm" onclick="batchDeleteBOM()">🗑 批量删除</button>
+                    <button class="btn btn-clear-sel btn-sm" onclick="clearBOMSelection()">✕ 取消选择</button>
+                </div>
+                <div class="toolbar-row">
+                    <span class="text-muted" id="bomSearchInfo">直接在下表填写，每行对应一个机型的一个打胶位置</span>
+                    <span style="font-size:12px;color:var(--c-text-muted);" id="bomRowCount">共 0 行</span>
+                </div>
+                <div class="table-wrapper scrollable" style="max-height:480px;">
+                    <table>
+                        <thead><tr>
+                            <th style="width:28px;"><input type="checkbox" class="row-checkbox th-checkbox" onclick="toggleSelectAllBOM()" title="全选/取消"></th>
+                            <th style="width:36px;">#</th>
+                            <th style="width:140px;">机型</th>
+                            <th style="width:130px;">打胶位置</th>
+                            <th style="width:100px;">胶水型号</th>
+                            <th style="width:110px;">胶水料号</th>
+                            <th style="width:130px;">胶水描述</th>
+                            <th style="width:85px;">单套用量</th>
+                            <th style="width:70px;">规格(g)</th>
+                            <th style="width:70px;">单支容量</th>
+                            <th style="width:44px;">操作</th>
+                        </tr></thead>
+                        <tbody id="bomFlatBody"></tbody>
+                    </table>
+                </div>
+                <div style="padding:10px 20px;display:flex;gap:10px;align-items:center;border-top:1px solid var(--c-border-light);flex-wrap:wrap;">
+                    <button class="btn btn-primary btn-sm" onclick="addBOMRow()">+ 添加行</button>
+                    <button class="btn btn-outline btn-sm" onclick="batchCopyBOM()" id="bomBatchCopyBtn" style="display:none;">📋 复制选中行</button>
+                    <span class="text-muted">提示：勾选行后可批量复制/编辑/删除</span>
+                </div>
+            </div>
+
+            <!-- Glue Catalog -->
+            <details class="card catalog-section">
+                <summary class="catalog-summary" onclick="toggleCatalog()">
+                    <h2>📖 胶水料号库 <span id="catalogToggleBtn" style="font-size:12px;color:var(--c-text-muted);">▼ 展开</span></h2>
+                    <div class="search-box" onclick="event.preventDefault()" style="margin-right:8px;">
+                        <input type="text" id="catalogSearch" placeholder="搜索型号/料号..." style="width:180px;" oninput="renderGlueCatalog()">
+                        <span class="search-icon">🔍</span>
+                        <button class="search-clear" data-target="catalogSearch" onclick="clearSearch(this)" title="清除">✕</button>
+                    </div>
+                </summary>
+                <div id="glueCatalogContainer" style="display:none;">
+                    <div class="toolbar-row">
+                        <span class="text-muted" id="catalogInfo">共 0 种胶水</span>
+                        <button class="btn btn-primary btn-sm" onclick="addCatalogItem()">+ 新增胶水</button>
+                    </div>
+                    <div class="table-wrapper scrollable" style="max-height:360px;">
+                        <table id="glueCatalogTable">
+                            <thead><tr>
+                                <th style="width:36px;">#</th>
+                                <th>胶水型号</th>
+                                <th>料号</th>
+                                <th>类型</th>
+                                <th style="min-width:160px;">规格描述</th>
+                                <th style="width:70px;">规格(g)</th>
+                                <th style="width:70px;">单支容量</th>
+                                <th style="width:44px;">操作</th>
+                            </tr></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </details>
+
+            <!-- Demand Summary -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>📊 胶水需求量汇总 — <span id="resultMonthLabel"></span></h2>
+                    <button class="btn btn-outline btn-sm" onclick="exportDemandCSV()">📤 导出需求表</button>
+                </div>
+                <div class="table-wrapper">
+                    <table id="demandTable">
+                        <thead><tr>
+                            <th>胶水型号</th><th>胶水料号</th><th style="max-width:200px;">描述</th>
+                            <th style="width:90px;">规格(g)</th><th style="width:110px;">月需求量(取整)</th>
+                            <th>涉及机型/位置</th>
+                        </tr></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== MODULE 3: Inventory & Purchase ==================== -->
+        <div id="module3" class="module-content">
+            <div class="kpi-grid">
+                <div class="kpi-card danger"><div class="kpi-label">需采购胶水种类</div><div class="kpi-value" id="kpiNeedBuy">0</div></div>
+                <div class="kpi-card warning"><div class="kpi-label">建议采购总量</div><div class="kpi-value" id="kpiTotalPurchase">0<span class="kpi-unit">支/桶</span></div></div>
+                <div class="kpi-card primary"><div class="kpi-label">库存胶水种类</div><div class="kpi-value" id="kpiInvCount">0</div></div>
+            </div>
+
+            <!-- Inventory -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>📦 库存胶水数量录入 — <span id="invMonthLabel"></span></h2>
+                    <div class="btn-group">
+                        <button class="btn btn-outline btn-sm" onclick="syncInventoryFromBOM()">🔄 从BOM同步</button>
+                        <button class="btn btn-outline btn-sm" onclick="openImportInventory()">📥 导入库存</button>
+                        <button class="btn btn-primary btn-sm" onclick="addInventoryRow()">+ 新增胶水</button>
+                    </div>
+                </div>
+                <div class="table-wrapper scrollable" style="max-height:400px;">
+                    <table id="inventoryTable">
+                        <thead><tr>
+                            <th>胶水型号</th><th>胶水料号</th><th style="max-width:180px;">描述</th>
+                            <th style="width:75px;">规格(g)</th>
+                            <th style="width:70px;">单支容量</th>
+                            <th style="width:110px;">当前库存(支/桶)</th>
+                            <th style="width:90px;">有效期</th>
+                            <th style="width:60px;">操作</th>
+                        </tr></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Purchase Demand -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>🛒 采购需求 — <span id="resultMonthLabel2"></span></h2>
+                    <div class="btn-group">
+                        <span class="text-muted">需求取整=⌈月需求量⌉，采购=需求取整−库存</span>
+                        <button class="btn btn-outline btn-sm" onclick="exportCSV()">📤 导出采购需求</button>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <table id="resultTable">
+                        <thead><tr>
+                            <th>胶水型号</th><th>胶水料号</th><th>描述</th>
+                            <th style="width:100px;">月需求量(取整)</th>
+                            <th style="width:100px;">当前库存</th>
+                            <th style="width:100px;">建议采购</th>
+                            <th style="width:90px;">状态</th>
+                        </tr></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Detail -->
+            <div class="card">
+                <div class="card-header"><h2>📋 计算明细 — <span id="detailMonthLabel"></span></h2></div>
+                <div class="table-wrapper scrollable" style="max-height:400px;">
+                    <table id="detailTable">
+                        <thead><tr>
+                            <th>机型</th><th>月产量</th><th>打胶位置</th>
+                            <th>胶水型号</th><th>胶水料号</th><th>单套用量</th><th>规格(g)</th>
+                            <th>月消耗(精确)</th><th>月消耗(取整)</th>
+                        </tr></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Chart -->
+            <details class="card">
+                <summary class="catalog-summary"><h2>📊 采购需求图表</h2></summary>
+                <div class="chart-wrapper"><canvas id="purchaseChart"></canvas></div>
+            </details>
+        </div>
+
+        </div><!-- /content-area -->
+    </main>
+</div><!-- /app-layout -->
+
+<!-- ==================== TOAST ==================== -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ==================== MODAL: User Mgmt ==================== -->
 <div class="modal-overlay" id="userMgmtModal">
-<div class="modal" style="max-width:500px;">
+<div class="modal" style="max-width:520px;">
 <div class="modal-header">
-    <h3 style="font-size:16px;">👥 用户管理</h3>
-    <button class="btn btn-outline btn-sm" onclick="closeUserMgmt()">✕</button>
+    <h3>👥 用户管理</h3>
+    <button class="btn btn-ghost btn-sm" onclick="closeUserMgmt()">✕</button>
 </div>
-<div class="modal-body">
-    <div id="userListContainer"></div>
-</div>
+<div class="modal-body" id="userListContainer"></div>
 </div>
 </div>
 
-<!-- ==================== COPY BOM MODAL ==================== -->
-<div class="modal-overlay" id="copyBomOverlay">
-<div class="modal" style="max-width:500px;">
-<div class="modal-header">
-    <h3 style="font-size:16px;">📋 复制BOM配置</h3>
-    <button class="btn btn-outline btn-sm" onclick="cancelCopyBOM()">✕</button>
-</div>
-<div class="modal-body">
-    <p style="font-size:13px;color:var(--gray-700);margin-bottom:12px;">
-        源机型：<strong id="copyBomSourceInfo"></strong>
-    </p>
-    <div class="section-label">复制到：</div>
-    <select id="copyBomTargetSelect" style="width:100%;padding:8px 10px;border:1px solid var(--gray-300);border-radius:var(--radius-sm);font-size:13px;font-family:var(--font);margin-bottom:12px;" onchange="onCopyTargetChange()">
-        <option value="">-- 创建新机型（输入名称） --</option>
-    </select>
-    <input type="text" id="copyBomNewName" placeholder="输入新机型名称" style="width:100%;padding:8px 10px;border:1px solid var(--gray-300);border-radius:var(--radius-sm);font-size:13px;font-family:var(--font);margin-bottom:16px;">
-    <p style="font-size:11px;color:var(--gray-500);margin-bottom:16px;">※ 复制到已有机型将覆盖其现有BOM配置</p>
-    <div style="display:flex;gap:8px;justify-content:flex-end;">
-        <button class="btn btn-outline" onclick="cancelCopyBOM()">取消</button>
-        <button class="btn btn-primary" onclick="confirmCopyBOM()">确认复制</button>
-    </div>
-</div>
-</div>
-</div>
-
-<div class="container">
-
-<!-- Header -->
-<div class="header">
-    <h1>🧴 胶水采购需求管理系统<span>多人协作版 · 数据实时同步</span></h1>
-    <div class="header-actions">
-        <span class="save-status" id="saveStatus">已连接</span>
-        <span class="user-badge" id="userBadge"></span>
-        <button class="btn btn-outline btn-sm" onclick="openUserMgmt()">👥 用户</button>
-        <button class="btn btn-outline btn-sm" onclick="doLogout()">退出登录</button>
-    </div>
-</div>
-
-<!-- Month Toolbar -->
-<div class="month-toolbar">
-    <div class="month-nav">
-        <button class="month-btn" onclick="changeMonth(-1)">◀</button>
-        <input type="month" class="month-picker" id="monthPicker" onchange="onMonthChange()">
-        <span class="month-display" id="monthDisplay">2026-07</span>
-        <button class="month-btn" onclick="changeMonth(1)">▶</button>
-    </div>
-    <div class="month-actions">
-        <span class="month-badge" id="monthDataBadge">本月无数据</span>
-        <button class="btn btn-outline btn-sm" onclick="copyFromPrevMonth()">📋 从上月复制</button>
-        <button class="btn btn-outline btn-sm" onclick="gotoThisMonth()">📍 回到本月</button>
-    </div>
-</div>
-
-<!-- Module Tabs -->
-<div class="module-tabs">
-    <div class="module-tab active" id="tab1" onclick="switchModule(1)">🏭 模块一：机型及月生产数量</div>
-    <div class="module-tab" id="tab2" onclick="switchModule(2)">🧴 模块二：机型及胶水需求录入</div>
-    <div class="module-tab" id="tab3" onclick="switchModule(3)">📦 模块三：库存录入及采购需求</div>
-</div>
-
-<!-- ==================== MODULE 1: 机型及月生产数量 ==================== -->
-<div id="module1" class="module-content active">
-    <div class="kpi-row">
-        <div class="kpi-card"><div class="kpi-label">机型总数</div><div class="kpi-value" id="kpiProdModels">0</div></div>
-        <div class="kpi-card green"><div class="kpi-label">已排产机型</div><div class="kpi-value" id="kpiProdScheduled">0</div></div>
-        <div class="kpi-card orange"><div class="kpi-label"><span id="kpiProdMonthLabel">当月</span>总产量</div><div class="kpi-value" id="kpiProdTotal">0<span class="kpi-unit">台</span></div></div>
-    </div>
-    <div class="card">
-        <div class="card-header" style="flex-wrap:wrap;gap:10px;">
-            <h2>📋 机型及月生产数量</h2>
-            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-                <div class="search-container" style="max-width:240px;">
-                    <input type="text" class="search-input" id="prodSearchInput" placeholder="🔍 搜索机型..." style="font-size:12px;padding:6px 10px;" oninput="renderProduction()">
-                </div>
-                <button class="btn btn-outline btn-sm" onclick="openProdImport()">📥 批量导入产量</button>
-                <button class="btn btn-primary btn-sm" onclick="addManualModel()">+ 添加机型</button>
-            </div>
-        </div>
-        <div class="table-wrapper" style="padding:16px 20px;">
-            <table>
-                <thead><tr>
-                    <th>机型名称</th><th>月产量</th><th>BOM位置数</th><th>胶水种类</th><th>操作</th>
-                </tr></thead>
-                <tbody id="prodTableBody"></tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-<!-- ==================== MODULE 2: 机型及胶水需求录入 ==================== -->
-<div id="module2" class="module-content">
-    <div class="card" id="bomSection">
-        <div class="card-header" style="flex-wrap:wrap;gap:10px;">
-            <h2>📋 机型BOM配置 — 机型 × 位置 × 胶水用量</h2>
-            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-                <div class="search-container" style="max-width:240px;">
-                    <input type="text" class="search-input" id="bomSearchInput" placeholder="🔍 搜索机型..." style="font-size:12px;padding:6px 10px;" oninput="renderBOM()">
-                </div>
-                <button class="btn btn-outline btn-sm" onclick="openImportBOM()">📥 批量导入BOM</button>
-                <button class="btn btn-primary btn-sm" onclick="addModel()">+ 添加机型</button>
-            </div>
-        </div>
-        <p style="font-size:12px;color:var(--gray-500);padding:8px 20px 0;" id="bomSearchInfo">※ 机型列表来自模块一，月产量请在模块一中编辑（共 0 个机型）</p>
-        <div id="bomContainer" style="padding:16px 20px;"></div>
-    </div>
-
-    <!-- Glue Catalog -->
-    <details class="card" style="margin-bottom:20px;">
-        <summary class="card-header" style="cursor:pointer;" onclick="toggleCatalog()">
-            <h2>📖 胶水料号库 <span id="catalogToggleBtn" style="font-size:12px;color:var(--gray-500);">▼ 展开</span></h2>
-            <div style="display:flex;gap:8px;">
-                <input type="text" id="catalogSearch" placeholder="搜索型号/料号/描述..." style="width:220px;font-size:12px;padding:5px 10px;" oninput="renderGlueCatalog()">
-            </div>
-        </summary>
-        <div id="glueCatalogContainer" style="display:none;padding:16px 20px;">
-            <p style="font-size:12px;color:var(--gray-500);margin-bottom:12px;" id="catalogInfo"></p>
-            <div class="table-wrapper">
-                <table id="glueCatalogTable">
-                    <thead><tr><th>#</th><th>胶水型号</th><th>料号</th><th>类型</th><th>规格</th><th>容量</th></tr></thead>
-                    <tbody></tbody>
-                </table>
-            </div>
-        </div>
-    </details>
-
-    <!-- Demand Table -->
-    <div class="card">
-        <div class="card-header">
-            <h2>📊 胶水需求量汇总 — <span id="resultMonthLabel"></span></h2>
-            <button class="btn btn-outline btn-sm" onclick="exportDemandCSV()">📤 导出需求表</button>
-        </div>
-        <div class="table-wrapper" style="padding:16px 20px;">
-            <table id="demandTable">
-                <thead><tr>
-                    <th>胶水型号</th><th>胶水料号</th><th>胶水描述</th>
-                    <th>规格容量(g)</th><th>月需求量(支/桶)</th><th>涉及机型/位置</th>
-                </tr></thead>
-                <tbody></tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-<!-- ==================== MODULE 3: 库存录入及采购需求 ==================== -->
-<div id="module3" class="module-content">
-    <div class="kpi-row">
-        <div class="kpi-card red"><div class="kpi-label">需采购胶水种类</div><div class="kpi-value" id="kpiNeedBuy">0</div></div>
-        <div class="kpi-card orange"><div class="kpi-label">建议采购总量</div><div class="kpi-value" id="kpiTotalPurchase">0<span class="kpi-unit">支/桶</span></div></div>
-        <div class="kpi-card"><div class="kpi-label">库存胶水种类</div><div class="kpi-value" id="kpiInvCount">0</div></div>
-    </div>
-
-    <div class="card">
-        <div class="card-header">
-            <h2>📦 库存胶水数量录入 — <span id="invMonthLabel"></span></h2>
-            <div style="display:flex;gap:8px;">
-                <button class="btn btn-outline btn-sm" onclick="addInventoryRow()">+ 新增胶水</button>
-                <button class="btn btn-outline btn-sm" onclick="openImportInventory()">📥 导入库存</button>
-                <button class="btn btn-outline btn-sm" onclick="syncInventoryFromBOM()">🔄 从BOM同步</button>
-            </div>
-        </div>
-        <div class="table-wrapper" style="padding:16px 20px;">
-            <table id="inventoryTable">
-                <thead><tr>
-                    <th>胶水型号</th><th>胶水料号</th><th>描述</th><th>规格容量</th>
-                    <th>当前库存(支/桶)</th><th>有效期</th><th>操作</th>
-                </tr></thead>
-                <tbody></tbody>
-            </table>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-header">
-            <h2>🛒 采购需求 — <span id="resultMonthLabel2"></span></h2>
-            <button class="btn btn-outline btn-sm" onclick="exportCSV()">📤 导出采购需求</button>
-        </div>
-        <p style="font-size:12px;color:var(--gray-500);padding:8px 20px 0;">
-            计算公式：需求取整 = ⌈月需求量⌉，需采购量 = ⌈需求取整⌉ − 当前库存
-        </p>
-        <div class="table-wrapper" style="padding:16px 20px;">
-            <table id="resultTable">
-                <thead><tr>
-                    <th>胶水型号</th><th>胶水料号</th><th>胶水描述</th>
-                    <th>月需求量(取整)</th><th>当前库存(支/桶)</th>
-                    <th>建议采购(支/桶)</th><th>状态</th>
-                </tr></thead>
-                <tbody></tbody>
-            </table>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-header"><h2>📋 计算明细 — <span id="detailMonthLabel"></span></h2></div>
-        <div class="table-wrapper" style="padding:16px 20px;">
-            <table id="detailTable">
-                <thead><tr>
-                    <th>机型</th><th>月产量</th><th>打胶位置</th>
-                    <th>胶水型号</th><th>胶水料号</th><th>单套用量(支/桶)</th><th>规格容量(g)</th>
-                    <th>月消耗(精确)</th><th>月消耗(取整)</th>
-                </tr></thead>
-                <tbody></tbody>
-            </table>
-        </div>
-    </div>
-
-    <details style="margin-bottom:20px;">
-        <summary class="card-header" style="cursor:pointer;">
-            <h2>📊 采购需求图表</h2>
-        </summary>
-        <div class="chart-wrapper" style="padding:0 20px 16px;"><canvas id="purchaseChart"></canvas></div>
-    </details>
-</div>
-
-</div><!-- /container -->
-
-<!-- Toast -->
-<div class="toast" id="toast"></div>
-
-<!-- ==================== MODAL: 产量导入 ==================== -->
+<!-- ==================== MODAL: Prod Import ==================== -->
 <div class="modal-overlay" id="prodImportModal">
 <div class="modal">
 <div class="modal-header">
-    <h3 style="font-size:16px;">📥 批量导入机型及月生产数量</h3>
-    <button class="btn btn-outline btn-sm" onclick="closeProdImport()">✕</button>
+    <h3>📥 批量导入机型及月生产数量</h3>
+    <button class="btn btn-ghost btn-sm" onclick="closeProdImport()">✕</button>
 </div>
 <div class="modal-body">
     <div class="modal-tabs">
@@ -476,33 +887,29 @@ input.wide { width: 100%; }
         <div class="modal-tab" onclick="switchTab('prod-template',this)">模板说明</div>
     </div>
     <div class="import-tab-content active" id="prod-paste">
-        <div class="section-label">粘贴 CSV 数据（格式：机型名称,月产量）：</div>
+        <p class="text-muted" style="margin-bottom:10px;">格式：机型名称,月产量</p>
         <textarea class="csv-textarea" id="prodCsvText" placeholder="A154,3000&#10;A113,1200&#10;D11Pro,800"></textarea>
-        <button class="btn btn-primary" style="margin-top:10px;" onclick="doImportProd()">确认导入</button>
+        <button class="btn btn-primary" style="margin-top:12px;" onclick="doImportProd()">确认导入</button>
     </div>
-    <div class="import-tab-content" id="prod-file">
-        <div class="drop-zone" id="prodDropZone" onclick="document.getElementById('prodFileInput').click()">
-            📎 点击或拖拽 CSV 文件到此处
-        </div>
+    <div class="import-tab-content" id="prod-file" style="display:none;">
+        <div class="drop-zone" onclick="document.getElementById('prodFileInput').click()">📎 点击或拖拽 CSV 文件到此处</div>
         <input type="file" id="prodFileInput" accept=".csv,.txt" style="display:none;" onchange="handleProdFile(event)">
     </div>
-    <div class="import-tab-content" id="prod-template">
-        <div class="template-preview">
-            <table><thead><tr><th>机型名称</th><th>月产量</th></tr></thead>
-            <tbody><tr><td>A154</td><td>3000</td></tr><tr><td>A113</td><td>1200</td></tr></tbody></table>
-        </div>
-        <p style="font-size:12px;color:var(--gray-500);">CSV格式：第一列机型名称，第二列月产量，支持大小写模糊匹配</p>
+    <div class="import-tab-content" id="prod-template" style="display:none;">
+        <table><thead><tr><th>机型名称</th><th>月产量</th></tr></thead>
+        <tbody><tr><td>A154</td><td>3000</td></tr><tr><td>A113</td><td>1200</td></tr></tbody></table>
+        <p class="text-muted" style="margin-top:8px;">CSV格式：第一列机型名称，第二列月产量，支持大小写模糊匹配</p>
     </div>
 </div>
 </div>
 </div>
 
-<!-- ==================== MODAL: BOM导入 ==================== -->
+<!-- ==================== MODAL: BOM Import ==================== -->
 <div class="modal-overlay" id="bomImportModal">
-<div class="modal" style="max-width:700px;">
+<div class="modal" style="max-width:680px;">
 <div class="modal-header">
-    <h3 style="font-size:16px;">📥 批量导入BOM配置</h3>
-    <button class="btn btn-outline btn-sm" onclick="closeBomImport()">✕</button>
+    <h3>📥 批量导入BOM配置</h3>
+    <button class="btn btn-ghost btn-sm" onclick="closeBomImport()">✕</button>
 </div>
 <div class="modal-body">
     <div class="modal-tabs">
@@ -511,32 +918,74 @@ input.wide { width: 100%; }
         <div class="modal-tab" onclick="switchTab('bom-template',this)">模板说明</div>
     </div>
     <div class="import-tab-content active" id="bom-paste">
-        <div class="section-label">粘贴 CSV 数据（格式：机型,打胶位置,胶水型号,胶水料号,胶水描述,单套用量(支/桶),规格容量(g)）：</div>
-        <textarea class="csv-textarea" id="bomCsvText" placeholder="A154,前腔装喇叭打胶,AP1536,M.301.01.00062,硅胶|阿普邦AP1536|55g/支|白色,0.001091,55"></textarea>
-        <button class="btn btn-primary" style="margin-top:10px;" onclick="doImportBOM()">确认导入</button>
+        <p class="text-muted" style="margin-bottom:10px;">格式：机型,打胶位置,胶水型号,胶水料号,胶水描述,单套用量,规格容量(g),单支容量</p>
+        <textarea class="csv-textarea" id="bomCsvText" placeholder="A154,前腔装喇叭打胶,AP1536,M.301.01.00062,硅胶|阿普邦AP1536|55g/支|白色,0.001091,55,1"></textarea>
+        <button class="btn btn-primary" style="margin-top:12px;" onclick="doImportBOM()">确认导入</button>
     </div>
-    <div class="import-tab-content" id="bom-file">
-        <div class="drop-zone" id="bomDropZone" onclick="document.getElementById('bomFileInput').click()">
-            📎 点击或拖拽 CSV 文件到此处
-        </div>
+    <div class="import-tab-content" id="bom-file" style="display:none;">
+        <div class="drop-zone" onclick="document.getElementById('bomFileInput').click()">📎 点击或拖拽 CSV 文件到此处</div>
         <input type="file" id="bomFileInput" accept=".csv,.txt" style="display:none;" onchange="handleBomFile(event)">
     </div>
-    <div class="import-tab-content" id="bom-template">
-        <div class="template-preview">
-            <table><thead><tr><th>机型</th><th>打胶位置</th><th>胶水型号</th><th>胶水料号</th><th>胶水描述</th><th>单套用量(支/桶)</th><th>规格容量(g)</th></tr></thead>
-            <tbody><tr><td>A154</td><td>前腔装喇叭打胶</td><td>AP1536</td><td>M.301.01.00062</td><td>硅胶|55g/支|白色</td><td>0.001091</td><td>55</td></tr></tbody></table>
-        </div>
+    <div class="import-tab-content" id="bom-template" style="display:none;">
+        <table><thead><tr><th>机型</th><th>打胶位置</th><th>胶水型号</th><th>胶水料号</th><th>胶水描述</th><th>单套用量</th><th>规格容量(g)</th><th>单支容量</th></tr></thead>
+        <tbody><tr><td>A154</td><td>前腔装喇叭打胶</td><td>AP1536</td><td>M.301.01.00062</td><td>硅胶|55g/支|白色</td><td>0.001091</td><td>55</td><td>1</td></tr></tbody></table>
     </div>
 </div>
 </div>
 </div>
 
-<!-- ==================== MODAL: 库存导入 ==================== -->
+<!-- ==================== MODAL: BOM Batch Edit ==================== -->
+<div class="modal-overlay" id="bomBatchEditModal">
+<div class="modal" style="max-width:560px;">
+<div class="modal-header">
+    <h3>✏️ 批量编辑BOM <span style="font-size:12px;color:var(--c-text-muted);" id="batchEditCount"></span></h3>
+    <button class="btn btn-ghost btn-sm" onclick="closeBOMBatchEdit()">✕</button>
+</div>
+<div class="modal-body">
+    <p class="text-muted" style="margin-bottom:16px;">仅修改您填写的字段，留空则不修改。将对所有选中行生效。</p>
+    <div class="batch-edit-field">
+        <label>切换机型</label>
+        <select id="batchEditModel">
+            <option value="">-- 不修改 --</option>
+        </select>
+    </div>
+    <div class="batch-edit-field">
+        <label>胶水型号</label>
+        <input type="text" id="batchEditGlueModel" placeholder="留空不修改">
+    </div>
+    <div class="batch-edit-field">
+        <label>胶水料号</label>
+        <input type="text" id="batchEditGluePartNo" placeholder="留空不修改">
+    </div>
+    <div class="batch-edit-field">
+        <label>胶水描述</label>
+        <input type="text" id="batchEditGlueDesc" placeholder="留空不修改">
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+        <div class="batch-edit-field">
+            <label>单套用量</label>
+            <input type="number" id="batchEditPerUnit" placeholder="不修改" min="0" step="0.000001">
+        </div>
+        <div class="batch-edit-field">
+            <label>规格(g)</label>
+            <input type="number" id="batchEditContainer" placeholder="不修改" min="0" step="0.1">
+        </div>
+        <div class="batch-edit-field">
+            <label>单支容量</label>
+            <input type="number" id="batchEditUnitCap" placeholder="不修改" min="0" step="0.1">
+        </div>
+    </div>
+    <button class="btn btn-primary" style="width:100%;margin-top:8px;" onclick="doBatchEditBOM()">✅ 确认批量修改</button>
+</div>
+</div>
+</div>
+
+<!-- ==================== MODAL: Inventory Import ==================== -->
 <div class="modal-overlay" id="invImportModal">
 <div class="modal">
 <div class="modal-header">
-    <h3 style="font-size:16px;">📥 批量导入库存</h3>
-    <button class="btn btn-outline btn-sm" onclick="closeInvImport()">✕</button>
+    <h3>📥 批量导入库存</h3>
+    <button class="btn btn-ghost btn-sm" onclick="closeInvImport()">✕</button>
 </div>
 <div class="modal-body">
     <div class="modal-tabs">
@@ -545,38 +994,30 @@ input.wide { width: 100%; }
         <div class="modal-tab" onclick="switchTab('inv-template',this)">模板说明</div>
     </div>
     <div class="import-tab-content active" id="inv-paste">
-        <div class="section-label">粘贴 CSV 数据（格式：胶水型号,胶水料号,当前库存(支/桶)）：</div>
+        <p class="text-muted" style="margin-bottom:10px;">格式：胶水型号,胶水料号,当前库存(支/桶)</p>
         <textarea class="csv-textarea" id="invCsvText" placeholder="AP1536,M.301.01.00062,50&#10;AP1808B,M.301.01.00067,30"></textarea>
-        <button class="btn btn-primary" style="margin-top:10px;" onclick="doImportInventory()">确认导入</button>
+        <button class="btn btn-primary" style="margin-top:12px;" onclick="doImportInventory()">确认导入</button>
     </div>
-    <div class="import-tab-content" id="inv-file">
-        <div class="drop-zone" id="invDropZone" onclick="document.getElementById('invFileInput').click()">
-            📎 点击或拖拽 CSV 文件到此处
-        </div>
+    <div class="import-tab-content" id="inv-file" style="display:none;">
+        <div class="drop-zone" onclick="document.getElementById('invFileInput').click()">📎 点击或拖拽 CSV 文件到此处</div>
         <input type="file" id="invFileInput" accept=".csv,.txt" style="display:none;" onchange="handleInvFile(event)">
     </div>
-    <div class="import-tab-content" id="inv-template">
-        <div class="template-preview">
-            <table><thead><tr><th>胶水型号</th><th>胶水料号</th><th>当前库存(支/桶)</th></tr></thead>
-            <tbody><tr><td>AP1536</td><td>M.301.01.00062</td><td>50</td></tr></tbody></table>
-        </div>
+    <div class="import-tab-content" id="inv-template" style="display:none;">
+        <table><thead><tr><th>胶水型号</th><th>胶水料号</th><th>当前库存(支/桶)</th></tr></thead>
+        <tbody><tr><td>AP1536</td><td>M.301.01.00062</td><td>50</td></tr></tbody></table>
     </div>
 </div>
 </div>
 </div>
 
+<script src="database.js"></script>
 <script>
-// ==================== API 配置 ====================
+// ============================================================
+// API & AUTH
+// ============================================================
 const API_BASE = '/api';
-
 let authToken = '';
 let currentUser = null;
-
-// ==================== 认证 ====================
-function getUsers() {
-    // 前端不再维护用户列表，由后端处理
-    return {};
-}
 
 function showLogin() {
     document.getElementById('loginForm').style.display = 'block';
@@ -596,26 +1037,17 @@ async function doLogin() {
     const username = document.getElementById('loginUser').value.trim();
     const password = document.getElementById('loginPass').value;
     const errEl = document.getElementById('loginError');
-    if (!username || !password) {
-        errEl.textContent = '请输入用户名和密码';
-        errEl.style.display = 'block';
-        return;
-    }
+    if (!username || !password) { errEl.textContent = '请输入用户名和密码'; errEl.style.display = 'block'; return; }
     try {
         const data = await fetch(API_BASE + '/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password })
         }).then(r => r.json());
         if (data.error) { errEl.textContent = data.error; errEl.style.display = 'block'; return; }
-        authToken = data.username;
-        currentUser = data;
+        authToken = data.username; currentUser = data;
         localStorage.setItem('glue_session_user', data.username);
         enterSystem();
-    } catch(e) {
-        errEl.textContent = '登录失败：' + e.message;
-        errEl.style.display = 'block';
-    }
+    } catch(e) { errEl.textContent = '登录失败：' + e.message; errEl.style.display = 'block'; }
 }
 
 async function doRegister() {
@@ -623,37 +1055,28 @@ async function doRegister() {
     const password = document.getElementById('regPass').value;
     const password2 = document.getElementById('regPass2').value;
     const errEl = document.getElementById('loginError');
-    if (!username || !password) {
-        errEl.textContent = '请输入用户名和密码';
-        errEl.style.display = 'block';
-        return;
-    }
+    if (!username || !password) { errEl.textContent = '请输入用户名和密码'; errEl.style.display = 'block'; return; }
     if (username.length < 2) { errEl.textContent = '用户名至少2个字符'; errEl.style.display = 'block'; return; }
     if (password.length < 4) { errEl.textContent = '密码至少4个字符'; errEl.style.display = 'block'; return; }
     if (password !== password2) { errEl.textContent = '两次输入的密码不一致'; errEl.style.display = 'block'; return; }
     try {
         const data = await fetch(API_BASE + '/register', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password })
         }).then(r => r.json());
         if (data.error) { errEl.textContent = data.error; errEl.style.display = 'block'; return; }
-        authToken = data.username;
-        currentUser = data;
+        authToken = data.username; currentUser = data;
         localStorage.setItem('glue_session_user', data.username);
         enterSystem();
-    } catch(e) {
-        errEl.textContent = '注册失败：' + e.message;
-        errEl.style.display = 'block';
-    }
+    } catch(e) { errEl.textContent = '注册失败：' + e.message; errEl.style.display = 'block'; }
 }
 
 function doLogout() {
     if (!confirm('确定要退出登录吗？')) return;
-    authToken = '';
-    currentUser = null;
+    authToken = ''; currentUser = null;
     localStorage.removeItem('glue_session_user');
     document.getElementById('loginOverlay').style.display = 'flex';
+    document.getElementById('appLayout').style.display = 'none';
     document.getElementById('loginUser').value = '';
     document.getElementById('loginPass').value = '';
     showLogin();
@@ -661,139 +1084,134 @@ function doLogout() {
 
 function enterSystem() {
     document.getElementById('loginOverlay').style.display = 'none';
-    updateUserBadge();
-    init();
+    document.getElementById('appLayout').style.display = 'flex';
+    updateUserBadge(); init();
 }
 
 function updateUserBadge() {
-    const badge = document.getElementById('userBadge');
-    if (currentUser) {
-        const initial = currentUser.username.charAt(0).toUpperCase();
-        badge.innerHTML = '<span class="avatar">' + initial + '</span>' + currentUser.username + (currentUser.role === 'admin' ? ' · 管理员' : '');
-    }
+    if (!currentUser) return;
+    const initial = currentUser.username.charAt(0).toUpperCase();
+    document.getElementById('userAvatar').textContent = initial;
+    document.getElementById('userName').textContent = currentUser.username;
+    document.getElementById('userRole').textContent = currentUser.role === 'admin' ? '管理员' : '普通用户';
 }
 
+// ============================================================
+// TOAST (Enhanced)
+// ============================================================
+function showToast(text, type) {
+    type = type || 'info';
+    const container = document.getElementById('toastContainer');
+    const icons = { success: '✓', error: '✕', warning: '⚠', info: 'ℹ' };
+    const el = document.createElement('div');
+    el.className = 'toast-item ' + type;
+    el.innerHTML = '<span>' + (icons[type] || '') + '</span> ' + text;
+    container.appendChild(el);
+    setTimeout(() => { if (el.parentNode) el.remove(); }, 2500);
+}
+
+// ============================================================
+// SAVE INDICATOR
+// ============================================================
+function setSaveStatus(status) {
+    const el = document.getElementById('saveStatus');
+    el.className = 'save-indicator ' + status;
+    const labels = { saved: '已保存', saving: '保存中...', error: '保存失败' };
+    el.innerHTML = '<span class="save-dot"></span> ' + (labels[status] || status);
+}
+
+// ============================================================
+// USER MGMT
+// ============================================================
 async function openUserMgmt() {
     try {
-        const users = await fetch(API_BASE + '/users', {
-            headers: { 'Authorization': 'Bearer ' + authToken }
-        }).then(r => r.json());
-        if (users.error) { showToast(users.error); return; }
-        const container = document.getElementById('userListContainer');
-        let html = '<table style="width:100%;"><thead><tr><th>用户名</th><th>角色</th><th>注册时间</th><th>操作</th></tr></thead><tbody>';
+        const users = await fetch(API_BASE + '/users', { headers: { 'Authorization': 'Bearer ' + authToken } }).then(r => r.json());
+        if (users.error) { showToast(users.error, 'error'); return; }
+        let html = '<div class="table-wrapper"><table class="user-list-table"><thead><tr><th>用户名</th><th>角色</th><th>注册时间</th><th style="width:80px;">操作</th></tr></thead><tbody>';
         users.forEach(u => {
             const date = new Date(u.created_at * 1000).toLocaleString('zh-CN');
-            const canDelete = u.username !== 'admin' && u.username !== currentUser.username;
-            html += '<tr><td class="fw-bold">' + escHtml(u.username) + (u.username === currentUser.username ? ' (当前)' : '') + '</td>'
-                + '<td>' + (u.role === 'admin' ? '管理员' : '普通用户') + '</td>'
-                + '<td style="font-size:12px;">' + date + '</td>'
-                + '<td>' + (canDelete ? '<button class="btn btn-danger btn-sm" onclick="deleteUser(\'' + escAttr(u.username) + '\')">删除</button>' : '-') + '</td></tr>';
+            const isMe = u.username === currentUser.username;
+            const canDelete = u.username !== 'admin' && !isMe;
+            html += '<tr><td class="fw-bold">' + escHtml(u.username) + (isMe ? ' <span style="font-size:11px;color:var(--c-text-muted);">(当前)</span>' : '') + '</td>'
+                + '<td>' + (u.role === 'admin' ? '<span class="status-pill ok">管理员</span>' : '普通用户') + '</td>'
+                + '<td style="font-size:12px;color:var(--c-text-muted);">' + date + '</td>'
+                + '<td>' + (canDelete ? '<button class="btn btn-danger btn-xs" onclick="deleteUser(\'' + escAttr(u.username) + '\')">删除</button>' : '-') + '</td></tr>';
         });
-        html += '</tbody></table>';
-        container.innerHTML = html;
-        document.getElementById('userMgmtModal').style.display = 'flex';
-    } catch(e) { showToast('加载用户列表失败'); }
+        html += '</tbody></table></div>';
+        document.getElementById('userListContainer').innerHTML = html;
+        document.getElementById('userMgmtModal').classList.add('show');
+    } catch(e) { showToast('加载用户列表失败', 'error'); }
 }
 
-function closeUserMgmt() { document.getElementById('userMgmtModal').style.display = 'none'; }
+function closeUserMgmt() { document.getElementById('userMgmtModal').classList.remove('show'); }
 
 async function deleteUser(name) {
-    if (!confirm('确定删除用户 "' + name + '" 吗？')) return;
+    if (!confirm('确定删除用户 "' + name + '" 吗？此操作不可撤销。')) return;
     try {
         await fetch(API_BASE + '/users/' + encodeURIComponent(name), {
-            method: 'DELETE',
-            headers: { 'Authorization': 'Bearer ' + authToken }
+            method: 'DELETE', headers: { 'Authorization': 'Bearer ' + authToken }
         }).then(r => r.json());
-        openUserMgmt();
-        showToast('已删除用户：' + name);
-    } catch(e) { showToast('删除失败'); }
+        openUserMgmt(); showToast('已删除用户：' + name, 'success');
+    } catch(e) { showToast('删除失败', 'error'); }
 }
 
-// ==================== DATA (API) ====================
-let models = [];  // {id, name, positions: [{id, name, glueModel, gluePartNo, glueDesc, perUnitUsage, containerSize}], qtyMap: {month: qty}}
+// ============================================================
+// DATA MODELS
+// ============================================================
+let models = [];
 let modelIdCounter = 0;
-let inventoryList = [];  // [{id, glueModel, gluePartNo, glueDesc, containerSize, stockMap: {month: stock}}]
+let inventoryList = [];
 let chartInstance = null;
 let currentMonth = '';
 let glueCatalog = [];
 
-// ==================== MONTH HELPERS ====================
-function getThisMonthStr() {
-    const d = new Date();
-    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
-}
-function getPrevMonthStr(monthStr) {
-    const [y, m] = monthStr.split('-').map(Number);
-    const d = new Date(y, m - 2, 1);
-    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
-}
-function getNextMonthStr(monthStr) {
-    const [y, m] = monthStr.split('-').map(Number);
-    const d = new Date(y, m, 1);
-    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
-}
+// month helpers
+function getThisMonthStr() { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0'); }
+function getPrevMonthStr(ms) { const [y, m] = ms.split('-').map(Number); const d = new Date(y, m - 2, 1); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0'); }
+function getNextMonthStr(ms) { const [y, m] = ms.split('-').map(Number); const d = new Date(y, m, 1); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0'); }
 function getMonthQty(m) { return (m.qtyMap && m.qtyMap[currentMonth]) || 0; }
 function setMonthQty(m, qty) { if (!m.qtyMap) m.qtyMap = {}; m.qtyMap[currentMonth] = qty; }
 function getMonthStock(inv) { return (inv.stockMap && inv.stockMap[currentMonth]) || 0; }
 function setMonthStock(inv, stock) { if (!inv.stockMap) inv.stockMap = {}; inv.stockMap[currentMonth] = stock; }
-function formatMonthDisplay(ms) {
-    const [y, m] = ms.split('-');
-    return y + '年' + parseInt(m) + '月';
-}
+function formatMonthDisplay(ms) { const [y, m] = ms.split('-'); return y + '年' + parseInt(m) + '月'; }
 
-function changeMonth(delta) {
-    const newMonth = delta > 0 ? getNextMonthStr(currentMonth) : getPrevMonthStr(currentMonth);
-    setCurrentMonth(newMonth);
-}
-function onMonthChange() {
-    const val = document.getElementById('monthPicker').value;
-    if (val) setCurrentMonth(val);
-}
+function changeMonth(delta) { setCurrentMonth(delta > 0 ? getNextMonthStr(currentMonth) : getPrevMonthStr(currentMonth)); }
+function onMonthChange() { const v = document.getElementById('monthPicker').value; if (v) setCurrentMonth(v); }
 function setCurrentMonth(ms) {
     currentMonth = ms;
     document.getElementById('monthPicker').value = ms;
     document.getElementById('monthDisplay').textContent = formatMonthDisplay(ms);
-    refreshAll();
-    updateMonthBadge();
+    refreshAll(); updateMonthBadge();
 }
 function gotoThisMonth() { setCurrentMonth(getThisMonthStr()); }
 
 function updateMonthBadge() {
     let hasData = false;
     models.forEach(m => { if (getMonthQty(m) > 0) hasData = true; });
-    if (!hasData) {
-        inventoryList.forEach(inv => { if (getMonthStock(inv) > 0) hasData = true; });
-    }
+    if (!hasData) inventoryList.forEach(inv => { if (getMonthStock(inv) > 0) hasData = true; });
     const badge = document.getElementById('monthDataBadge');
-    badge.textContent = hasData ? formatMonthDisplay(currentMonth) + ' 已有数据' : formatMonthDisplay(currentMonth) + ' 暂无数据';
-    badge.style.background = hasData ? 'var(--green-light)' : 'var(--gray-100)';
-    badge.style.color = hasData ? '#065f46' : 'var(--gray-500)';
+    if (hasData) { badge.textContent = formatMonthDisplay(currentMonth) + ' 已有数据'; badge.className = 'month-badge has-data'; }
+    else { badge.textContent = formatMonthDisplay(currentMonth) + ' 暂无数据'; badge.className = 'month-badge no-data'; }
 }
 
 async function copyFromPrevMonth() {
     const prevMonth = getPrevMonthStr(currentMonth);
-    // 复制月产量
     for (const m of models) {
         const prevQty = (m.qtyMap && m.qtyMap[prevMonth]) || 0;
-        if (prevQty > 0) {
-            await saveProduction(m.id, currentMonth, prevQty);
-            setMonthQty(m, prevQty);
-        }
+        if (prevQty > 0) { await saveProduction(m.id, currentMonth, prevQty); setMonthQty(m, prevQty); }
     }
-    // 复制月库存
     for (const inv of inventoryList) {
         const prevStock = (inv.stockMap && inv.stockMap[prevMonth]) || 0;
-        if (prevStock > 0) {
-            await saveStock(inv.id, currentMonth, prevStock);
-            setMonthStock(inv, prevStock);
-        }
+        if (prevStock > 0) { await saveStock(inv.id, currentMonth, prevStock); setMonthStock(inv, prevStock); }
     }
-    refreshAll();
-    showToast('已从' + formatMonthDisplay(prevMonth) + '复制产量及库存');
+    refreshAll(); showToast('已从' + formatMonthDisplay(prevMonth) + '复制产量及库存', 'success');
 }
 
-// ==================== API 调用封装 ====================
-async function apiRequest(url, options = {}) {
+// ============================================================
+// API wrappers
+// ============================================================
+async function apiRequest(url, options) {
+    options = options || {};
     const headers = { 'Content-Type': 'application/json', ...options.headers };
     if (authToken) headers['Authorization'] = 'Bearer ' + authToken;
     const res = await fetch(API_BASE + url, { ...options, headers });
@@ -803,164 +1221,185 @@ async function apiRequest(url, options = {}) {
 
 async function loadModels() {
     const data = await apiRequest('/models?month=' + currentMonth);
-    models = data.map(m => ({
-        id: m.id,
-        name: m.name,
-        positions: m.positions || [],
-        qtyMap: m.qtyMap || {}
-    }));
+    models = (data || []).map(m => ({ id: m.id, name: m.name, positions: m.positions || [], qtyMap: m.qtyMap || {} }));
     modelIdCounter = models.length > 0 ? Math.max(...models.map(m => m.id)) : 0;
+    document.getElementById('navCount1').textContent = models.length;
+    document.getElementById('navCount2').textContent = models.reduce((s, m) => s + (m.positions || []).length, 0);
 }
 
 async function saveModel(m) {
+    setSaveStatus('saving');
     if (m.id > 0 && models.find(em => em.id === m.id)) {
-        return apiRequest('/models/' + m.id, {
-            method: 'PUT',
-            body: JSON.stringify({ name: m.name, positions: m.positions })
+        const data = await apiRequest('/models/' + m.id, {
+            method: 'PUT', body: JSON.stringify({ name: m.name, positions: m.positions })
         });
+        setSaveStatus('saved');
+        return data;
     } else {
         const data = await apiRequest('/models', {
-            method: 'POST',
-            body: JSON.stringify({ name: m.name, positions: m.positions })
+            method: 'POST', body: JSON.stringify({ name: m.name, positions: m.positions })
         });
-        m.id = data.id;
-        return data;
+        m.id = data.id; setSaveStatus('saved'); return data;
     }
 }
 
-async function deleteModelApi(id) {
-    return apiRequest('/models/' + id, { method: 'DELETE' });
-}
-
+async function deleteModelApi(id) { return apiRequest('/models/' + id, { method: 'DELETE' }); }
 async function saveProduction(modelId, month, qty) {
-    return apiRequest('/production', {
-        method: 'PUT',
-        body: JSON.stringify({ modelId, month, qty })
-    });
+    return apiRequest('/production', { method: 'PUT', body: JSON.stringify({ modelId, month, qty }) });
 }
 
 async function loadInventory() {
     const data = await apiRequest('/inventory?month=' + currentMonth);
-    inventoryList = data.map(inv => ({
-        id: inv.id,
-        glueModel: inv.glue_model || inv.glueModel,
-        gluePartNo: inv.glue_part_no || inv.gluePartNo,
-        glueDesc: inv.glue_desc || inv.glueDesc,
-        containerSize: inv.container_size || inv.containerSize || 0,
+    inventoryList = (data || []).map(inv => ({
+        id: inv.id, glueModel: inv.glue_model || inv.glueModel, gluePartNo: inv.glue_part_no || inv.gluePartNo,
+        glueDesc: inv.glue_desc || inv.glueDesc, containerSize: inv.container_size || inv.containerSize || 0,
+        unitCapacity: inv.unit_capacity || inv.unitCapacity || 0,
         stockMap: inv.stockMap || {}
     }));
+    document.getElementById('navCount3').textContent = inventoryList.length;
 }
 
 async function saveInventoryItem(inv) {
+    setSaveStatus('saving');
     if (inv.id > 0 && inventoryList.find(ei => ei.id === inv.id)) {
-        return apiRequest('/inventory/' + inv.id, {
-            method: 'PUT',
-            body: JSON.stringify({ glueModel: inv.glueModel, gluePartNo: inv.gluePartNo, glueDesc: inv.glueDesc, containerSize: inv.containerSize })
+        const data = await apiRequest('/inventory/' + inv.id, {
+            method: 'PUT', body: JSON.stringify({ glueModel: inv.glueModel, gluePartNo: inv.gluePartNo, glueDesc: inv.glueDesc, containerSize: inv.containerSize, unitCapacity: inv.unitCapacity })
         });
+        setSaveStatus('saved'); return data;
     } else {
         const data = await apiRequest('/inventory', {
-            method: 'POST',
-            body: JSON.stringify({ glueModel: inv.glueModel, gluePartNo: inv.gluePartNo, glueDesc: inv.glueDesc, containerSize: inv.containerSize })
+            method: 'POST', body: JSON.stringify({ glueModel: inv.glueModel, gluePartNo: inv.gluePartNo, glueDesc: inv.glueDesc, containerSize: inv.containerSize, unitCapacity: inv.unitCapacity })
         });
-        inv.id = data.id || data.success ? inv.id : 0;
-        return data;
+        if (data.id) inv.id = data.id;
+        setSaveStatus('saved'); return data;
     }
 }
 
 async function saveStock(inventoryId, month, stock) {
-    return apiRequest('/stock', {
-        method: 'PUT',
-        body: JSON.stringify({ inventoryId, month, stock })
-    });
+    return apiRequest('/stock', { method: 'PUT', body: JSON.stringify({ inventoryId, month, stock }) });
 }
 
-async function deleteInventoryApi(id) {
-    return apiRequest('/inventory/' + id, { method: 'DELETE' });
-}
+async function deleteInventoryApi(id) { return apiRequest('/inventory/' + id, { method: 'DELETE' }); }
 
-// ==================== MODULE SWITCH ====================
+// ============================================================
+// SIDEBAR & MODULE SWITCH
+// ============================================================
 function switchModule(n) {
-    document.querySelectorAll('.module-tab').forEach(t => t.classList.remove('active'));
+    const titles = { 1: '模块一：机型及月生产数量', 2: '模块二：机型及胶水需求录入', 3: '模块三：库存录入及采购需求' };
+    document.querySelectorAll('.sidebar-nav-item').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.module-content').forEach(c => c.classList.remove('active'));
-    document.getElementById('tab' + n).classList.add('active');
+    document.getElementById('nav' + n).classList.add('active');
     document.getElementById('module' + n).classList.add('active');
+    document.getElementById('pageTitle').textContent = titles[n] || '';
     if (n === 3 && chartInstance) chartInstance.resize();
+    // close sidebar on mobile
+    if (window.innerWidth <= 768) toggleSidebar(false);
 }
 
-// ==================== INIT ====================
+function toggleSidebar(force) {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    const open = force !== undefined ? force : !sidebar.classList.contains('open');
+    if (open) { sidebar.classList.add('open'); overlay.classList.add('open'); }
+    else { sidebar.classList.remove('open'); overlay.classList.remove('open'); }
+}
+
+// Keyboard shortcuts
+document.addEventListener('keydown', function(e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
+    if (e.key === '1' || e.key === '2' || e.key === '3') { switchModule(parseInt(e.key)); }
+    if (e.key === 'Escape') { closeAllModals(); }
+});
+
+function closeAllModals() {
+    document.querySelectorAll('.modal-overlay.show').forEach(m => m.classList.remove('show'));
+}
+
+// ============================================================
+// SEARCH UTILS
+// ============================================================
+function onSearchInput(el) {
+    const clearBtn = el.parentElement.querySelector('.search-clear');
+    if (clearBtn) clearBtn.style.display = el.value ? 'flex' : 'none';
+}
+
+function clearSearch(btn) {
+    const targetId = btn.getAttribute('data-target');
+    const input = document.getElementById(targetId);
+    if (input) { input.value = ''; input.focus(); btn.style.display = 'none'; }
+    // trigger the appropriate render
+    if (targetId === 'prodSearchInput') renderProduction();
+    else if (targetId === 'bomSearchInput') renderBOM();
+    else if (targetId === 'catalogSearch') renderGlueCatalog();
+}
+
+// ============================================================
+// INIT
+// ============================================================
 async function init() {
     if (!authToken) {
         const saved = localStorage.getItem('glue_session_user');
         if (saved) {
-            // Verify token is still valid
             try {
-                const res = await fetch(API_BASE + '/users', {
-                    headers: { 'Authorization': 'Bearer ' + saved }
-                });
-                if (res.ok) {
-                    authToken = saved;
-                    currentUser = { username: saved, role: 'user' };
-                    updateUserBadge();
-                }
-            } catch(e) { /* ignore */ }
+                const res = await fetch(API_BASE + '/users', { headers: { 'Authorization': 'Bearer ' + saved } });
+                if (res.ok) { authToken = saved; currentUser = { username: saved, role: 'user' }; updateUserBadge(); }
+            } catch(e) {}
         }
-        if (!authToken) {
-            document.getElementById('loginOverlay').style.display = 'flex';
-            showLogin();
-            return;
-        }
+        if (!authToken) { document.getElementById('loginOverlay').style.display = 'flex'; showLogin(); return; }
     }
     document.getElementById('loginOverlay').style.display = 'none';
-
+    document.getElementById('appLayout').style.display = 'flex';
     currentMonth = getThisMonthStr();
     document.getElementById('monthPicker').value = currentMonth;
     document.getElementById('monthDisplay').textContent = formatMonthDisplay(currentMonth);
 
-    try {
-        await loadModels();
-        await loadInventory();
-    } catch(e) {
-        showToast('加载数据失败：' + e.message);
-    }
+    try { await loadModels(); await loadInventory(); await loadGlueCatalog(); } catch(e) { showToast('加载数据失败：' + e.message, 'error'); }
 
-    // Load glue catalog from database.js (static reference data)
-    if (typeof GLUE_DATABASE !== 'undefined' && GLUE_DATABASE.glueCatalog) {
-        glueCatalog = GLUE_DATABASE.glueCatalog;
+    // Fallback: if catalog API returned empty, try local database.js
+    if (glueCatalog.length === 0 && typeof GLUE_DATABASE !== 'undefined' && GLUE_DATABASE.glueCatalog) {
+        // Import from local file to API
+        try {
+            await apiRequest('/glue-catalog/batch', {
+                method: 'POST',
+                body: JSON.stringify({ items: GLUE_DATABASE.glueCatalog.map(g => ({
+                    name: g.name, partNo: g.partNo || '', type: g.type || '', spec: g.spec || '',
+                    containerSize: g.containerSize || 0, unitCapacity: g.unitCapacity || 0
+                })) })
+            });
+            await loadGlueCatalog();
+            showToast('已从本地数据库导入 ' + glueCatalog.length + ' 条胶水料号', 'info');
+        } catch(e) { /* keep local fallback */ glueCatalog = GLUE_DATABASE.glueCatalog; }
     }
-
-    refreshAll();
-    updateMonthBadge();
-    showToast('数据已加载：' + models.length + '个机型 · ' + inventoryList.length + '条库存');
+    refreshAll(); updateMonthBadge();
+    showToast('已加载 ' + models.length + ' 个机型 · ' + inventoryList.length + ' 条库存', 'info');
 }
 
-// ==================== MODULE 1: PRODUCTION ====================
+// ============================================================
+// MODULE 1: PRODUCTION
+// ============================================================
 function renderProduction() {
     const tbody = document.getElementById('prodTableBody');
-    const searchInput = document.getElementById('prodSearchInput');
-    const query = searchInput ? (searchInput.value || '').toLowerCase().trim() : '';
+    const query = (document.getElementById('prodSearchInput').value || '').toLowerCase().trim();
+    let filtered = query ? models.filter(m => m.name.toLowerCase().includes(query)) : models;
 
-    let filtered = models;
-    if (query) filtered = models.filter(m => m.name.toLowerCase().includes(query));
+    if (models.length === 0) { tbody.innerHTML = '<tr class="empty-row"><td colspan="6">暂无机型，请点击「+ 添加机型」或批量导入</td></tr>'; return; }
+    if (filtered.length === 0) { tbody.innerHTML = '<tr class="empty-row"><td colspan="6">未找到匹配的机型</td></tr>'; return; }
 
-    if (filtered.length === 0 && models.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--gray-500);padding:24px;">暂无机型，请点击"添加机型"或导入</td></tr>';
-        return;
-    }
-    if (filtered.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--gray-500);padding:24px;">未找到匹配的机型</td></tr>';
-        return;
-    }
-
-    tbody.innerHTML = filtered.map(m => {
+    tbody.innerHTML = filtered.map((m, idx) => {
         const qty = getMonthQty(m);
         const posCount = m.positions.length;
         const glueSet = new Set(m.positions.map(p => p.glueModel).filter(Boolean));
         return `<tr>
+            <td style="text-align:center;color:var(--c-text-muted);">${idx + 1}</td>
             <td class="fw-bold">${escHtml(m.name)}</td>
-            <td><input type="number" class="model-qty-input" value="${qty}" min="0" onchange="onProdQtyChange(${m.id}, this.value)" style="${qty > 0 ? 'border-color:var(--green);background:var(--green-light);' : ''}"></td>
+            <td><input type="number" value="${qty}" min="0" style="width:100px;text-align:center;${qty>0?'border-color:var(--c-success);background:var(--c-success-light);font-weight:700;':''}"
+                onchange="onProdQtyChange(${m.id}, this.value)"
+                onfocus="this.select()"></td>
             <td style="text-align:center;">${posCount}</td>
             <td style="text-align:center;">${glueSet.size}</td>
-            <td><button class="btn btn-danger btn-sm" onclick="onDeleteModel(${m.id})">删除</button></td>
+            <td style="text-align:center;">
+                <button class="btn btn-icon danger btn-xs" onclick="onDeleteModel(${m.id})" title="删除此机型">🗑</button>
+            </td>
         </tr>`;
     }).join('');
 }
@@ -968,302 +1407,582 @@ function renderProduction() {
 async function onProdQtyChange(id, value) {
     const qty = parseInt(value) || 0;
     const m = models.find(m => m.id === id);
-    if (m) { setMonthQty(m, qty); }
-    try {
-        await saveProduction(id, currentMonth, qty);
-        updateKPIs();
-        updateMonthBadge();
-        renderProduction();
-    } catch(e) { showToast('保存失败'); }
+    if (m) setMonthQty(m, qty);
+    try { await saveProduction(id, currentMonth, qty); updateKPIs(); updateMonthBadge(); renderProduction(); }
+    catch(e) { showToast('保存产量失败', 'error'); }
 }
 
 async function onDeleteModel(id) {
-    if (!confirm('确定删除此机型及其BOM配置吗？')) return;
+    if (!confirm('确定删除此机型及其所有BOM配置吗？此操作不可撤销。')) return;
     try {
         await deleteModelApi(id);
         models = models.filter(m => m.id !== id);
-        refreshAll();
-        showToast('已删除机型');
-    } catch(e) { showToast('删除失败'); }
+        refreshAll(); showToast('已删除机型', 'success');
+    } catch(e) { showToast('删除失败', 'error'); }
 }
 
 function addManualModel() {
     const name = prompt('请输入机型名称：', '新机型');
-    if (!name) return;
-    addModelByName(name);
+    if (!name || !name.trim()) return;
+    addModelByName(name.trim());
 }
 
 async function addModelByName(name) {
     try {
-        const data = await apiRequest('/models', {
-            method: 'POST',
-            body: JSON.stringify({ name, positions: [] })
-        });
+        const data = await apiRequest('/models', { method: 'POST', body: JSON.stringify({ name, positions: [] }) });
         models.push({ id: data.id, name, positions: [], qtyMap: {} });
-        refreshAll();
-        showToast('已添加机型：' + name);
-    } catch(e) { showToast('添加失败'); }
+        refreshAll(); showToast('已添加机型：' + name, 'success');
+    } catch(e) { showToast('添加失败', 'error'); }
 }
 
-// ==================== MODULE 2: BOM ====================
+// ============================================================
+// MODULE 2: BOM (Flat Table)
+// ============================================================
+function getFlatBOMList() {
+    const list = [];
+    models.forEach(m => { (m.positions || []).forEach(p => list.push({ modelId: m.id, modelName: m.name, pos: p })); });
+    return list;
+}
+
 function renderBOM() {
-    const container = document.getElementById('bomContainer');
-    const searchInput = document.getElementById('bomSearchInput');
-    const searchQuery = searchInput ? (searchInput.value || '').toLowerCase().trim() : '';
+    const tbody = document.getElementById('bomFlatBody');
+    const query = (document.getElementById('bomSearchInput').value || '').toLowerCase().trim();
     const infoEl = document.getElementById('bomSearchInfo');
+    const countEl = document.getElementById('bomRowCount');
+    const flatList = getFlatBOMList();
 
     if (models.length === 0) {
-        container.innerHTML = '<div class="empty-state"><div style="font-size:32px;">🧴</div><p>暂无机型，请先在模块一添加机型</p></div>';
+        if (tbody) tbody.innerHTML = '<tr class="empty-row"><td colspan="11">暂无机型，请先在模块一添加机型</td></tr>';
         if (infoEl) infoEl.textContent = '※ 机型列表来自模块一，月产量请在模块一中编辑';
-        return;
+        if (countEl) countEl.textContent = '共 0 行'; updateBOMSelection(); return;
     }
 
-    let filteredModels = models;
-    if (searchQuery) {
-        filteredModels = models.filter(m => m.name.toLowerCase().includes(searchQuery));
-        if (infoEl) infoEl.textContent = '🔍 搜索"' + searchQuery + '"，找到 ' + filteredModels.length + ' 个机型（共 ' + models.length + ' 个）';
+    let filtered = flatList;
+    if (query) {
+        filtered = flatList.filter(item =>
+            item.modelName.toLowerCase().includes(query) ||
+            (item.pos.name || '').toLowerCase().includes(query) ||
+            (item.pos.glueModel || '').toLowerCase().includes(query) ||
+            (item.pos.gluePartNo || '').toLowerCase().includes(query) ||
+            (item.pos.glueDesc || '').toLowerCase().includes(query)
+        );
+        if (infoEl) infoEl.textContent = '🔍 搜索"' + query + '"，找到 ' + filtered.length + ' 行（共 ' + flatList.length + ' 行）';
     } else {
-        if (infoEl) infoEl.textContent = '※ 机型列表来自模块一，月产量请在模块一中编辑（共 ' + models.length + ' 个机型）';
+        if (infoEl) infoEl.textContent = '直接在下表填写，每行对应一个机型的一个打胶位置（共 ' + flatList.length + ' 行）';
+    }
+    if (countEl) countEl.textContent = '共 ' + flatList.length + ' 行' + (query ? '，筛选 ' + filtered.length + ' 行' : '');
+
+    if (filtered.length === 0 && flatList.length === 0) {
+        if (tbody) tbody.innerHTML = '<tr class="empty-row"><td colspan="11">暂无BOM记录，点击「+ 添加行」新增</td></tr>'; updateBOMSelection(); return;
+    }
+    if (filtered.length === 0) {
+        if (tbody) tbody.innerHTML = '<tr class="empty-row"><td colspan="11">未找到匹配的记录</td></tr>'; updateBOMSelection(); return;
+    }
+    if (!tbody) return;
+
+    tbody.innerHTML = filtered.map((item, idx) => {
+        const mId = item.modelId, p = item.pos;
+        const rowKey = mId + '_' + p.id;
+        const isChecked = selectedBOMRows.has(rowKey);
+        let modelOptions = models.map(m => '<option value="' + m.id + '"' + (m.id === mId ? ' selected' : '') + '>' + escHtml(m.name) + '</option>').join('');
+        return `<tr id="bomRow${p.id}">
+            <td style="text-align:center;"><input type="checkbox" class="row-checkbox" data-rowkey="${rowKey}" ${isChecked ? 'checked' : ''} onclick="toggleBOMRow(this)"></td>
+            <td style="text-align:center;color:var(--c-text-muted);font-size:11px;">${idx + 1}</td>
+            <td><select class="bom-model-select" onchange="onBOMModelChange(${mId},${p.id},this.value)"><option value="">-- 选择机型 --</option>${modelOptions}</select></td>
+            <td><input type="text" value="${escHtml(p.name)}" onchange="onBOMCellChange(${mId},${p.id},'name',this.value)" placeholder="打胶位置"></td>
+            <td><div class="autocomplete-wrap"><input type="text" value="${escHtml(p.glueModel)}" 
+                oninput="onGlueModelInput(${mId},${p.id},this)" 
+                onchange="onGlueModelChangeBOM(${mId},${p.id},this.value)" 
+                onfocus="onGlueModelInput(${mId},${p.id},this)"
+                onblur="setTimeout(()=>hideAutocomplete(${mId},${p.id}),200)"
+                placeholder="胶水型号" autocomplete="off">
+                <div class="autocomplete-list" id="ac_${mId}_${p.id}"></div></div></td>
+            <td><input type="text" value="${escHtml(p.gluePartNo)}" onchange="onBOMCellChange(${mId},${p.id},'gluePartNo',this.value)" placeholder="料号"></td>
+            <td><input type="text" value="${escHtml(p.glueDesc)}" onchange="onBOMCellChange(${mId},${p.id},'glueDesc',this.value)" placeholder="描述"></td>
+            <td><input type="number" class="tight" value="${p.perUnitUsage}" min="0" step="0.000001" onchange="onBOMCellChange(${mId},${p.id},'perUnitUsage',this.value)"></td>
+            <td><input type="number" class="tight" value="${p.containerSize}" min="0" step="0.1" onchange="onBOMCellChange(${mId},${p.id},'containerSize',this.value)"></td>
+            <td><input type="number" class="tight" value="${p.unitCapacity || 0}" min="0" step="0.1" onchange="onBOMCellChange(${mId},${p.id},'unitCapacity',this.value)"></td>
+            <td style="text-align:center;"><button class="btn btn-icon danger btn-xs" onclick="deleteBOMRow(${mId},${p.id})" title="删除此行">✕</button></td>
+        </tr>`;
+    }).join('');
+    updateBOMSelection();
+}
+
+// ============================================================
+// BOM BATCH OPERATIONS (select/copy/edit/delete)
+// ============================================================
+function updateBOMSelection() {
+    const bar = document.getElementById('bomBatchBar');
+    const countEl = document.getElementById('bomBatchCount');
+    const selectAll = document.getElementById('bomSelectAll');
+    const copyBtn = document.getElementById('bomBatchCopyBtn');
+    const flatList = getFlatBOMList();
+    const totalCount = flatList.length;
+    const selCount = selectedBOMRows.size;
+
+    if (selCount > 0) {
+        if (bar) bar.classList.add('show');
+        if (countEl) countEl.textContent = '已选 ' + selCount + ' 行';
+        if (copyBtn) copyBtn.style.display = '';
+    } else {
+        if (bar) bar.classList.remove('show');
+        if (countEl) countEl.textContent = '已选 0 行';
+        if (copyBtn) copyBtn.style.display = 'none';
     }
 
-    if (filteredModels.length === 0) {
-        container.innerHTML = '<div class="empty-state"><div style="font-size:32px;">🔍</div><p>未找到匹配的机型</p></div>';
-        return;
+    if (selectAll) {
+        selectAll.checked = selCount > 0 && selCount >= totalCount && totalCount > 0;
+        selectAll.indeterminate = selCount > 0 && selCount < totalCount;
+    }
+}
+
+function toggleSelectAllBOM() {
+    const selectAll = document.getElementById('bomSelectAll');
+    const flatList = getFlatBOMList();
+
+    if (selectAll && (selectAll.checked || selectedBOMRows.size < flatList.length)) {
+        if (selectedBOMRows.size === flatList.length && flatList.length > 0) {
+            selectedBOMRows.clear();
+        } else {
+            flatList.forEach(item => selectedBOMRows.add(item.modelId + '_' + item.pos.id));
+        }
+    } else {
+        selectedBOMRows.clear();
+    }
+    renderBOM();
+}
+
+function toggleBOMRow(checkbox) {
+    const rowKey = checkbox.getAttribute('data-rowkey');
+    if (checkbox.checked) {
+        selectedBOMRows.add(rowKey);
+    } else {
+        selectedBOMRows.delete(rowKey);
+    }
+    updateBOMSelection();
+}
+
+function clearBOMSelection() {
+    selectedBOMRows.clear();
+    renderBOM();
+}
+
+function getSelectedBOMItems() {
+    const flatList = getFlatBOMList();
+    const selected = [];
+    flatList.forEach(item => {
+        const rowKey = item.modelId + '_' + item.pos.id;
+        if (selectedBOMRows.has(rowKey)) selected.push(item);
+    });
+    return selected;
+}
+
+function getAffectedModels(selected) {
+    const ids = new Set();
+    selected.forEach(s => ids.add(s.modelId));
+    return [...ids];
+}
+
+async function batchCopyBOM() {
+    const selected = getSelectedBOMItems();
+    if (selected.length === 0) { showToast('请先勾选需要复制的行', 'warning'); return; }
+    if (!confirm('将为选中的 ' + selected.length + ' 行各复制一条新记录，确定吗？')) return;
+
+    let copyCount = 0;
+    for (const item of selected) {
+        const m = models.find(m => m.id === item.modelId);
+        if (!m) continue;
+        const newPos = {
+            id: posIdCounter++,
+            name: item.pos.name,
+            glueModel: item.pos.glueModel,
+            gluePartNo: item.pos.gluePartNo,
+            glueDesc: item.pos.glueDesc,
+            perUnitUsage: item.pos.perUnitUsage,
+            containerSize: item.pos.containerSize,
+            unitCapacity: item.pos.unitCapacity || 0
+        };
+        m.positions.push(newPos);
+        copyCount++;
     }
 
-    container.innerHTML = filteredModels.map(m => `
-        <div class="model-card" id="bomModel${m.id}">
-            <div class="model-card-header">
-                <div class="model-info">
-                    <span class="model-name">📱 ${escHtml(m.name)}</span>
-                    <span style="font-size:12px;color:var(--gray-500);">${m.positions.length}个位置</span>
-                </div>
-                <div class="model-actions">
-                    <button class="btn btn-outline btn-sm" onclick="addPosition(${m.id})">+ 添加位置</button>
-                    <button class="btn btn-outline btn-sm" onclick="copyBOM(${m.id})" style="font-size:11px;" title="复制所有BOM配置到新机型">📋 复制BOM</button>
-                    <button class="btn btn-danger btn-sm" onclick="onDeleteModel(${m.id})">删除机型</button>
-                </div>
-            </div>
-            <div class="model-card-body">
-                ${m.positions.length === 0 ? '<div style="font-size:12px;color:var(--gray-500);padding:8px 0;">暂无位置配置，点击"添加位置"</div>' : `
-                <div class="table-wrapper"><table>
-                    <thead><tr>
-                        <th style="width:160px;">打胶位置</th>
-                        <th>胶水型号</th><th>胶水料号</th><th>胶水描述</th>
-                        <th style="width:110px;">单套用量(支/桶)</th><th style="width:90px;">规格容量(g)</th>
-                        <th style="width:60px;">操作</th>
-                    </tr></thead>
-                    <tbody>
-                        ${m.positions.map(p => `
-                        <tr>
-                            <td><input type="text" class="wide" value="${escHtml(p.name)}" onchange="onPosChange(${m.id},${p.id},'name',this.value)" placeholder="位置名称"></td>
-                            <td><input type="text" class="mid" value="${escHtml(p.glueModel)}" onchange="onPosChange(${m.id},${p.id},'glueModel',this.value)" placeholder="胶水型号"></td>
-                            <td><input type="text" class="mid" value="${escHtml(p.gluePartNo)}" onchange="onPosChange(${m.id},${p.id},'gluePartNo',this.value)" placeholder="料号"></td>
-                            <td><input type="text" class="wide" value="${escHtml(p.glueDesc)}" onchange="onPosChange(${m.id},${p.id},'glueDesc',this.value)" placeholder="描述"></td>
-                            <td><input type="number" class="tight" value="${p.perUnitUsage}" min="0" step="0.000001" onchange="onPosChange(${m.id},${p.id},'perUnitUsage',this.value)"></td>
-                            <td><input type="number" class="tight" value="${p.containerSize}" min="0" step="0.1" onchange="onPosChange(${m.id},${p.id},'containerSize',this.value)"></td>
-                            <td><button class="btn btn-outline btn-sm" onclick="deletePosition(${m.id},${p.id})">✕</button></td>
-                        </tr>
-                        `).join('')}
-                    </tbody>
-                </table></div>`}
-            </div>
-        </div>
-    `).join('');
+    try {
+        const modifiedModels = getAffectedModels(selected);
+        for (const mId of modifiedModels) {
+            const m = models.find(m => m.id === mId);
+            if (m) await saveModel(m);
+        }
+        selectedBOMRows.clear();
+        renderBOM(); calculate();
+        showToast('已复制 ' + copyCount + ' 行', 'success');
+    } catch(e) { showToast('批量复制失败', 'error'); }
+}
+
+function batchEditBOM() {
+    const selected = getSelectedBOMItems();
+    if (selected.length === 0) { showToast('请先勾选需要编辑的行', 'warning'); return; }
+    const modelSelect = document.getElementById('batchEditModel');
+    modelSelect.innerHTML = '<option value="">-- 不修改 --</option>' +
+        models.map(m => '<option value="' + m.id + '">' + escHtml(m.name) + '</option>').join('');
+    document.getElementById('batchEditCount').textContent = '（共 ' + selected.length + ' 行）';
+    document.getElementById('batchEditGlueModel').value = '';
+    document.getElementById('batchEditGluePartNo').value = '';
+    document.getElementById('batchEditGlueDesc').value = '';
+    document.getElementById('batchEditPerUnit').value = '';
+    document.getElementById('batchEditContainer').value = '';
+    document.getElementById('batchEditUnitCap').value = '';
+    document.getElementById('bomBatchEditModal').classList.add('show');
+}
+
+function closeBOMBatchEdit() {
+    document.getElementById('bomBatchEditModal').classList.remove('show');
+}
+
+async function doBatchEditBOM() {
+    const selected = getSelectedBOMItems();
+    if (selected.length === 0) { showToast('没有选中行', 'error'); return; }
+
+    const newModelId = document.getElementById('batchEditModel').value;
+    const glueModel = document.getElementById('batchEditGlueModel').value.trim();
+    const gluePartNo = document.getElementById('batchEditGluePartNo').value.trim();
+    const glueDesc = document.getElementById('batchEditGlueDesc').value.trim();
+    const perUnitUsage = document.getElementById('batchEditPerUnit').value;
+    const containerSize = document.getElementById('batchEditContainer').value;
+    const unitCapacity = document.getElementById('batchEditUnitCap').value;
+
+    if (!newModelId && !glueModel && !gluePartNo && !glueDesc && !perUnitUsage && !containerSize && !unitCapacity) {
+        showToast('请至少填写一个要修改的字段', 'warning'); return;
+    }
+
+    // Handle model change: move positions to target model
+    if (newModelId) {
+        const targetModel = models.find(m => m.id === parseInt(newModelId));
+        if (!targetModel) { showToast('目标机型不存在', 'error'); return; }
+        for (const item of selected) {
+            const oldM = models.find(m => m.id === item.modelId);
+            if (!oldM || oldM.id === targetModel.id) continue;
+            const posIdx = oldM.positions.findIndex(p => p.id === item.pos.id);
+            if (posIdx < 0) continue;
+            const [pos] = oldM.positions.splice(posIdx, 1);
+            targetModel.positions.push(pos);
+            item.modelId = targetModel.id;
+        }
+    }
+
+    // Apply field changes
+    for (const item of selected) {
+        const m = models.find(m => m.id === item.modelId);
+        if (!m) continue;
+        const p = m.positions.find(p => p.id === item.pos.id);
+        if (!p) continue;
+        if (glueModel) p.glueModel = glueModel;
+        if (gluePartNo) p.gluePartNo = gluePartNo;
+        if (glueDesc) p.glueDesc = glueDesc;
+        if (perUnitUsage !== '') p.perUnitUsage = parseFloat(perUnitUsage) || 0;
+        if (containerSize !== '') p.containerSize = parseFloat(containerSize) || 0;
+        if (unitCapacity !== '') p.unitCapacity = parseFloat(unitCapacity) || 0;
+    }
+
+    try {
+        const affectedModels = getAffectedModels(selected);
+        if (newModelId) {
+            affectedModels.push(parseInt(newModelId));
+        }
+        const uniqueModels = [...new Set(affectedModels)];
+        for (const mId of uniqueModels) {
+            const m = models.find(m => m.id === mId);
+            if (m) await saveModel(m);
+        }
+        selectedBOMRows.clear();
+        closeBOMBatchEdit();
+        renderBOM(); calculate();
+        showToast('已批量修改 ' + selected.length + ' 行', 'success');
+    } catch(e) { showToast('批量编辑失败', 'error'); }
+}
+
+async function batchDeleteBOM() {
+    const selected = getSelectedBOMItems();
+    if (selected.length === 0) { showToast('请先勾选需要删除的行', 'warning'); return; }
+    if (!confirm('确定删除选中的 ' + selected.length + ' 行吗？此操作不可撤销！')) return;
+
+    const affectedModels = getAffectedModels(selected);
+    for (const mId of affectedModels) {
+        const m = models.find(m => m.id === mId);
+        if (!m) continue;
+        const posIds = selected.filter(s => s.modelId === mId).map(s => s.pos.id);
+        m.positions = m.positions.filter(p => !posIds.includes(p.id));
+    }
+
+    try {
+        for (const mId of affectedModels) {
+            const m = models.find(m => m.id === mId);
+            if (m) await saveModel(m);
+        }
+        selectedBOMRows.clear();
+        renderBOM(); calculate();
+        showToast('已删除 ' + selected.length + ' 行', 'success');
+    } catch(e) { showToast('批量删除失败', 'error'); }
 }
 
 let posIdCounter = Date.now();
-function addPosition(modelId) {
-    const m = models.find(m => m.id === modelId);
+let selectedBOMRows = new Set(); // track selected rows by "modelId_posId"
+
+async function addBOMRow() {
+    if (models.length === 0) { showToast('请先在模块一添加机型', 'warning'); return; }
+    const targetId = models[0].id;
+    const m = models.find(m => m.id === targetId);
     if (!m) return;
-    m.positions.push({ id: posIdCounter++, name: '', glueModel: '', gluePartNo: '', glueDesc: '', perUnitUsage: 0, containerSize: 0 });
-    saveModelBOM(m);
+    const newPos = { id: posIdCounter++, name: '', glueModel: '', gluePartNo: '', glueDesc: '', perUnitUsage: 0, containerSize: 0, unitCapacity: 0 };
+    m.positions.push(newPos);
+    try {
+        await saveModel(m); renderBOM(); calculate();
+        setTimeout(() => {
+            const row = document.getElementById('bomRow' + newPos.id) || document.querySelector('#bomFlatBody tr:last-child');
+            if (row) { row.classList.add('row-new'); row.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                const firstInput = row.querySelector('input'); if (firstInput) firstInput.focus(); }
+        }, 100);
+        showToast('已添加新行，请填写', 'success');
+    } catch(e) { showToast('添加失败', 'error'); }
 }
 
-function deletePosition(modelId, posId) {
+async function deleteBOMRow(modelId, posId) {
+    if (!confirm('确定删除此行吗？')) return;
     const m = models.find(m => m.id === modelId);
     if (!m) return;
     m.positions = m.positions.filter(p => p.id !== posId);
-    saveModelBOM(m);
+    try { await saveModel(m); renderBOM(); calculate(); showToast('已删除', 'success'); }
+    catch(e) { showToast('删除失败', 'error'); }
 }
 
-async function onPosChange(modelId, posId, field, value) {
+async function onBOMCellChange(modelId, posId, field, value) {
     const m = models.find(m => m.id === modelId);
     if (!m) return;
     const p = m.positions.find(p => p.id === posId);
     if (!p) return;
-    if (field === 'perUnitUsage' || field === 'containerSize') {
-        p[field] = parseFloat(value) || 0;
-    } else {
-        p[field] = value;
-    }
-    await saveModelBOM(m);
-    // auto sync inventory
-    if (p.glueModel && p.gluePartNo) {
-        await syncInvFromPosition(p);
-    }
+    if (field === 'perUnitUsage' || field === 'containerSize' || field === 'unitCapacity') p[field] = parseFloat(value) || 0;
+    else p[field] = value;
+    try {
+        await saveModel(m); calculate();
+        if (p.glueModel && p.gluePartNo) await syncInvFromPosition(p);
+    } catch(e) { showToast('保存失败', 'error'); }
 }
 
-async function saveModelBOM(m) {
-    try {
-        await saveModel(m);
-        renderBOM();
-        calculate();
-    } catch(e) { showToast('保存失败'); }
+async function onBOMModelChange(oldModelId, posId, newModelIdStr) {
+    const newModelId = parseInt(newModelIdStr);
+    if (!newModelId || newModelId === oldModelId) return;
+    const oldM = models.find(m => m.id === oldModelId);
+    const newM = models.find(m => m.id === newModelId);
+    if (!oldM || !newM) return;
+    const posIdx = oldM.positions.findIndex(p => p.id === posId);
+    if (posIdx < 0) return;
+    const [pos] = oldM.positions.splice(posIdx, 1);
+    newM.positions.push(pos);
+    try { await saveModel(oldM); await saveModel(newM); renderBOM(); calculate(); showToast('已移至机型：' + newM.name, 'success'); }
+    catch(e) { showToast('移动失败', 'error'); }
 }
 
 async function syncInvFromPosition(p) {
     let inv = inventoryList.find(i => i.glueModel === p.glueModel && i.gluePartNo === p.gluePartNo);
     if (!inv) {
-        inv = { id: 0, glueModel: p.glueModel, gluePartNo: p.gluePartNo, glueDesc: p.glueDesc, containerSize: p.containerSize, stockMap: {} };
-        try {
-            await saveInventoryItem(inv);
-            await loadInventory();
-        } catch(e) { /* ignore */ }
+        inv = { id: 0, glueModel: p.glueModel, gluePartNo: p.gluePartNo, glueDesc: p.glueDesc, containerSize: p.containerSize, unitCapacity: p.unitCapacity || 0, stockMap: {} };
+        try { await saveInventoryItem(inv); await loadInventory(); } catch(e) {}
     }
 }
 
-// ==================== COPY BOM ====================
-function copyBOM(sourceId) {
-    const src = models.find(m => m.id === sourceId);
-    if (!src) return;
-    if (src.positions.length === 0) { showToast('该机型无需复制的位置配置'); return; }
-    const overlay = document.getElementById('copyBomOverlay');
-    document.getElementById('copyBomSourceInfo').textContent = src.name + '（' + src.positions.length + '个位置）';
-    const targetSelect = document.getElementById('copyBomTargetSelect');
-    targetSelect.innerHTML = '<option value="">-- 创建新机型（输入名称） --</option>';
-    models.forEach(m => {
-        if (m.id !== sourceId) {
-            targetSelect.innerHTML += '<option value="' + m.id + '">' + escHtml(m.name) + '（' + m.positions.length + '个位置）</option>';
-        }
-    });
-    document.getElementById('copyBomNewName').value = src.name + '-副本';
-    document.getElementById('copyBomNewName').style.display = 'block';
-    overlay.style.display = 'flex';
-    overlay._copySourceId = sourceId;
+// ============================================================
+// GLUE CATALOG (可编辑)
+// ============================================================
+// glueCatalog 已在全局变量区声明
+
+async function loadGlueCatalog() {
+    try {
+        const data = await apiRequest('/glue-catalog');
+        if (Array.isArray(data)) glueCatalog = data;
+        else glueCatalog = [];
+    } catch(e) { /* fallback to database.js */ }
 }
 
-function confirmCopyBOM() {
-    const overlay = document.getElementById('copyBomOverlay');
-    const sourceId = overlay._copySourceId;
-    const targetSelect = document.getElementById('copyBomTargetSelect');
-    const newNameInput = document.getElementById('copyBomNewName');
-    const targetId = targetSelect.value ? parseInt(targetSelect.value) : null;
-
-    if (!targetId) {
-        const newName = (newNameInput.value || '').trim();
-        if (!newName) { showToast('请输入新机型名称'); return; }
-        doCopyBOM(sourceId, null, newName);
-    } else {
-        const target = models.find(m => m.id === targetId);
-        if (!target) return;
-        if (target.positions.length > 0) {
-            if (!confirm('目标机型"' + target.name + '"已有 ' + target.positions.length + ' 个位置配置，复制将覆盖现有配置。确定继续？')) return;
-        }
-        doCopyBOM(sourceId, targetId, null);
-    }
-    overlay.style.display = 'none';
-}
-
-function cancelCopyBOM() { document.getElementById('copyBomOverlay').style.display = 'none'; }
-function onCopyTargetChange() {
-    const targetSelect = document.getElementById('copyBomTargetSelect');
-    document.getElementById('copyBomNewName').style.display = targetSelect.value ? 'none' : 'block';
-}
-
-async function doCopyBOM(sourceId, targetId, newName) {
-    const src = models.find(m => m.id === sourceId);
-    if (!src) return;
-    if (targetId) {
-        const target = models.find(m => m.id === targetId);
-        if (!target) return;
-        target.positions = src.positions.map(p => ({...p, id: posIdCounter++}));
-        await saveModelBOM(target);
-        showToast('已将"' + src.name + '"的BOM复制到"' + target.name + '"');
-    } else {
-        await addModelByName(newName);
-        const newModel = models[models.length - 1];
-        newModel.positions = src.positions.map(p => ({...p, id: posIdCounter++}));
-        await saveModelBOM(newModel);
-        showToast('已创建新机型"' + newName + '"，BOM来自"' + src.name + '"');
-    }
-}
-
-// ==================== GLUE CATALOG ====================
 function toggleCatalog() {
     const container = document.getElementById('glueCatalogContainer');
     const btn = document.getElementById('catalogToggleBtn');
-    if (container.style.display === 'none') {
-        container.style.display = 'block';
-        btn.textContent = '▲ 收起';
-        renderGlueCatalog();
-    } else {
-        container.style.display = 'none';
-        btn.textContent = '▼ 展开';
-    }
+    if (container.style.display === 'none' || !container.style.display) {
+        container.style.display = 'block'; btn.textContent = '▲ 收起'; renderGlueCatalog();
+    } else { container.style.display = 'none'; btn.textContent = '▼ 展开'; }
 }
 
 function renderGlueCatalog() {
     const tbody = document.querySelector('#glueCatalogTable tbody');
     if (!tbody) return;
-    const search = (document.getElementById('catalogSearch') ? document.getElementById('catalogSearch').value : '').toLowerCase().trim();
+    const search = (document.getElementById('catalogSearch').value || '').toLowerCase().trim();
     let filtered = glueCatalog;
-    if (search) {
-        filtered = glueCatalog.filter(g =>
-            (g.name || '').toLowerCase().includes(search) ||
-            (g.partNo || '').toLowerCase().includes(search) ||
-            (g.spec || '').toLowerCase().includes(search) ||
-            (g.type || '').toLowerCase().includes(search)
-        );
-    }
-    const info = document.getElementById('catalogInfo');
-    if (info) info.textContent = '共 ' + glueCatalog.length + ' 种胶水' + (search ? '，筛选出 ' + filtered.length + ' 条' : '');
+    if (search) filtered = glueCatalog.filter(g =>
+        (g.name || '').toLowerCase().includes(search) || (g.partNo || '').toLowerCase().includes(search) ||
+        (g.spec || '').toLowerCase().includes(search) || (g.type || '').toLowerCase().includes(search));
+    document.getElementById('catalogInfo').textContent = '共 ' + glueCatalog.length + ' 种胶水' + (search ? '，筛选出 ' + filtered.length + ' 条' : '');
     if (filtered.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--gray-500);padding:16px;">未找到匹配的胶水</td></tr>';
-        return;
+        tbody.innerHTML = '<tr class="empty-row"><td colspan="8">未找到匹配的胶水</td></tr>'; return;
     }
-    tbody.innerHTML = filtered.map((g, i) => {
-        return `<tr>
-            <td style="text-align:center;color:var(--gray-500);">${i + 1}</td>
-            <td style="font-weight:600;color:var(--primary-dark);">${escHtml(g.name)}</td>
-            <td style="font-family:monospace;">${escHtml(g.partNo)}</td>
-            <td style="font-size:12px;">${escHtml(g.type)}</td>
-            <td style="font-size:12px;">${escHtml(g.spec)}</td>
-            <td style="text-align:center;">${g.containerSize > 0 ? g.containerSize + ' ML' : '-'}</td>
-        </tr>`;
-    }).join('');
+    tbody.innerHTML = filtered.map((g, i) => `<tr>
+        <td style="text-align:center;color:var(--c-text-muted);">${i + 1}</td>
+        <td><input class="catalog-edit-input" value="${escHtml(g.name)}" onchange="onCatalogChange(${g.id},'name',this.value)" style="font-weight:700;color:var(--c-primary);"></td>
+        <td><input class="catalog-edit-input" value="${escHtml(g.partNo)}" onchange="onCatalogChange(${g.id},'partNo',this.value)" style="font-family:monospace;font-size:11px;"></td>
+        <td><input class="catalog-edit-input" value="${escHtml(g.type)}" onchange="onCatalogChange(${g.id},'type',this.value)" style="font-size:11px;"></td>
+        <td><input class="catalog-edit-input" value="${escHtml(g.spec)}" onchange="onCatalogChange(${g.id},'spec',this.value)" style="font-size:11px;"></td>
+        <td><input class="catalog-edit-input" type="number" value="${g.containerSize || 0}" min="0" step="0.1" style="text-align:center;width:60px;" onchange="onCatalogChange(${g.id},'containerSize',this.value)"></td>
+        <td><input class="catalog-edit-input" type="number" value="${g.unitCapacity || 0}" min="0" step="0.1" style="text-align:center;width:60px;" onchange="onCatalogChange(${g.id},'unitCapacity',this.value)"></td>
+        <td style="text-align:center;"><button class="btn btn-icon danger btn-xs" onclick="deleteCatalogItem(${g.id})" title="删除">✕</button></td>
+    </tr>`).join('');
 }
 
-// ==================== MODULE 3: INVENTORY ====================
+async function onCatalogChange(id, field, value) {
+    const g = glueCatalog.find(c => c.id === id);
+    if (!g) return;
+    if (field === 'containerSize' || field === 'unitCapacity') g[field] = parseFloat(value) || 0;
+    else g[field] = value;
+    try {
+        await apiRequest('/glue-catalog/' + id, {
+            method: 'PUT',
+            body: JSON.stringify({ name: g.name, partNo: g.partNo, type: g.type, spec: g.spec, containerSize: g.containerSize, unitCapacity: g.unitCapacity })
+        });
+        showToast('已保存', 'success');
+    } catch(e) { showToast('保存失败', 'error'); }
+}
+
+async function addCatalogItem() {
+    const name = prompt('请输入胶水型号：', '');
+    if (!name || !name.trim()) return;
+    const partNo = prompt('请输入料号（可选）：', '') || '';
+    try {
+        const data = await apiRequest('/glue-catalog', {
+            method: 'POST',
+            body: JSON.stringify({ name: name.trim(), partNo, type: '', spec: '', containerSize: 0, unitCapacity: 0 })
+        });
+        await loadGlueCatalog(); renderGlueCatalog();
+        showToast('已添加胶水：' + name.trim(), 'success');
+    } catch(e) { showToast('添加失败', 'error'); }
+}
+
+async function deleteCatalogItem(id) {
+    const g = glueCatalog.find(c => c.id === id);
+    if (!confirm('确定删除胶水 "' + (g ? g.name : id) + '" 吗？')) return;
+    try {
+        await apiRequest('/glue-catalog/' + id, { method: 'DELETE' });
+        await loadGlueCatalog(); renderGlueCatalog();
+        showToast('已删除', 'success');
+    } catch(e) { showToast('删除失败', 'error'); }
+}
+
+// ============================================================
+// AUTOCOMPLETE: 输入胶水型号时自动弹出建议
+// ============================================================
+function onGlueModelInput(modelId, posId, input) {
+    const val = (input.value || '').toLowerCase().trim();
+    const listEl = document.getElementById('ac_' + modelId + '_' + posId);
+    if (!listEl) return;
+
+    // Also update the position data as user types
+    const m = models.find(m => m.id === modelId);
+    if (m) {
+        const p = m.positions.find(p => p.id === posId);
+        if (p) p.glueModel = input.value;
+    }
+
+    if (val.length < 1) { listEl.classList.remove('show'); return; }
+
+    const matches = glueCatalog.filter(g => g.name.toLowerCase().includes(val));
+    if (matches.length === 0) { listEl.classList.remove('show'); return; }
+
+    listEl.innerHTML = matches.slice(0, 8).map(g =>
+        '<div class="autocomplete-item" onmousedown="selectGlueModel(' + modelId + ',' + posId + ',\'' + escAttr(g.name) + '\')">'
+        + '<span class="ac-main">' + escHtml(g.name) + '</span>'
+        + '<span class="ac-sub">' + escHtml(g.partNo) + ' | ' + (g.containerSize || '-') + 'g</span></div>'
+    ).join('');
+    listEl.classList.add('show');
+}
+
+function hideAutocomplete(modelId, posId) {
+    const el = document.getElementById('ac_' + modelId + '_' + posId);
+    if (el) el.classList.remove('show');
+}
+
+async function selectGlueModel(modelId, posId, glueName) {
+    // Find matching catalog entry
+    const cat = glueCatalog.find(g => g.name === glueName);
+    const m = models.find(m => m.id === modelId);
+    if (!m) return;
+
+    const p = m.positions.find(p => p.id === posId);
+    if (!p) return;
+
+    p.glueModel = glueName;
+    if (cat) {
+        p.gluePartNo = cat.partNo || '';
+        p.glueDesc = cat.spec || '';
+        p.containerSize = cat.containerSize || 0;
+        p.unitCapacity = cat.unitCapacity || 0;
+    }
+
+    try {
+        await saveModel(m); calculate();
+        if (p.glueModel && p.gluePartNo) await syncInvFromPosition(p);
+        renderBOM();
+        showToast('已自动填充：' + glueName, 'success');
+    } catch(e) { showToast('保存失败', 'error'); }
+}
+
+// When user types/edits glueModel and clicks away (onchange), auto-fill if match found
+async function onGlueModelChangeBOM(modelId, posId, value) {
+    const v = (value || '').trim();
+    if (!v) return;
+    const cat = glueCatalog.find(g => g.name === v);
+    if (!cat) { await onBOMCellChange(modelId, posId, 'glueModel', v); return; }
+
+    const m = models.find(m => m.id === modelId);
+    if (!m) return;
+    const p = m.positions.find(p => p.id === posId);
+    if (!p) return;
+
+    p.glueModel = cat.name;
+    p.gluePartNo = cat.partNo || '';
+    p.glueDesc = cat.spec || '';
+    p.containerSize = cat.containerSize || 0;
+    p.unitCapacity = cat.unitCapacity || 0;
+
+    try {
+        await saveModel(m); calculate();
+        if (p.glueModel && p.gluePartNo) await syncInvFromPosition(p);
+        renderBOM();
+        showToast('已自动填充：' + v, 'success');
+    } catch(e) { showToast('保存失败', 'error'); }
+}
+
+// ============================================================
+// MODULE 3: INVENTORY
+// ============================================================
 function renderInventory() {
     const tbody = document.querySelector('#inventoryTable tbody');
     if (inventoryList.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--gray-500);padding:24px;">暂无库存数据，请点击「+ 新增胶水」手动添加或导入</td></tr>';
-        return;
+        tbody.innerHTML = '<tr class="empty-row"><td colspan="8">暂无库存数据，请点击「+ 新增胶水」手动添加或从BOM同步</td></tr>'; return;
     }
     const today = new Date();
     tbody.innerHTML = inventoryList.map(inv => {
         let expiryHtml = '-';
         if (inv.expiryDate && inv.expiryDate !== '1900-12-25 00:00:00') {
             const expDate = new Date(inv.expiryDate);
-            const daysLeft = Math.ceil((expDate - today) / (1000 * 60 * 60 * 24));
-            let color = 'var(--green)';
-            let bg = '';
-            if (daysLeft < 0) { color = 'var(--red)'; bg = 'background:var(--red-light);'; }
-            else if (daysLeft <= 10) { color = 'var(--red)'; bg = 'background:var(--red-light);'; }
-            else if (daysLeft <= 30) { color = 'var(--orange)'; bg = 'background:var(--orange-light);'; }
-            const dateStr = inv.expiryDate.split(' ')[0];
-            expiryHtml = `<div style="${bg}padding:3px 8px;border-radius:4px;font-size:12px;color:${color};font-weight:600;">${dateStr}<br><span style="font-size:10px;font-weight:400;">${daysLeft < 0 ? '已过期' + Math.abs(daysLeft) + '天' : '剩' + daysLeft + '天'}</span></div>`;
+            const daysLeft = Math.ceil((expDate - today) / 86400000);
+            let cls = 'ok'; if (daysLeft < 0) cls = 'expired'; else if (daysLeft <= 10) cls = 'need'; else if (daysLeft <= 30) cls = 'expired';
+            const labels = { ok: '剩余' + daysLeft + '天', expired: (daysLeft < 0 ? '已过期' + Math.abs(daysLeft) + '天' : '剩余' + daysLeft + '天'), need: '即将过期' };
+            expiryHtml = '<span class="status-pill ' + cls + '">' + inv.expiryDate.split(' ')[0] + ' · ' + labels[cls] + '</span>';
         }
         return `<tr>
-            <td><input type="text" class="mid" value="${escHtml(inv.glueModel)}" onchange="onInvFieldChange(${inv.id},'glueModel',this.value)" placeholder="输入胶水型号"></td>
-            <td><input type="text" class="mid" value="${escHtml(inv.gluePartNo)}" onchange="onInvFieldChange(${inv.id},'gluePartNo',this.value)" placeholder="输入料号"></td>
-            <td><input type="text" class="wide" value="${escHtml(inv.glueDesc)}" onchange="onInvFieldChange(${inv.id},'glueDesc',this.value)" placeholder="输入描述"></td>
-            <td><input type="number" class="tight" value="${inv.containerSize || 0}" min="0" step="0.1" onchange="onInvFieldChange(${inv.id},'containerSize',this.value)" style="width:70px;"></td>
-            <td><input type="number" class="tight" value="${getMonthStock(inv)}" min="0" step="1"
-                onchange="onInvStockChange(${inv.id}, this.value)"></td>
+            <td><input type="text" value="${escHtml(inv.glueModel)}" onchange="onInvFieldChange(${inv.id},'glueModel',this.value)" placeholder="输入胶水型号"></td>
+            <td><input type="text" value="${escHtml(inv.gluePartNo)}" onchange="onInvFieldChange(${inv.id},'gluePartNo',this.value)" placeholder="输入料号"></td>
+            <td><input type="text" value="${escHtml(inv.glueDesc)}" onchange="onInvFieldChange(${inv.id},'glueDesc',this.value)" placeholder="描述"></td>
+            <td><input type="number" value="${inv.containerSize || 0}" min="0" step="0.1" style="width:60px;text-align:center;" onchange="onInvFieldChange(${inv.id},'containerSize',this.value)"></td>
+            <td><input type="number" value="${inv.unitCapacity || 0}" min="0" step="0.1" style="width:60px;text-align:center;" onchange="onInvFieldChange(${inv.id},'unitCapacity',this.value)"></td>
+            <td><input type="number" class="tight" value="${getMonthStock(inv)}" min="0" step="1" onchange="onInvStockChange(${inv.id}, this.value)" onfocus="this.select()"></td>
             <td>${expiryHtml}</td>
-            <td><button class="btn btn-outline btn-sm" onclick="onDeleteInventory(${inv.id})">删除</button></td>
+            <td style="text-align:center;"><button class="btn btn-icon danger btn-xs" onclick="onDeleteInventory(${inv.id})" title="删除">🗑</button></td>
         </tr>`;
     }).join('');
 }
@@ -1271,17 +1990,10 @@ function renderInventory() {
 async function onInvFieldChange(id, field, value) {
     const inv = inventoryList.find(i => i.id === id);
     if (!inv) return;
-    if (field === 'containerSize') {
-        inv[field] = parseFloat(value) || 0;
-    } else {
-        inv[field] = value;
-    }
-    try {
-        await saveInventoryItem(inv);
-        await loadInventory();
-        renderInventory();
-        calculate();
-    } catch(e) { showToast('保存失败'); }
+    if (field === 'containerSize' || field === 'unitCapacity') inv[field] = parseFloat(value) || 0;
+    else inv[field] = value;
+    try { await saveInventoryItem(inv); await loadInventory(); renderInventory(); calculate(); }
+    catch(e) { showToast('保存失败', 'error'); }
 }
 
 async function onInvStockChange(id, value) {
@@ -1290,36 +2002,25 @@ async function onInvStockChange(id, value) {
         await saveStock(id, currentMonth, stock);
         const inv = inventoryList.find(i => i.id === id);
         if (inv) setMonthStock(inv, stock);
-        calculate();
-        updateMonthBadge();
-    } catch(e) { showToast('保存失败'); }
+        calculate(); updateMonthBadge();
+    } catch(e) { showToast('保存库存失败', 'error'); }
 }
 
 async function onDeleteInventory(id) {
     if (!confirm('确定删除此库存项吗？')) return;
-    try {
-        await deleteInventoryApi(id);
-        inventoryList = inventoryList.filter(i => i.id !== id);
-        renderInventory();
-        calculate();
-    } catch(e) { showToast('删除失败'); }
+    try { await deleteInventoryApi(id); inventoryList = inventoryList.filter(i => i.id !== id); renderInventory(); calculate(); showToast('已删除', 'success'); }
+    catch(e) { showToast('删除失败', 'error'); }
 }
 
 async function addInventoryRow() {
-    const inv = { id: 0, glueModel: '', gluePartNo: '', glueDesc: '', containerSize: 0, stockMap: {} };
+    const inv = { id: 0, glueModel: '', gluePartNo: '', glueDesc: '', containerSize: 0, unitCapacity: 0, stockMap: {} };
     try {
-        await saveInventoryItem(inv);
-        await loadInventory();
-        renderInventory();
+        await saveInventoryItem(inv); await loadInventory(); renderInventory();
         setTimeout(() => {
             const rows = document.querySelectorAll('#inventoryTable tbody tr');
-            if (rows.length > 0) {
-                const lastRow = rows[rows.length - 1];
-                const firstInput = lastRow.querySelector('input');
-                if (firstInput) firstInput.focus();
-            }
+            if (rows.length > 0) { const lastRow = rows[rows.length - 1]; lastRow.classList.add('row-new'); const fi = lastRow.querySelector('input'); if (fi) fi.focus(); }
         }, 100);
-    } catch(e) { showToast('添加失败'); }
+    } catch(e) { showToast('添加失败', 'error'); }
 }
 
 async function syncInventoryFromBOM() {
@@ -1329,18 +2030,19 @@ async function syncInventoryFromBOM() {
             if (p.glueModel && p.gluePartNo) {
                 const exists = inventoryList.find(i => i.glueModel === p.glueModel && i.gluePartNo === p.gluePartNo);
                 if (!exists) {
-                    await saveInventoryItem({ id: 0, glueModel: p.glueModel, gluePartNo: p.gluePartNo, glueDesc: p.glueDesc, containerSize: p.containerSize, stockMap: {} });
+                    await saveInventoryItem({ id: 0, glueModel: p.glueModel, gluePartNo: p.gluePartNo, glueDesc: p.glueDesc, containerSize: p.containerSize, unitCapacity: p.unitCapacity || 0, stockMap: {} });
                     added++;
                 }
             }
         }
     }
-    await loadInventory();
-    renderInventory();
-    showToast('已从BOM同步 ' + added + ' 条库存（新胶水初始库存为0）');
+    await loadInventory(); renderInventory(); calculate();
+    showToast('已从BOM同步 ' + added + ' 条库存（新胶水初始库存为0）', 'success');
 }
 
-// ==================== CALCULATE ====================
+// ============================================================
+// CALCULATIONS
+// ============================================================
 function computeDemand() {
     const map = {};
     models.forEach(m => {
@@ -1349,128 +2051,92 @@ function computeDemand() {
         m.positions.forEach(p => {
             if (!p.glueModel) return;
             const key = p.glueModel + '|' + p.gluePartNo;
-            if (!map[key]) {
-                map[key] = { glueModel: p.glueModel, gluePartNo: p.gluePartNo, glueDesc: p.glueDesc, containerSize: p.containerSize, totalDemand: 0, totalDemandCeil: 0, details: [] };
-            }
+            if (!map[key]) map[key] = { glueModel: p.glueModel, gluePartNo: p.gluePartNo, glueDesc: p.glueDesc, containerSize: p.containerSize, totalDemand: 0, totalDemandCeil: 0, details: [] };
             const exact = qty * p.perUnitUsage;
             map[key].totalDemand += exact;
             map[key].details.push({ modelName: m.name, posName: p.name, demand: exact, qty, perUnitUsage: p.perUnitUsage });
         });
     });
-    // Round up
-    Object.values(map).forEach(d => {
-        d.totalDemandCeil = Math.ceil(d.totalDemand);
-        d.details.forEach(x => { x.demandCeil = Math.ceil(x.demand); });
-    });
+    Object.values(map).forEach(d => { d.totalDemandCeil = Math.ceil(d.totalDemand); d.details.forEach(x => { x.demandCeil = Math.ceil(x.demand); }); });
     return map;
 }
 
 function calculate() {
     const demandMap = computeDemand();
     const monthLabel = formatMonthDisplay(currentMonth);
-    const resultLabel = document.getElementById('resultMonthLabel');
-    if (resultLabel) resultLabel.textContent = monthLabel;
-    const invLabel = document.getElementById('invMonthLabel');
-    if (invLabel) invLabel.textContent = monthLabel;
-    const detailLabel = document.getElementById('detailMonthLabel');
-    if (detailLabel) detailLabel.textContent = monthLabel;
-    const resultLabel2 = document.getElementById('resultMonthLabel2');
-    if (resultLabel2) resultLabel2.textContent = monthLabel;
-
-    renderDemandTable(demandMap);
-    renderPurchaseTable(demandMap);
-    renderDetailTable(demandMap);
-    updateChart(demandMap);
-    updateKPIs(demandMap);
+    ['resultMonthLabel', 'invMonthLabel', 'detailMonthLabel', 'resultMonthLabel2'].forEach(id => {
+        const el = document.getElementById(id); if (el) el.textContent = monthLabel;
+    });
+    renderDemandTable(demandMap); renderPurchaseTable(demandMap); renderDetailTable(demandMap);
+    updateChart(demandMap); updateKPIs(demandMap);
 }
 
 function renderDemandTable(demandMap) {
     const tbody = document.querySelector('#demandTable tbody');
-    if (Object.keys(demandMap).length === 0) {
-        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--gray-500);padding:24px;">请先在模块一/二配置机型产量和BOM数据</td></tr>';
-        return;
-    }
-    tbody.innerHTML = Object.entries(demandMap).map(([key, d]) => {
+    const keys = Object.keys(demandMap);
+    if (keys.length === 0) { tbody.innerHTML = '<tr class="empty-row"><td colspan="6">请先在模块一/二配置机型产量和BOM数据</td></tr>'; return; }
+    tbody.innerHTML = keys.map(key => {
+        const d = demandMap[key];
         const involved = d.details.map(x => x.modelName + '/' + x.posName).join('；');
         return `<tr>
-            <td class="fw-bold">${escHtml(d.glueModel)}</td>
-            <td>${escHtml(d.gluePartNo)}</td>
-            <td style="font-size:12px;">${escHtml(d.glueDesc)}</td>
+            <td class="fw-bold">${escHtml(d.glueModel)}</td><td>${escHtml(d.gluePartNo)}</td>
+            <td style="font-size:11px;color:var(--c-text-secondary);">${escHtml(d.glueDesc)}</td>
             <td>${d.containerSize || '-'} g</td>
-            <td class="fw-bold" style="color:var(--primary-dark);">${d.totalDemandCeil} <span style="font-size:11px;color:var(--gray-500);">(${d.totalDemand.toFixed(3)})</span></td>
-            <td style="font-size:11px;color:var(--gray-500);">${escHtml(involved)}</td>
+            <td class="fw-bold" style="color:var(--c-primary);">${d.totalDemandCeil} <span style="font-size:10px;color:var(--c-text-muted);">(${d.totalDemand.toFixed(3)})</span></td>
+            <td style="font-size:11px;color:var(--c-text-muted);">${escHtml(involved)}</td>
         </tr>`;
     }).join('');
 }
 
 function renderPurchaseTable(demandMap) {
     const tbody = document.querySelector('#resultTable tbody');
-    const detailTbody = document.querySelector('#detailTable tbody');
-    if (Object.keys(demandMap).length === 0) {
-        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--gray-500);padding:24px;">请先配置数据</td></tr>';
-        detailTbody.innerHTML = '';
-        updateChart([]);
-        updateKPIs();
-        return;
-    }
-    tbody.innerHTML = Object.entries(demandMap).map(([key, d]) => {
+    const keys = Object.keys(demandMap);
+    if (keys.length === 0) { tbody.innerHTML = '<tr class="empty-row"><td colspan="7">请先配置数据</td></tr>'; return; }
+    tbody.innerHTML = keys.map(key => {
+        const d = demandMap[key];
         const inv = inventoryList.find(i => i.glueModel === d.glueModel && i.gluePartNo === d.gluePartNo);
         const stock = inv ? getMonthStock(inv) : 0;
         const purchaseNeed = Math.max(0, d.totalDemandCeil - stock);
-        const rowClass = purchaseNeed > 0 ? '' : 'bg-green-light';
-        const status = purchaseNeed > 0
-            ? '<span class="text-red fw-bold">需采购</span>'
-            : '<span class="text-green fw-bold">库存充足 ✓</span>';
+        const rowClass = purchaseNeed > 0 ? '' : 'summary-row';
+        const statusHtml = purchaseNeed > 0 ? '<span class="status-pill need">需采购</span>' : '<span class="status-pill ok">库存充足</span>';
         return `<tr class="${rowClass}">
-            <td class="fw-bold">${escHtml(d.glueModel)}</td>
-            <td>${escHtml(d.gluePartNo)}</td>
-            <td style="font-size:12px;">${escHtml(d.glueDesc)}</td>
-            <td class="fw-bold">${d.totalDemandCeil} <span style="font-size:11px;color:var(--gray-500);">(${d.totalDemand.toFixed(3)})</span></td>
+            <td class="fw-bold">${escHtml(d.glueModel)}</td><td>${escHtml(d.gluePartNo)}</td>
+            <td style="font-size:11px;color:var(--c-text-secondary);">${escHtml(d.glueDesc)}</td>
+            <td class="fw-bold">${d.totalDemandCeil} <span style="font-size:10px;color:var(--c-text-muted);">(${d.totalDemand.toFixed(3)})</span></td>
             <td>${stock}</td>
-            <td class="fw-bold ${purchaseNeed > 0 ? 'text-red' : 'text-green'}">${purchaseNeed > 0 ? purchaseNeed : '0 ✓'}</td>
-            <td>${status}</td>
+            <td class="fw-bold ${purchaseNeed > 0 ? 'text-red' : 'text-green'}">${purchaseNeed > 0 ? purchaseNeed : '0'}</td>
+            <td>${statusHtml}</td>
         </tr>`;
     }).join('');
 }
 
 function renderDetailTable(demandMap) {
-    const detailTbody = document.querySelector('#detailTable tbody');
+    const tbody = document.querySelector('#detailTable tbody');
     const allDetails = [];
-    Object.values(demandMap).forEach(d => d.details.forEach(x => {
-        x.glueModel = d.glueModel; x.gluePartNo = d.gluePartNo;
-        x.containerSize = d.containerSize;
-        allDetails.push(x);
-    }));
-    detailTbody.innerHTML = allDetails.map(x => `<tr>
-        <td>${escHtml(x.modelName)}</td>
-        <td>${x.qty}</td>
-        <td>${escHtml(x.posName)}</td>
-        <td>${escHtml(x.glueModel)}</td>
-        <td>${escHtml(x.gluePartNo)}</td>
-        <td>${x.perUnitUsage}</td>
-        <td>${x.containerSize || '-'}</td>
-        <td>${x.demand.toFixed(3)}</td>
-        <td class="fw-bold">${x.demandCeil || Math.ceil(x.demand)}</td>
+    Object.values(demandMap).forEach(d => d.details.forEach(x => { x.glueModel = d.glueModel; x.gluePartNo = d.gluePartNo; x.containerSize = d.containerSize; allDetails.push(x); }));
+    if (allDetails.length === 0) { tbody.innerHTML = ''; return; }
+    tbody.innerHTML = allDetails.map(x => `<tr>
+        <td>${escHtml(x.modelName)}</td><td>${x.qty}</td><td>${escHtml(x.posName)}</td>
+        <td>${escHtml(x.glueModel)}</td><td>${escHtml(x.gluePartNo)}</td>
+        <td>${x.perUnitUsage}</td><td>${x.containerSize || '-'}</td>
+        <td>${x.demand.toFixed(3)}</td><td class="fw-bold">${x.demandCeil || Math.ceil(x.demand)}</td>
     </tr>`).join('');
 }
 
-// ==================== KPI ====================
+// ============================================================
+// KPIs
+// ============================================================
 function updateKPIs(demandMap) {
     const monthLabel = formatMonthDisplay(currentMonth);
-    document.getElementById('kpiProdMonthLabel').textContent = monthLabel;
-
-    // Module 1
+    const el = document.getElementById('kpiProdMonthLabel'); if (el) el.textContent = monthLabel;
     document.getElementById('kpiProdModels').textContent = models.length;
-    const scheduledCount = models.filter(m => getMonthQty(m) > 0).length;
-    document.getElementById('kpiProdScheduled').textContent = scheduledCount;
-    let totalProd = 0;
-    models.forEach(m => { totalProd += getMonthQty(m); });
+    document.getElementById('kpiProdScheduled').textContent = models.filter(m => getMonthQty(m) > 0).length;
+    let totalProd = 0; models.forEach(m => { totalProd += getMonthQty(m); });
     document.getElementById('kpiProdTotal').innerHTML = totalProd + '<span class="kpi-unit">台</span>';
 
-    // Module 3
     if (demandMap) {
         let needBuyCount = 0, totalPurchase = 0;
-        Object.entries(demandMap).forEach(([key, d]) => {
+        Object.entries(demandMap).forEach(([k, d]) => {
             const inv = inventoryList.find(i => i.glueModel === d.glueModel && i.gluePartNo === d.gluePartNo);
             const stock = inv ? getMonthStock(inv) : 0;
             const purchase = Math.max(0, d.totalDemandCeil - stock);
@@ -1482,16 +2148,17 @@ function updateKPIs(demandMap) {
     document.getElementById('kpiInvCount').textContent = inventoryList.length;
 }
 
-// ==================== CHART ====================
+// ============================================================
+// CHART
+// ============================================================
 function updateChart(demandMap) {
     const entries = Object.entries(demandMap);
-    const labels = entries.map(([k, d]) => d.glueModel + '\n' + d.gluePartNo.substring(0, 8));
+    const labels = entries.map(([k, d]) => d.glueModel);
     const demandData = entries.map(([k, d]) => d.totalDemandCeil);
     const purchaseData = entries.map(([k, d]) => {
         const inv = inventoryList.find(i => i.glueModel === d.glueModel && i.gluePartNo === d.gluePartNo);
         return Math.max(0, d.totalDemandCeil - (inv ? getMonthStock(inv) : 0));
     });
-
     if (chartInstance) chartInstance.destroy();
     const ctx = document.getElementById('purchaseChart').getContext('2d');
     chartInstance = new Chart(ctx, {
@@ -1499,31 +2166,33 @@ function updateChart(demandMap) {
         data: {
             labels,
             datasets: [
-                { label: '月需求量(取整)', data: demandData, backgroundColor: 'rgba(37,99,235,0.7)', borderRadius: 4 },
-                { label: '建议采购量', data: purchaseData, backgroundColor: 'rgba(245,158,11,0.7)', borderRadius: 4 }
+                { label: '月需求量(取整)', data: demandData, backgroundColor: 'rgba(79,110,247,0.75)', borderRadius: 6, borderSkipped: false },
+                { label: '建议采购量', data: purchaseData, backgroundColor: 'rgba(245,158,11,0.75)', borderRadius: 6, borderSkipped: false }
             ]
         },
         options: {
-            responsive: true, maintainRatio: true, maxHeight: 300,
-            plugins: { legend: { position: 'top' } },
-            scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
+            responsive: true, maintainAspectRatio: true,
+            plugins: { legend: { position: 'top', labels: { usePointStyle: true, padding: 20 } } },
+            scales: { y: { beginAtZero: true, ticks: { stepSize: 1 }, grid: { color: 'rgba(0,0,0,0.05)' } }, x: { grid: { display: false } } }
         }
     });
 }
 
-// ==================== REFRESH ALL ====================
+// ============================================================
+// REFRESH ALL
+// ============================================================
 function refreshAll() {
-    renderProduction();
-    renderBOM();
-    renderInventory();
-    calculate();
-    updateMonthBadge();
+    renderProduction(); renderBOM(); renderInventory(); calculate(); updateMonthBadge();
+    document.getElementById('navCount1').textContent = models.length;
+    document.getElementById('navCount2').textContent = models.reduce((s, m) => s + (m.positions || []).length, 0);
+    document.getElementById('navCount3').textContent = inventoryList.length;
 }
 
-// ==================== EXPORT ====================
+// ============================================================
+// EXPORT
+// ============================================================
 function exportDemandCSV() {
-    let csv = '\uFEFF胶水需求量_' + currentMonth + '\n\n';
-    csv += '胶水型号,胶水料号,胶水描述,规格容量(g),月需求量(精确),月需求量(取整),涉及机型/位置\n';
+    let csv = '\uFEFF胶水需求量_' + currentMonth + '\n\n胶水型号,胶水料号,胶水描述,规格容量(g),月需求量(精确),月需求量(取整),涉及机型/位置\n';
     const demandMap = computeDemand();
     Object.values(demandMap).forEach(d => {
         const involved = d.details.map(x => x.modelName + '/' + x.posName).join('、');
@@ -1533,8 +2202,7 @@ function exportDemandCSV() {
 }
 
 function exportCSV() {
-    let csv = '\uFEFF胶水采购需求_' + currentMonth + '\n\n';
-    csv += '胶水型号,胶水料号,胶水描述,月需求量(精确),月需求量(取整),当前库存(支/桶),建议采购(支/桶),涉及机型/位置\n';
+    let csv = '\uFEFF胶水采购需求_' + currentMonth + '\n\n胶水型号,胶水料号,胶水描述,月需求量(精确),月需求量(取整),当前库存(支/桶),建议采购(支/桶),涉及机型/位置\n';
     const demandMap = computeDemand();
     Object.values(demandMap).forEach(d => {
         const inv = inventoryList.find(i => i.glueModel === d.glueModel && i.gluePartNo === d.gluePartNo);
@@ -1548,187 +2216,108 @@ function exportCSV() {
 
 function downloadCSV(csv, filename) {
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = filename;
-    link.click();
-    URL.revokeObjectURL(link.href);
+    const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = filename;
+    link.click(); URL.revokeObjectURL(link.href);
 }
 
-// ==================== IMPORT ====================
-function openProdImport() { document.getElementById('prodImportModal').style.display = 'flex'; }
-function closeProdImport() { document.getElementById('prodImportModal').style.display = 'none'; }
-function openBomImport() { document.getElementById('bomImportModal').style.display = 'flex'; }
-function closeBomImport() { document.getElementById('bomImportModal').style.display = 'none'; }
-function openInvImport() { document.getElementById('invImportModal').style.display = 'flex'; }
-function closeInvImport() { document.getElementById('invImportModal').style.display = 'none'; }
+// ============================================================
+// IMPORT
+// ============================================================
+function openProdImport() { document.getElementById('prodImportModal').classList.add('show'); }
+function closeProdImport() { document.getElementById('prodImportModal').classList.remove('show'); }
+function openBomImport() { document.getElementById('bomImportModal').classList.add('show'); }
+function closeBomImport() { document.getElementById('bomImportModal').classList.remove('show'); }
+function openInvImport() { document.getElementById('invImportModal').classList.add('show'); }
+function closeInvImport() { document.getElementById('invImportModal').classList.remove('show'); }
 
 function switchTab(tabId, el) {
-    document.querySelectorAll('#' + el.closest('.modal-body').querySelector('.modal-tabs').parentElement.parentElement.id + ' .import-tab-content').forEach(c => c.classList.remove('active'));
-    document.querySelectorAll('#' + el.closest('.modal-body').querySelector('.modal-tabs').parentElement.parentElement.id + ' .modal-tab').forEach(t => t.classList.remove('active'));
-    document.getElementById(tabId).classList.add('active');
+    const modalBody = el.closest('.modal-body');
+    modalBody.querySelectorAll('.import-tab-content').forEach(c => c.style.display = 'none');
+    modalBody.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(tabId).style.display = 'block';
     el.classList.add('active');
 }
 
 async function doImportProd() {
     const text = document.getElementById('prodCsvText').value.trim();
-    if (!text) { showToast('请粘贴CSV数据'); return; }
+    if (!text) { showToast('请粘贴CSV数据', 'warning'); return; }
     const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
     let imported = 0;
     for (const line of lines) {
         const parts = line.split(',').map(s => s.trim());
         if (parts.length < 2) continue;
-        const name = parts[0];
-        const qty = parseInt(parts[1]) || 0;
+        const name = parts[0], qty = parseInt(parts[1]) || 0;
         let m = models.find(x => x.name.toLowerCase() === name.toLowerCase());
-        if (!m) {
-            await addModelByName(name);
-            m = models[models.length - 1];
-        }
-        if (m && qty > 0) {
-            setMonthQty(m, qty);
-            await saveProduction(m.id, currentMonth, qty);
-            imported++;
-        }
+        if (!m) { await addModelByName(name); m = models[models.length - 1]; }
+        if (m && qty > 0) { setMonthQty(m, qty); await saveProduction(m.id, currentMonth, qty); imported++; }
     }
-    closeProdImport();
-    refreshAll();
-    showToast('已导入 ' + imported + ' 条产量数据');
+    closeProdImport(); refreshAll(); showToast('已导入 ' + imported + ' 条产量数据', 'success');
 }
 
 async function doImportBOM() {
     const text = document.getElementById('bomCsvText').value.trim();
-    if (!text) { showToast('请粘贴CSV数据'); return; }
+    if (!text) { showToast('请粘贴CSV数据', 'warning'); return; }
     const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
     let imported = 0;
     for (const line of lines) {
         const parts = line.split(',').map(s => s.trim());
         if (parts.length < 3) continue;
-        const modelName = parts[0];
-        const posName = parts[1];
-        const glueModel = parts[2];
-        const gluePartNo = parts[3] || '';
-        const glueDesc = parts[4] || '';
-        const perUnitUsage = parseFloat(parts[5]) || 0;
-        const containerSize = parseFloat(parts[6]) || 0;
+        const modelName = parts[0], posName = parts[1], glueModel = parts[2];
+        const gluePartNo = parts[3] || '', glueDesc = parts[4] || '';
+        const perUnitUsage = parseFloat(parts[5]) || 0, containerSize = parseFloat(parts[6]) || 0, unitCapacity = parseFloat(parts[7]) || 0;
         let m = models.find(x => x.name.toLowerCase() === modelName.toLowerCase());
-        if (!m) {
-            await addModelByName(modelName);
-            m = models[models.length - 1];
-        }
-        if (m) {
-            m.positions.push({ id: posIdCounter++, name: posName, glueModel, gluePartNo, glueDesc, perUnitUsage, containerSize });
-            imported++;
-        }
+        if (!m) { await addModelByName(modelName); m = models[models.length - 1]; }
+        if (m) { m.positions.push({ id: posIdCounter++, name: posName, glueModel, gluePartNo, glueDesc, perUnitUsage, containerSize, unitCapacity }); imported++; }
     }
-    // Save all modified models
-    for (const m of models) {
-        if (m.positions.length > 0) await saveModel(m);
-    }
-    closeBomImport();
-    refreshAll();
-    showToast('已导入 ' + imported + ' 条BOM配置');
+    for (const m of models) { if (m.positions.length > 0) await saveModel(m); }
+    closeBomImport(); refreshAll(); showToast('已导入 ' + imported + ' 条BOM配置', 'success');
 }
 
 async function doImportInventory() {
     const text = document.getElementById('invCsvText').value.trim();
-    if (!text) { showToast('请粘贴CSV数据'); return; }
+    if (!text) { showToast('请粘贴CSV数据', 'warning'); return; }
     const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
     let imported = 0;
     for (const line of lines) {
         const parts = line.split(',').map(s => s.trim());
         if (parts.length < 2) continue;
-        const glueModel = parts[0];
-        const gluePartNo = parts[1] || '';
-        const stock = parseInt(parts[2]) || 0;
+        const glueModel = parts[0], gluePartNo = parts[1] || '', stock = parseInt(parts[2]) || 0;
         let inv = inventoryList.find(i => i.glueModel === glueModel && i.gluePartNo === gluePartNo);
-        if (!inv) {
-            await saveInventoryItem({ id: 0, glueModel, gluePartNo, glueDesc: '', containerSize: 0, stockMap: {} });
-            await loadInventory();
-            inv = inventoryList.find(i => i.glueModel === glueModel && i.gluePartNo === gluePartNo);
-        }
-        if (inv && stock > 0) {
-            await saveStock(inv.id, currentMonth, stock);
-            setMonthStock(inv, stock);
-            imported++;
-        }
+        if (!inv) { await saveInventoryItem({ id: 0, glueModel, gluePartNo, glueDesc: '', containerSize: 0, stockMap: {} }); await loadInventory(); inv = inventoryList.find(i => i.glueModel === glueModel && i.gluePartNo === gluePartNo); }
+        if (inv && stock > 0) { await saveStock(inv.id, currentMonth, stock); setMonthStock(inv, stock); imported++; }
     }
-    closeInvImport();
-    refreshAll();
-    showToast('已导入 ' + imported + ' 条库存数据');
+    closeInvImport(); refreshAll(); showToast('已导入 ' + imported + ' 条库存数据', 'success');
 }
 
-function handleProdFile(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function(ev) {
-        document.getElementById('prodCsvText').value = ev.target.result;
-    };
-    reader.readAsText(file);
-}
+function handleProdFile(e) { const file = e.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = ev => { document.getElementById('prodCsvText').value = ev.target.result; }; reader.readAsText(file); }
+function handleBomFile(e) { const file = e.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = ev => { document.getElementById('bomCsvText').value = ev.target.result; }; reader.readAsText(file); }
+function handleInvFile(e) { const file = e.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = ev => { document.getElementById('invCsvText').value = ev.target.result; }; reader.readAsText(file); }
 
-function handleBomFile(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function(ev) {
-        document.getElementById('bomCsvText').value = ev.target.result;
-    };
-    reader.readAsText(file);
-}
+// ============================================================
+// UTILITIES
+// ============================================================
+function escHtml(s) { if (!s && s !== 0) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function escAttr(s) { return String(s).replace(/'/g,"\\'").replace(/"/g,'&quot;'); }
 
-function handleInvFile(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function(ev) {
-        document.getElementById('invCsvText').value = ev.target.result;
-    };
-    reader.readAsText(file);
-}
+// Click overlay to close modals
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('modal-overlay') && e.target.classList.contains('show')) e.target.classList.remove('show');
+});
 
-// ==================== UTILITIES ====================
-function escHtml(s) {
-    if (!s && s !== 0) return '';
-    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-function escAttr(s) {
-    return String(s).replace(/'/g,"\\'").replace(/"/g,'&quot;');
-}
-function showToast(text) {
-    const t = document.getElementById('toast');
-    t.textContent = text; t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2200);
-}
-
-// ==================== STARTUP ====================
+// ============================================================
+// STARTUP
+// ============================================================
 (function startup() {
     const saved = localStorage.getItem('glue_session_user');
     if (saved) {
         authToken = saved;
-        // Try to verify
-        fetch(API_BASE + '/users', {
-            headers: { 'Authorization': 'Bearer ' + saved }
-        }).then(res => {
-            if (res.ok) {
-                currentUser = { username: saved, role: 'user' };
-                document.getElementById('loginOverlay').style.display = 'none';
-                updateUserBadge();
-                init();
-            } else {
-                localStorage.removeItem('glue_session_user');
-                document.getElementById('loginOverlay').style.display = 'flex';
-                showLogin();
-            }
-        }).catch(() => {
-            document.getElementById('loginOverlay').style.display = 'flex';
-            showLogin();
-        });
-    } else {
-        document.getElementById('loginOverlay').style.display = 'flex';
-        showLogin();
-    }
+        fetch(API_BASE + '/users', { headers: { 'Authorization': 'Bearer ' + saved } })
+            .then(res => {
+                if (res.ok) { currentUser = { username: saved, role: 'user' }; document.getElementById('loginOverlay').style.display = 'none'; document.getElementById('appLayout').style.display = 'flex'; updateUserBadge(); init(); }
+                else { localStorage.removeItem('glue_session_user'); document.getElementById('loginOverlay').style.display = 'flex'; showLogin(); }
+            })
+            .catch(() => { document.getElementById('loginOverlay').style.display = 'flex'; showLogin(); });
+    } else { document.getElementById('loginOverlay').style.display = 'flex'; showLogin(); }
 })();
 </script>
 </body>

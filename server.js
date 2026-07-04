@@ -74,6 +74,25 @@ db.serialize(() => {
         UNIQUE(inventory_id, month)
     )`);
 
+    // 胶水料号库表
+    db.run(`CREATE TABLE IF NOT EXISTS glue_catalog (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        part_no TEXT NOT NULL,
+        type TEXT DEFAULT '',
+        spec TEXT DEFAULT '',
+        container_size REAL DEFAULT 0,
+        unit_capacity REAL DEFAULT 0,
+        created_at INTEGER DEFAULT (strftime('%s','now')),
+        updated_at INTEGER DEFAULT (strftime('%s','now')),
+        UNIQUE(name, part_no)
+    )`);
+
+    // 为 inventory 表增加 unit_capacity 字段（兼容旧表）
+    db.run(`ALTER TABLE inventory ADD COLUMN unit_capacity REAL DEFAULT 0`, (err) => {
+        // 忽略字段已存在的错误
+    });
+
     // 初始化 admin
     const adminPass = bcrypt.hashSync('admin123', 10);
     db.get('SELECT id FROM users WHERE username = ?', ['admin'], (err, row) => {
@@ -82,7 +101,97 @@ db.serialize(() => {
             console.log('Default admin user created: admin / admin123');
         }
     });
+
+    // 自动初始化种子数据（首次启动或数据为空时）
+    seedInitialData();
 });
+
+// 从 database.js 自动导入初始数据
+function seedInitialData() {
+    const DB_JS_PATH = path.join(__dirname, 'database.js');
+    if (!fs.existsSync(DB_JS_PATH)) {
+        console.log('database.js not found, skip seeding');
+        return;
+    }
+    db.get('SELECT COUNT(*) as cnt FROM models', [], (err, row) => {
+        if (err) return console.error('Seed check error:', err);
+        if (row && row.cnt > 0) {
+            console.log('Models table already has data (' + row.cnt + ' rows), skip seeding');
+            return;
+        }
+        console.log('Seeding initial data from database.js...');
+        try {
+            const jsContent = fs.readFileSync(DB_JS_PATH, 'utf8');
+            const match = jsContent.match(/const GLUE_DATABASE = ({[\s\S]*});/);
+            if (!match) { console.log('Could not parse database.js'); return; }
+            const GLUE_DATABASE = (new Function('return ' + match[1]))();
+            const currentMonth = new Date().toISOString().slice(0, 7);
+
+            // 1. 导入机型 BOM
+            const bomModels = GLUE_DATABASE.bomModels || {};
+            const modelNameToId = {};
+            const modelStmt = db.prepare('INSERT INTO models (name, positions) VALUES (?, ?)');
+            for (const [modelName, modelData] of Object.entries(bomModels)) {
+                const positions = (modelData.positions || []).map(p => ({
+                    id: Date.now() + Math.random(),
+                    name: p.name || '', glueModel: p.glueModel || '',
+                    gluePartNo: p.gluePartNo || '', glueDesc: p.glueDesc || '',
+                    perUnitUsage: p.perUnitUsage || 0, containerSize: p.containerSize || 0
+                }));
+                modelStmt.run([modelName, JSON.stringify(positions)], function() {
+                    modelNameToId[modelName] = this.lastID;
+                });
+            }
+            modelStmt.finalize();
+            console.log('Seeded models: ' + Object.keys(bomModels).length);
+
+            // 2. 导入月产量
+            const productionPlan = GLUE_DATABASE.productionPlan || {};
+            const prodStmt = db.prepare('INSERT OR REPLACE INTO monthly_production (model_id, month, qty) VALUES (?, ?, ?)');
+            setTimeout(() => {
+                for (const [modelName, qty] of Object.entries(productionPlan)) {
+                    const modelId = modelNameToId[modelName];
+                    if (modelId && qty) prodStmt.run([modelId, currentMonth, qty]);
+                }
+                prodStmt.finalize();
+                console.log('Seeded production: ' + Object.keys(productionPlan).length);
+            }, 500);
+
+            // 3. 导入库存
+            const inventoryObj = GLUE_DATABASE.inventory || {};
+            const invStmt = db.prepare(`INSERT OR REPLACE INTO inventory (glue_model, glue_part_no, glue_desc, container_size, production_date, expiry_date, shelf_life) VALUES (?, ?, ?, ?, ?, ?, ?)`);
+            const stockStmt = db.prepare('INSERT OR REPLACE INTO monthly_stock (inventory_id, month, stock) VALUES (?, ?, ?)');
+            setTimeout(() => {
+                for (const [key, inv] of Object.entries(inventoryObj)) {
+                    invStmt.run([inv.glueModel || '', inv.gluePartNo || '', inv.glueDesc || '', inv.containerSize || 0,
+                        inv.productionDate || '', inv.expiryDate || '', inv.shelfLife || 0], function() {
+                        if (inv.stock !== undefined && inv.stock !== null) {
+                            stockStmt.run([this.lastID, currentMonth, inv.stock]);
+                        }
+                    });
+                }
+                invStmt.finalize();
+                stockStmt.finalize();
+                console.log('Seeded inventory: ' + Object.keys(inventoryObj).length);
+            }, 1000);
+
+            // 4. 导入胶水料号库
+            const glueCatalog = GLUE_DATABASE.glueCatalog || [];
+            setTimeout(() => {
+                const catStmt = db.prepare('INSERT OR IGNORE INTO glue_catalog (name, part_no, type, spec, container_size, unit_capacity) VALUES (?, ?, ?, ?, ?, ?)');
+                glueCatalog.forEach(g => {
+                    catStmt.run([g.name || '', g.partNo || '', g.type || '', g.spec || '', g.containerSize || 0, g.unitCapacity || 0]);
+                });
+                catStmt.finalize();
+                console.log('Seeded glue catalog: ' + glueCatalog.length + ' items');
+                console.log('Initial data seeding complete!');
+            }, 1500);
+
+        } catch (e) {
+            console.error('Seed error:', e.message);
+        }
+    });
+}
 
 // ==================== 认证中间件 ====================
 function authMiddleware(req, res, next) {
@@ -225,6 +334,7 @@ app.get('/api/inventory', authMiddleware, (req, res) => {
             glue_part_no: r.glue_part_no,
             glue_desc: r.glue_desc,
             container_size: r.container_size,
+            unit_capacity: r.unit_capacity || 0,
             production_date: r.production_date,
             expiry_date: r.expiry_date,
             shelf_life: r.shelf_life,
@@ -247,22 +357,23 @@ app.get('/api/inventory', authMiddleware, (req, res) => {
 });
 
 app.post('/api/inventory', authMiddleware, (req, res) => {
-    const { glueModel, gluePartNo, glueDesc, containerSize } = req.body;
-    db.run(`INSERT INTO inventory (glue_model, glue_part_no, glue_desc, container_size)
-            VALUES (?, ?, ?, ?)
+    const { glueModel, gluePartNo, glueDesc, containerSize, unitCapacity } = req.body;
+    db.run(`INSERT INTO inventory (glue_model, glue_part_no, glue_desc, container_size, unit_capacity)
+            VALUES (?, ?, ?, ?, ?)
             ON CONFLICT(glue_model, glue_part_no) DO UPDATE SET
-            glue_desc = excluded.glue_desc, container_size = excluded.container_size`,
-        [glueModel, gluePartNo, glueDesc, containerSize || 0], function(err) {
+            glue_desc = excluded.glue_desc, container_size = excluded.container_size,
+            unit_capacity = excluded.unit_capacity`,
+        [glueModel, gluePartNo, glueDesc, containerSize || 0, unitCapacity || 0], function(err) {
             if (err) return res.status(500).json({ error: '保存失败' });
             res.json({ success: true, id: this.lastID || true });
         });
 });
 
 app.put('/api/inventory/:id', authMiddleware, (req, res) => {
-    const { glueModel, gluePartNo, glueDesc, containerSize } = req.body;
-    db.run(`UPDATE inventory SET glue_model = ?, glue_part_no = ?, glue_desc = ?, container_size = ?, updated_at = strftime('%s','now')
+    const { glueModel, gluePartNo, glueDesc, containerSize, unitCapacity } = req.body;
+    db.run(`UPDATE inventory SET glue_model = ?, glue_part_no = ?, glue_desc = ?, container_size = ?, unit_capacity = ?, updated_at = strftime('%s','now')
             WHERE id = ?`,
-        [glueModel, gluePartNo, glueDesc, containerSize || 0, req.params.id], function(err) {
+        [glueModel, gluePartNo, glueDesc, containerSize || 0, unitCapacity || 0, req.params.id], function(err) {
             if (err) return res.status(500).json({ error: '更新失败' });
             res.json({ success: true });
         });
@@ -288,6 +399,79 @@ app.put('/api/stock', authMiddleware, (req, res) => {
             if (err) return res.status(500).json({ error: '保存失败' });
             res.json({ success: true });
         });
+});
+
+// ==================== API: 胶水料号库 ====================
+app.get('/api/glue-catalog', authMiddleware, (req, res) => {
+    db.all('SELECT * FROM glue_catalog ORDER BY id', [], (err, rows) => {
+        if (err) return res.status(500).json({ error: '查询失败' });
+        const result = rows.map(r => ({
+            id: r.id,
+            name: r.name,
+            partNo: r.part_no,
+            type: r.type || '',
+            spec: r.spec || '',
+            containerSize: r.container_size || 0,
+            unitCapacity: r.unit_capacity || 0
+        }));
+        res.json(result);
+    });
+});
+
+app.post('/api/glue-catalog', authMiddleware, (req, res) => {
+    const { name, partNo, type, spec, containerSize, unitCapacity } = req.body;
+    if (!name) return res.status(400).json({ error: '胶水型号不能为空' });
+    db.run(`INSERT INTO glue_catalog (name, part_no, type, spec, container_size, unit_capacity)
+            VALUES (?, ?, ?, ?, ?, ?)
+            ON CONFLICT(name, part_no) DO UPDATE SET
+            type = excluded.type, spec = excluded.spec,
+            container_size = excluded.container_size,
+            unit_capacity = excluded.unit_capacity,
+            updated_at = strftime('%s','now')`,
+        [name, partNo || '', type || '', spec || '', containerSize || 0, unitCapacity || 0], function(err) {
+            if (err) return res.status(500).json({ error: '保存失败' });
+            res.json({ success: true, id: this.lastID });
+        });
+});
+
+app.put('/api/glue-catalog/:id', authMiddleware, (req, res) => {
+    const { name, partNo, type, spec, containerSize, unitCapacity } = req.body;
+    db.run(`UPDATE glue_catalog SET name = ?, part_no = ?, type = ?, spec = ?,
+            container_size = ?, unit_capacity = ?, updated_at = strftime('%s','now')
+            WHERE id = ?`,
+        [name, partNo || '', type || '', spec || '', containerSize || 0, unitCapacity || 0, req.params.id], function(err) {
+            if (err) return res.status(500).json({ error: '更新失败' });
+            res.json({ success: true });
+        });
+});
+
+app.delete('/api/glue-catalog/:id', authMiddleware, (req, res) => {
+    db.run('DELETE FROM glue_catalog WHERE id = ?', [req.params.id], function(err) {
+        if (err) return res.status(500).json({ error: '删除失败' });
+        res.json({ success: true });
+    });
+});
+
+// 批量导入胶水料号库（初始化用）
+app.post('/api/glue-catalog/batch', authMiddleware, (req, res) => {
+    const items = req.body.items || [];
+    if (!Array.isArray(items) || items.length === 0) {
+        return res.status(400).json({ error: '数据不能为空' });
+    }
+    db.serialize(() => {
+        const stmt = db.prepare(`INSERT OR IGNORE INTO glue_catalog (name, part_no, type, spec, container_size, unit_capacity)
+            VALUES (?, ?, ?, ?, ?, ?)`);
+        let count = 0;
+        items.forEach(item => {
+            stmt.run([item.name, item.partNo || '', item.type || '', item.spec || '',
+                item.containerSize || 0, item.unitCapacity || 0], function() {
+                if (this.changes > 0) count++;
+            });
+        });
+        stmt.finalize(() => {
+            res.json({ success: true, imported: count, total: items.length });
+        });
+    });
 });
 
 // ==================== 健康检查 ====================
