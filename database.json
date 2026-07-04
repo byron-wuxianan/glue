@@ -1,0 +1,5530 @@
+{
+  "bom": [
+    {
+      "model": "A154",
+      "position": "前腔装喇叭打胶",
+      "glueModel": "AP1536",
+      "gluePartNo": "M.301.01.00062",
+      "glueDesc": "硅胶\\阿普邦AP1536\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.06,
+      "containerSize": 55.0,
+      "qty": 3000
+    },
+    {
+      "model": "A154",
+      "position": "主板点胶装咪套待干",
+      "glueModel": "AP1808B",
+      "gluePartNo": "M.301.01.00067",
+      "glueDesc": "硅胶\\阿普邦AP1808B\\55g/支\\黑色\\ROHS,REACH",
+      "usage": 0.04,
+      "containerSize": 55.0,
+      "qty": 3000
+    },
+    {
+      "model": "A154",
+      "position": "前腔装喇叭打胶",
+      "glueModel": "AP3378",
+      "gluePartNo": "M.301.01.00059",
+      "glueDesc": "UV胶/阿普邦 AP3378\\浅红色\\50g/支\\ROHS,REACH",
+      "usage": 0.01,
+      "containerSize": 50.0,
+      "qty": 3000
+    },
+    {
+      "model": "A154",
+      "position": "中框装磁铁",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 4000.0,
+      "qty": 3000
+    },
+    {
+      "model": "A154",
+      "position": "中框装磁铁",
+      "glueModel": "K4703",
+      "gluePartNo": "M.301.01.00010",
+      "glueDesc": "K4703胶水\\20g/支\\ROHS,REACH",
+      "usage": 0.01,
+      "containerSize": 20.0,
+      "qty": 3000
+    },
+    {
+      "model": "A154",
+      "position": "主板穿中壳&主板焊点点UV胶&过UV灯",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 250.0,
+      "qty": 3000
+    },
+    {
+      "model": "A154",
+      "position": "尾塞装磁铁&点UV胶固定",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 250.0,
+      "qty": 3000
+    },
+    {
+      "model": "A154",
+      "position": "贴咪网&中壳主板打热熔胶&套尾塞&保",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.08,
+      "containerSize": 33.0,
+      "qty": 3000
+    },
+    {
+      "model": "A154",
+      "position": "理电池&前腔打热熔胶&扣合中壳&保压 L",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.08,
+      "containerSize": 33.0,
+      "qty": 3000
+    },
+    {
+      "model": "A154",
+      "position": "下内托装磁铁",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 20.0,
+      "qty": 3000
+    },
+    {
+      "model": "A154",
+      "position": "下内托支架装磁铁&点胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 250.0,
+      "qty": 3000
+    },
+    {
+      "model": "A156",
+      "position": "下内托装磁铁&点UV胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 250.0,
+      "qty": 48000
+    },
+    {
+      "model": "A156",
+      "position": "前腔点胶&装喇叭打UV胶固定",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.06,
+      "containerSize": 55.0,
+      "qty": 48000
+    },
+    {
+      "model": "A156",
+      "position": "中壳贴后腔调音网&装磁铁&点胶",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 4000.0,
+      "qty": 48000
+    },
+    {
+      "model": "A156",
+      "position": "中壳贴后腔调音网&装磁铁&点胶",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 20.0,
+      "qty": 48000
+    },
+    {
+      "model": "A156",
+      "position": "主板扣压到位&穿线孔点胶密封&贴EVA",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.06,
+      "containerSize": 55.0,
+      "qty": 48000
+    },
+    {
+      "model": "A156",
+      "position": "前腔打热熔胶&理电池",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.08,
+      "containerSize": 33.0,
+      "qty": 48000
+    },
+    {
+      "model": "A156",
+      "position": "中壳主板打热熔胶&扣面盖&保压",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.08,
+      "containerSize": 33.0,
+      "qty": 48000
+    },
+    {
+      "model": "B203-PS",
+      "position": "下内托装磁铁点胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.06,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "B203-PS",
+      "position": "上内托装磁铁点胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.06,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "B203-PS",
+      "position": "下盖装导光柱点胶",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 20.0,
+      "qty": 0
+    },
+    {
+      "model": "B203-PS",
+      "position": "耳挂装磁铁&点UV胶固定",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "B203-PS",
+      "position": "装喇叭点胶",
+      "glueModel": "AP1804W",
+      "gluePartNo": "M.301.01.00061",
+      "glueDesc": "硅胶\\阿普邦AP1804W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "B203-PS",
+      "position": "焊点检查&焊点点UV胶",
+      "glueModel": "AP3347R",
+      "gluePartNo": "M.301.01.00060",
+      "glueDesc": "UV胶\\阿普邦AP3347R\\50g/支\\红色\\ROHS,REACH",
+      "usage": 0.03,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "B203-PS",
+      "position": "电池焊点点UV胶&过UV灯",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "B203-PS",
+      "position": "点胶合壳&保压",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 33.0,
+      "qty": 0
+    },
+    {
+      "model": "B203-PS",
+      "position": "尾盖耳炳组装",
+      "glueModel": "K4703",
+      "gluePartNo": "M.301.01.00010",
+      "glueDesc": "K4703胶水\\20g/支\\ROHS,REACH",
+      "usage": 0.05,
+      "containerSize": 20.0,
+      "qty": 0
+    },
+    {
+      "model": "B401",
+      "position": "前腔装喇叭打胶",
+      "glueModel": "AP1536",
+      "gluePartNo": "M.301.01.00062",
+      "glueDesc": "硅胶\\阿普邦AP1536\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.06,
+      "containerSize": 55.0,
+      "qty": 42000
+    },
+    {
+      "model": "B401",
+      "position": "主板点胶装咪套待干",
+      "glueModel": "AP1808B",
+      "gluePartNo": "M.301.01.00067",
+      "glueDesc": "硅胶\\阿普邦AP1808B\\55g/支\\黑色\\ROHS,REACH",
+      "usage": 0.04,
+      "containerSize": 55.0,
+      "qty": 42000
+    },
+    {
+      "model": "B401",
+      "position": "前腔装喇叭打胶",
+      "glueModel": "AP3378",
+      "gluePartNo": "M.301.01.00059",
+      "glueDesc": "UV胶/阿普邦 AP3378\\浅红色\\50g/支\\ROHS,REACH",
+      "usage": 0.01,
+      "containerSize": 50.0,
+      "qty": 42000
+    },
+    {
+      "model": "B401",
+      "position": "中框装磁铁",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 4000.0,
+      "qty": 42000
+    },
+    {
+      "model": "B401",
+      "position": "中框装磁铁",
+      "glueModel": "K4703",
+      "gluePartNo": "M.301.01.00010",
+      "glueDesc": "K4703胶水\\20g/支\\ROHS,REACH",
+      "usage": 0.01,
+      "containerSize": 20.0,
+      "qty": 42000
+    },
+    {
+      "model": "B401",
+      "position": "主板穿中壳&主板焊点点UV胶&过UV灯",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 250.0,
+      "qty": 42000
+    },
+    {
+      "model": "B401",
+      "position": "尾塞装磁铁&点UV胶固定",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 250.0,
+      "qty": 42000
+    },
+    {
+      "model": "B401",
+      "position": "贴咪网&中壳主板打热熔胶&套尾塞&保",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.08,
+      "containerSize": 33.0,
+      "qty": 42000
+    },
+    {
+      "model": "B401",
+      "position": "理电池&前腔打热熔胶&扣合中壳&保压 L",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.08,
+      "containerSize": 33.0,
+      "qty": 42000
+    },
+    {
+      "model": "B401",
+      "position": "下内托装磁铁",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 20.0,
+      "qty": 42000
+    },
+    {
+      "model": "B401",
+      "position": "下内托支架装磁铁&点胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 250.0,
+      "qty": 42000
+    },
+    {
+      "model": "B88-E",
+      "position": "装喇叭&点胶密封",
+      "glueModel": "AP1536",
+      "gluePartNo": "M.301.01.00062",
+      "glueDesc": "硅胶\\阿普邦AP1536\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.04,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "B88-E",
+      "position": "前腔下壳点胶装磁铁",
+      "glueModel": "K4703",
+      "gluePartNo": "M.301.01.00010",
+      "glueDesc": "K4703胶水\\20g/支\\ROHS,REACH",
+      "usage": 0.02,
+      "containerSize": 20.0,
+      "qty": 0
+    },
+    {
+      "model": "B88-E",
+      "position": "耳壳组件装充电板&点胶密封",
+      "glueModel": "JN2366",
+      "gluePartNo": "M.301.01.00028",
+      "glueDesc": "JN2366 密封胶\\30ml/支\\ROHS、REACH（改性硅胶）",
+      "usage": 0.12,
+      "containerSize": 30.0,
+      "qty": 0
+    },
+    {
+      "model": "B88-E",
+      "position": "主板装点胶&咪套",
+      "glueModel": "AP1808B",
+      "gluePartNo": "M.301.01.00067",
+      "glueDesc": "硅胶\\阿普邦AP1808B\\55g/支\\黑色\\ROHS,REACH",
+      "usage": 0.05,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "B88-E",
+      "position": "耳壳打胶&前后壳组合",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.06,
+      "containerSize": 33.0,
+      "qty": 0
+    },
+    {
+      "model": "B88-E",
+      "position": "下盖内托装磁铁、点胶、过UV灯",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "B88-E",
+      "position": "装配重块&点胶固定",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.1,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "B88-E",
+      "position": "上盖内托装磁铁&点胶",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 4000.0,
+      "qty": 0
+    },
+    {
+      "model": "B88-E",
+      "position": "上盖内托装磁铁&点胶",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.02,
+      "containerSize": 20.0,
+      "qty": 0
+    },
+    {
+      "model": "B88-E",
+      "position": "装上盖内托、上盖装连接轴",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 20.0,
+      "qty": 0
+    },
+    {
+      "model": "B88-E",
+      "position": "装挡光胶件&点UV胶过UV灯",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "L303",
+      "position": "前腔装喇叭打胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.06,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "L303",
+      "position": "打胶组装前后壳",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 4000.0,
+      "qty": 0
+    },
+    {
+      "model": "HLD01",
+      "position": "左右电感点胶",
+      "glueModel": "AP3378",
+      "gluePartNo": "M.301.01.00059",
+      "glueDesc": "UV胶/阿普邦 AP3378\\浅红色\\50g/支\\ROHS,REACH",
+      "usage": 0.12,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "HLD01",
+      "position": "喇叭壳L&R装喇叭点UV胶",
+      "glueModel": "AP3378",
+      "gluePartNo": "M.301.01.00059",
+      "glueDesc": "UV胶/阿普邦 AP3378\\浅红色\\50g/支\\ROHS,REACH",
+      "usage": 0.6,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "HLD01",
+      "position": "理线喇叭线&合L喇叭盖",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.03,
+      "containerSize": 20.0,
+      "qty": 0
+    },
+    {
+      "model": "HLD01",
+      "position": "理线喇叭线&合R喇叭盖",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.03,
+      "containerSize": 20.0,
+      "qty": 0
+    },
+    {
+      "model": "HED07",
+      "position": "装左右滑动块理线&点胶",
+      "glueModel": "米歌888",
+      "gluePartNo": "M.301.01.00047",
+      "glueDesc": "快干胶\\米歌888\\50g/瓶\\ROHS、REACH",
+      "usage": 0.03,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "HED07",
+      "position": "点胶装左右支臂盖",
+      "glueModel": "JN2733-1（透明）",
+      "gluePartNo": "M.301.01.00087",
+      "glueDesc": "结构胶\\君粘JN2733-1\\50mL/支\\透明液体\\ROHS,REACH",
+      "usage": 0.02,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "HED07",
+      "position": "左耳壳装咪杆打螺丝",
+      "glueModel": "A-1259EL",
+      "gluePartNo": "M.301.05.00004",
+      "glueDesc": "润滑剂\\富见雄FUMIO A-1259EL\\乳白色液体\\1KG/瓶\\ROHS、REACH",
+      "usage": 0.2,
+      "containerSize": 1000.0,
+      "qty": 0
+    },
+    {
+      "model": "HED07",
+      "position": "焊点点胶过UV灯",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.1,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HED07",
+      "position": "发射器下壳装主板与面盖点胶",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 20.0,
+      "qty": 0
+    },
+    {
+      "model": "HED07",
+      "position": "咪杆点胶装咪盖",
+      "glueModel": "米歌888",
+      "gluePartNo": "M.301.01.00047",
+      "glueDesc": "快干胶\\米歌888\\50g/瓶\\ROHS、REACH",
+      "usage": 0.2,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "HED07",
+      "position": "装左右喇叭点UV胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.3,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD21",
+      "position": "左右喇叭组件打胶",
+      "glueModel": "GH-2705(大)",
+      "gluePartNo": "M.301.01.00098",
+      "glueDesc": "硅胶\\光合GH-2705\\300mL/支\\白色\\ROSH,REACH",
+      "usage": 0.9,
+      "containerSize": 300.0,
+      "qty": 2000
+    },
+    {
+      "model": "HAD21",
+      "position": "左右喇叭独立腔打胶",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.2,
+      "containerSize": 4000.0,
+      "qty": 2000
+    },
+    {
+      "model": "HAD21",
+      "position": "R耳壳装咪打密封胶",
+      "glueModel": "GH-2705",
+      "gluePartNo": "M.301.01.00091",
+      "glueDesc": "硅胶\\光合GH-2705\\50mL/支\\白色\\ROSH,REACH",
+      "usage": 0.04,
+      "containerSize": 50.0,
+      "qty": 2000
+    },
+    {
+      "model": "HAD21",
+      "position": "L装咪打密封胶",
+      "glueModel": "GH-2705",
+      "gluePartNo": "M.301.01.00091",
+      "glueDesc": "硅胶\\光合GH-2705\\50mL/支\\白色\\ROSH,REACH",
+      "usage": 0.08,
+      "containerSize": 50.0,
+      "qty": 2000
+    },
+    {
+      "model": "HAD21",
+      "position": "电池打胶固定",
+      "glueModel": "GH-2705",
+      "gluePartNo": "M.301.01.00091",
+      "glueDesc": "硅胶\\光合GH-2705\\50mL/支\\白色\\ROSH,REACH",
+      "usage": 0.1,
+      "containerSize": 50.0,
+      "qty": 2000
+    },
+    {
+      "model": "HAD21",
+      "position": "导光柱点胶固定",
+      "glueModel": "AP1887",
+      "gluePartNo": "M.301.01.00092",
+      "glueDesc": "瞬干胶\\阿普邦 AP1887\\20g/瓶\\透明无色液体\\ROSH,REACH",
+      "usage": 0.024,
+      "containerSize": 20.0,
+      "qty": 2000
+    },
+    {
+      "model": "HAD21",
+      "position": "焊点点UV胶&过炉",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.15,
+      "containerSize": 250.0,
+      "qty": 2000
+    },
+    {
+      "model": "HAD21",
+      "position": "包装纸盒点胶",
+      "glueModel": "JQ9505",
+      "gluePartNo": "M.301.01.00099",
+      "glueDesc": "结构胶\\邦德仕 JQ9505\\乳白色粘稠液体\\2.5kg/罐",
+      "usage": 2.2,
+      "containerSize": 2500.0,
+      "qty": 2000
+    },
+    {
+      "model": "TAT1500",
+      "position": "PCBA固定咪套",
+      "glueModel": "AP1808C",
+      "gluePartNo": "M.301.01.00106",
+      "glueDesc": "硅胶\\阿普邦AP1808C\\无色透明半流淌液体\\50mL\\支",
+      "usage": 0.05,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "TAT1500",
+      "position": "耳机下壳装磁铁",
+      "glueModel": "K4703",
+      "gluePartNo": "M.301.01.00010",
+      "glueDesc": "K4703胶水\\20g/支\\ROHS,REACH",
+      "usage": 0.016,
+      "containerSize": 20.0,
+      "qty": 0
+    },
+    {
+      "model": "TAT1500",
+      "position": "主板打硅胶密封",
+      "glueModel": "GH-2705",
+      "gluePartNo": "M.301.01.00091",
+      "glueDesc": "硅胶\\光合GH-2705\\50mL/支\\白色\\ROSH,REACH",
+      "usage": 0.08,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "TAT1500",
+      "position": "电池固定",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.04,
+      "containerSize": 30.0,
+      "qty": 0
+    },
+    {
+      "model": "TAT1500",
+      "position": "上盖点胶",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.06,
+      "containerSize": 30.0,
+      "qty": 0
+    },
+    {
+      "model": "TAT1500",
+      "position": "下内托装磁铁",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "TAT1500",
+      "position": "固定电池",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.03,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD18",
+      "position": "L/喇叭前盖咪打胶固定",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.2,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD18",
+      "position": "喇叭密封盖点胶-L/R",
+      "glueModel": "AP1804W",
+      "gluePartNo": "M.301.01.00061",
+      "glueDesc": "硅胶\\阿普邦AP1804W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD18",
+      "position": "左/右后盖装硅胶垫圈&装转轴压件锁螺丝",
+      "glueModel": "DG-812阻尼脂",
+      "gluePartNo": "M.301.05.00001",
+      "glueDesc": "DG-812阻尼脂\\30ML/支\\透明\\ROHS,REACH",
+      "usage": 0.06,
+      "containerSize": 30.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD18",
+      "position": "右/左拉伸杆穿喇叭后盖装弹簧件&装转轴压盖&锁螺丝",
+      "glueModel": "DG-812阻尼脂",
+      "gluePartNo": "M.301.05.00001",
+      "glueDesc": "DG-812阻尼脂\\30ML/支\\透明\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 30.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD18",
+      "position": "点胶固定线材",
+      "glueModel": "米歌888",
+      "gluePartNo": "M.301.01.00047",
+      "glueDesc": "快干胶\\米歌888\\50g/瓶\\ROHS、REACH",
+      "usage": 0.005,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD18",
+      "position": "右耳后盖贴主咪网&FF咪孔贴EVA&装主咪打硅胶",
+      "glueModel": "AP1536",
+      "gluePartNo": "M.301.01.00062",
+      "glueDesc": "硅胶\\阿普邦AP1536\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD18",
+      "position": "充电板端子点胶&装入左喇叭后盖&贴遮光棉",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD18",
+      "position": "前腔装喇叭打胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.5,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD18",
+      "position": "点胶固定线材",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.02,
+      "containerSize": 4000.0,
+      "qty": 0
+    },
+    {
+      "model": "B149",
+      "position": "前腔装喇叭打胶",
+      "glueModel": "AP1536",
+      "gluePartNo": "M.301.01.00062",
+      "glueDesc": "硅胶\\阿普邦AP1536\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.06,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "B149",
+      "position": "主板点胶装咪套待干",
+      "glueModel": "AP1808B",
+      "gluePartNo": "M.301.01.00067",
+      "glueDesc": "硅胶\\阿普邦AP1808B\\55g/支\\黑色\\ROHS,REACH",
+      "usage": 0.04,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "B149",
+      "position": "前腔装喇叭打胶",
+      "glueModel": "AP3378",
+      "gluePartNo": "M.301.01.00059",
+      "glueDesc": "UV胶/阿普邦 AP3378\\浅红色\\50g/支\\ROHS,REACH",
+      "usage": 0.01,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "B149",
+      "position": "中框装磁铁",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 4000.0,
+      "qty": 0
+    },
+    {
+      "model": "B149",
+      "position": "中框装磁铁",
+      "glueModel": "K4703",
+      "gluePartNo": "M.301.01.00010",
+      "glueDesc": "K4703胶水\\20g/支\\ROHS,REACH",
+      "usage": 0.01,
+      "containerSize": 20.0,
+      "qty": 0
+    },
+    {
+      "model": "B149",
+      "position": "主板穿中壳&主板焊点点UV胶&过UV灯",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "B149",
+      "position": "尾塞装磁铁&点UV胶固定",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "B149",
+      "position": "贴咪网&中壳主板打热熔胶&套尾塞&保",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.08,
+      "containerSize": 33.0,
+      "qty": 0
+    },
+    {
+      "model": "B149",
+      "position": "理电池&前腔打热熔胶&扣合中壳&保压 L",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.08,
+      "containerSize": 33.0,
+      "qty": 0
+    },
+    {
+      "model": "B149",
+      "position": "下内托装磁铁",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 20.0,
+      "qty": 0
+    },
+    {
+      "model": "B149",
+      "position": "下内托支架装磁铁&点胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "A155",
+      "position": "中框装磁铁&点胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 250.0,
+      "qty": 5000
+    },
+    {
+      "model": "A155",
+      "position": "主板焊点点胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.005,
+      "containerSize": 250.0,
+      "qty": 5000
+    },
+    {
+      "model": "A155",
+      "position": "主板咪点胶密封",
+      "glueModel": "JN2366",
+      "gluePartNo": "M.301.01.00028",
+      "glueDesc": "JN2366 密封胶\\30ml/支\\ROHS、REACH（改性硅胶）",
+      "usage": 0.04,
+      "containerSize": 30.0,
+      "qty": 5000
+    },
+    {
+      "model": "A155",
+      "position": "前腔打胶",
+      "glueModel": "AP1028",
+      "gluePartNo": "M.301.01.00086",
+      "glueDesc": "冷胶\\阿普邦AP1028\\50ml/支\\透明\\ROHS,REACH,",
+      "usage": 0.06,
+      "containerSize": 50.0,
+      "qty": 5000
+    },
+    {
+      "model": "A155",
+      "position": "穿线孔打胶密封",
+      "glueModel": "AP1804W",
+      "gluePartNo": "M.301.01.00061",
+      "glueDesc": "硅胶\\阿普邦AP1804W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.06,
+      "containerSize": 55.0,
+      "qty": 5000
+    },
+    {
+      "model": "A155",
+      "position": "面盖点胶",
+      "glueModel": "AP1028",
+      "gluePartNo": "M.301.01.00086",
+      "glueDesc": "冷胶\\阿普邦AP1028\\50ml/支\\透明\\ROHS,REACH,",
+      "usage": 0.08,
+      "containerSize": 50.0,
+      "qty": 5000
+    },
+    {
+      "model": "A155",
+      "position": "充电盒电池固定点胶",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 55.0,
+      "qty": 5000
+    },
+    {
+      "model": "A155",
+      "position": "下内托磁铁点UV胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.1,
+      "containerSize": 250.0,
+      "qty": 5000
+    },
+    {
+      "model": "A136-SL",
+      "position": "下内托装磁铁",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.3,
+      "containerSize": 250.0,
+      "qty": 3030
+    },
+    {
+      "model": "A136-SL",
+      "position": "插FPC&usb口&排线口点胶过UV灯",
+      "glueModel": "AP3347R",
+      "gluePartNo": "M.301.01.00060",
+      "glueDesc": "UV胶\\阿普邦AP3347R\\50g/支\\红色\\ROHS,REACH",
+      "usage": 0.005,
+      "containerSize": 50.0,
+      "qty": 3030
+    },
+    {
+      "model": "A136-SL",
+      "position": "上内托装磁铁",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.2,
+      "containerSize": 250.0,
+      "qty": 3030
+    },
+    {
+      "model": "A136-SL",
+      "position": "前腔点硅胶&装喇叭(双边)",
+      "glueModel": "JN1859",
+      "gluePartNo": "M.301.01.00023",
+      "glueDesc": "JN1859硅胶\\白色\\50ml/支\\ROHS、REACH",
+      "usage": 0.03,
+      "containerSize": 50.0,
+      "qty": 3030
+    },
+    {
+      "model": "A136-SL",
+      "position": "前腔支架点胶(双边)",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 4000.0,
+      "qty": 3030
+    },
+    {
+      "model": "A136-SL",
+      "position": "前腔支架点胶(双边)",
+      "glueModel": "JN1859",
+      "gluePartNo": "M.301.01.00023",
+      "glueDesc": "JN1859硅胶\\白色\\50ml/支\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 50.0,
+      "qty": 3030
+    },
+    {
+      "model": "A136-SL",
+      "position": "中框装磁铁(双边)",
+      "glueModel": "K4703",
+      "gluePartNo": "M.301.01.00010",
+      "glueDesc": "K4703胶水\\20g/支\\ROHS,REACH",
+      "usage": 0.006,
+      "containerSize": 20.0,
+      "qty": 3030
+    },
+    {
+      "model": "A136-SL",
+      "position": "中框装磁铁(双边)",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.006,
+      "containerSize": 4000.0,
+      "qty": 3030
+    },
+    {
+      "model": "A136-SL",
+      "position": "前腔打胶(双边)",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 4000.0,
+      "qty": 3030
+    },
+    {
+      "model": "A136-SL",
+      "position": "面盖点胶&装中框(双边)",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.08,
+      "containerSize": 33.0,
+      "qty": 3030
+    },
+    {
+      "model": "B140",
+      "position": "下内托装按键&点胶固定",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.005,
+      "containerSize": 250.0,
+      "qty": 10000
+    },
+    {
+      "model": "B140",
+      "position": "下内托装磁铁&点UV胶&过UV灯",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.06,
+      "containerSize": 250.0,
+      "qty": 10000
+    },
+    {
+      "model": "B140",
+      "position": "上内托装磁铁&点UV胶&过UV灯",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.06,
+      "containerSize": 250.0,
+      "qty": 10000
+    },
+    {
+      "model": "B140",
+      "position": "前腔点胶&装磁铁",
+      "glueModel": "K4703",
+      "gluePartNo": "M.301.01.00010",
+      "glueDesc": "K4703胶水\\20g/支\\ROHS,REACH",
+      "usage": 0.03,
+      "containerSize": 20.0,
+      "qty": 10000
+    },
+    {
+      "model": "B140",
+      "position": "前腔点胶&装磁铁",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.02,
+      "containerSize": 4000.0,
+      "qty": 10000
+    },
+    {
+      "model": "B140",
+      "position": "焊点点UV胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 250.0,
+      "qty": 10000
+    },
+    {
+      "model": "B140",
+      "position": "前腔点胶&理线&合盖&保压",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.09,
+      "containerSize": 30.0,
+      "qty": 10000
+    },
+    {
+      "model": "B140",
+      "position": "理线&面盖装主板&点胶固定",
+      "glueModel": "AP3347R",
+      "gluePartNo": "M.301.01.00060",
+      "glueDesc": "UV胶\\阿普邦AP3347R\\50g/支\\红色\\ROHS,REACH",
+      "usage": 0.06,
+      "containerSize": 50.0,
+      "qty": 10000
+    },
+    {
+      "model": "B402",
+      "position": "下盖内托装磁铁",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.06,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "B402",
+      "position": "上内托装磁铁",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "B402",
+      "position": "CCD焊电检查&主板点UV胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.06,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "B402",
+      "position": "后腔装磁铁",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.02,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "B402",
+      "position": "咪套点胶&尾塞点胶&保压",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.04,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "B402",
+      "position": "前腔打胶&合壳&保压",
+      "glueModel": "AP1028",
+      "gluePartNo": "M.301.01.00086",
+      "glueDesc": "冷胶\\阿普邦AP1028\\50ml/支\\透明\\ROHS,REACH,",
+      "usage": 0.06,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "BS206",
+      "position": "主体后壳点胶&装振膜（前加工）",
+      "glueModel": "AP1808B",
+      "gluePartNo": "M.301.01.00067",
+      "glueDesc": "硅胶\\阿普邦AP1808B\\55g/支\\黑色\\ROHS,REACH",
+      "usage": 0.18,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "BS206",
+      "position": "主体前壳打胶&装按键硅胶（前加工）",
+      "glueModel": "AP1808B",
+      "gluePartNo": "M.301.01.00067",
+      "glueDesc": "硅胶\\阿普邦AP1808B\\55g/支\\黑色\\ROHS,REACH",
+      "usage": 0.12,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "BS206",
+      "position": "主体前壳喇叭腔位打胶&（前加工）",
+      "glueModel": "AP1808B",
+      "gluePartNo": "M.301.01.00067",
+      "glueDesc": "硅胶\\阿普邦AP1808B\\55g/支\\黑色\\ROHS,REACH",
+      "usage": 0.2,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "BS206",
+      "position": "合壳螺丝孔位点胶",
+      "glueModel": "AP1808B",
+      "gluePartNo": "M.301.01.00067",
+      "glueDesc": "硅胶\\阿普邦AP1808B\\55g/支\\黑色\\ROHS,REACH",
+      "usage": 0.32,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "BS206",
+      "position": "主体前壳装通话咪&点胶密封（前加工）",
+      "glueModel": "AP1808B",
+      "gluePartNo": "M.301.01.00067",
+      "glueDesc": "硅胶\\阿普邦AP1808B\\55g/支\\黑色\\ROHS,REACH",
+      "usage": 0.05,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "BS206",
+      "position": "理线&粘蛇胶初固定",
+      "glueModel": "蛇胶",
+      "gluePartNo": "M.301.01.00090",
+      "glueDesc": "蛇胶(丁基密封胶带)\\直径8mm\\4米/卷\\带离型纸\\ROSH,REACH",
+      "usage": 10.0,
+      "containerSize": 400.0,
+      "qty": 0
+    },
+    {
+      "model": "BS206",
+      "position": "蒙布扣位打黄胶&装蒙布",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.06,
+      "containerSize": 4000.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD05",
+      "position": "喇叭盖咪打胶固定-L/R",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.15,
+      "containerSize": 250.0,
+      "qty": 9500
+    },
+    {
+      "model": "HAD05",
+      "position": "前腔装喇叭打胶-L/R",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.5,
+      "containerSize": 250.0,
+      "qty": 9500
+    },
+    {
+      "model": "HAD05",
+      "position": "喇叭盖穿线孔打胶密封-L/R",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.06,
+      "containerSize": 55.0,
+      "qty": 9500
+    },
+    {
+      "model": "HAD05",
+      "position": "耳壳L装FF驻极体麦克风&打胶密封",
+      "glueModel": "GH-2705",
+      "gluePartNo": "M.301.01.00091",
+      "glueDesc": "硅胶\\光合GH-2705\\50mL/支\\白色\\ROSH,REACH",
+      "usage": 0.1,
+      "containerSize": 50.0,
+      "qty": 9500
+    },
+    {
+      "model": "HAD05",
+      "position": "主麦克风及FF麦克风点硅胶密封",
+      "glueModel": "GH-2705",
+      "gluePartNo": "M.301.01.00091",
+      "glueDesc": "硅胶\\光合GH-2705\\50mL/支\\白色\\ROSH,REACH",
+      "usage": 0.2,
+      "containerSize": 50.0,
+      "qty": 9500
+    },
+    {
+      "model": "HKD03",
+      "position": "喇叭前腔装喇叭点胶&过UV灯 L/R",
+      "glueModel": "AP3378",
+      "gluePartNo": "M.301.01.00059",
+      "glueDesc": "UV胶/阿普邦 AP3378\\浅红色\\50g/支\\ROHS,REACH",
+      "usage": 0.25,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "HKD03",
+      "position": "前腔密封盖槽位点胶&装密封盖L/R",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.36,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "HKD03",
+      "position": "前腔&密封盖贴调音网&喇叭线密封",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.04,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "HKD03",
+      "position": "耳壳装咪&点胶密封&贴遮光棉 R",
+      "glueModel": "GH-2705",
+      "gluePartNo": "M.301.01.00091",
+      "glueDesc": "硅胶\\光合GH-2705\\50mL/支\\白色\\ROSH,REACH",
+      "usage": 0.1,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "ows811",
+      "position": "前腔装喇叭&点UV胶固定",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "ows811",
+      "position": "喇叭点胶密封",
+      "glueModel": "JN1859",
+      "gluePartNo": "M.301.01.00023",
+      "glueDesc": "JN1859硅胶\\白色\\50ml/支\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "ows811",
+      "position": "后腔穿耳挂C桥&点胶固定",
+      "glueModel": "AP1028",
+      "gluePartNo": "M.301.01.00086",
+      "glueDesc": "冷胶\\阿普邦AP1028\\50ml/支\\透明\\ROHS,REACH,",
+      "usage": 0.06,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "ows811",
+      "position": "前腔点胶&合盖&保压",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.06,
+      "containerSize": 33.0,
+      "qty": 0
+    },
+    {
+      "model": "ows811",
+      "position": "电池贴背胶&检CCD&点UV胶过UV灯",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.02,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "ows811",
+      "position": "电池上盖点胶&装磁铁&点黄胶加固",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.02,
+      "containerSize": 20.0,
+      "qty": 0
+    },
+    {
+      "model": "ows811",
+      "position": "电池上盖点胶&装磁铁&点黄胶加固",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.02,
+      "containerSize": 4000.0,
+      "qty": 0
+    },
+    {
+      "model": "ows811",
+      "position": "主板点胶密封",
+      "glueModel": "AP1808B",
+      "gluePartNo": "M.301.01.00067",
+      "glueDesc": "硅胶\\阿普邦AP1808B\\55g/支\\黑色\\ROHS,REACH",
+      "usage": 0.04,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "ows811",
+      "position": "电池下盖打胶&扣入电池上盖&保压",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.06,
+      "containerSize": 33.0,
+      "qty": 0
+    },
+    {
+      "model": "HL301",
+      "position": "装左右滑动块理线&点胶",
+      "glueModel": "米歌888",
+      "gluePartNo": "M.301.01.00047",
+      "glueDesc": "快干胶\\米歌888\\50g/瓶\\ROHS、REACH",
+      "usage": 0.03,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "HL301",
+      "position": "点胶装左右支臂盖",
+      "glueModel": "JN2733-1（透明）",
+      "gluePartNo": "M.301.01.00087",
+      "glueDesc": "结构胶\\君粘JN2733-1\\50mL/支\\透明液体\\ROHS,REACH",
+      "usage": 0.02,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "HL301",
+      "position": "左耳壳装咪杆打螺丝",
+      "glueModel": "A-1259EL",
+      "gluePartNo": "M.301.05.00004",
+      "glueDesc": "润滑剂\\富见雄FUMIO A-1259EL\\乳白色液体\\1KG/瓶\\ROHS、REACH",
+      "usage": 0.2,
+      "containerSize": 1000.0,
+      "qty": 0
+    },
+    {
+      "model": "HL301",
+      "position": "焊点点胶过UV灯",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.1,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HL301",
+      "position": "发射器下壳装主板与面盖点胶",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 20.0,
+      "qty": 0
+    },
+    {
+      "model": "HL301",
+      "position": "咪杆点胶装咪盖",
+      "glueModel": "米歌888",
+      "gluePartNo": "M.301.01.00047",
+      "glueDesc": "快干胶\\米歌888\\50g/瓶\\ROHS、REACH",
+      "usage": 0.2,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "HL301",
+      "position": "装左右喇叭点UV胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.3,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HL301-B",
+      "position": "装左右滑动块理线&点胶",
+      "glueModel": "米歌888",
+      "gluePartNo": "M.301.01.00047",
+      "glueDesc": "快干胶\\米歌888\\50g/瓶\\ROHS、REACH",
+      "usage": 0.03,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "HL301-B",
+      "position": "点胶装左右支臂盖",
+      "glueModel": "JN2733-1（透明）",
+      "gluePartNo": "M.301.01.00087",
+      "glueDesc": "结构胶\\君粘JN2733-1\\50mL/支\\透明液体\\ROHS,REACH",
+      "usage": 0.02,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "HL301-B",
+      "position": "左耳壳装咪杆打螺丝",
+      "glueModel": "A-1259EL",
+      "gluePartNo": "M.301.05.00004",
+      "glueDesc": "润滑剂\\富见雄FUMIO A-1259EL\\乳白色液体\\1KG/瓶\\ROHS、REACH",
+      "usage": 0.2,
+      "containerSize": 1000.0,
+      "qty": 0
+    },
+    {
+      "model": "HL301-B",
+      "position": "焊点点胶过UV灯",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.1,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HL301-B",
+      "position": "发射器下壳装主板与面盖点胶",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 20.0,
+      "qty": 0
+    },
+    {
+      "model": "HL301-B",
+      "position": "咪杆点胶装咪盖",
+      "glueModel": "米歌888",
+      "gluePartNo": "M.301.01.00047",
+      "glueDesc": "快干胶\\米歌888\\50g/瓶\\ROHS、REACH",
+      "usage": 0.2,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "HL301-B",
+      "position": "装左右喇叭点UV胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.3,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "A154-B(D11pro)",
+      "position": "前腔装喇叭打胶",
+      "glueModel": "AP1536",
+      "gluePartNo": "M.301.01.00062",
+      "glueDesc": "硅胶\\阿普邦AP1536\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.06,
+      "containerSize": 55.0,
+      "qty": 3000
+    },
+    {
+      "model": "A154-B(D11pro)",
+      "position": "主板点胶装咪套待干",
+      "glueModel": "AP1808B",
+      "gluePartNo": "M.301.01.00067",
+      "glueDesc": "硅胶\\阿普邦AP1808B\\55g/支\\黑色\\ROHS,REACH",
+      "usage": 0.04,
+      "containerSize": 55.0,
+      "qty": 3000
+    },
+    {
+      "model": "A154-B(D11pro)",
+      "position": "前腔装喇叭打胶",
+      "glueModel": "AP3378",
+      "gluePartNo": "M.301.01.00059",
+      "glueDesc": "UV胶/阿普邦 AP3378\\浅红色\\50g/支\\ROHS,REACH",
+      "usage": 0.01,
+      "containerSize": 50.0,
+      "qty": 3000
+    },
+    {
+      "model": "A154-B(D11pro)",
+      "position": "中框装磁铁",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 4000.0,
+      "qty": 3000
+    },
+    {
+      "model": "A154-B(D11pro)",
+      "position": "中框装磁铁",
+      "glueModel": "K4703",
+      "gluePartNo": "M.301.01.00010",
+      "glueDesc": "K4703胶水\\20g/支\\ROHS,REACH",
+      "usage": 0.01,
+      "containerSize": 20.0,
+      "qty": 3000
+    },
+    {
+      "model": "A154-B(D11pro)",
+      "position": "主板穿中壳&主板焊点点UV胶&过UV灯",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 250.0,
+      "qty": 3000
+    },
+    {
+      "model": "A154-B(D11pro)",
+      "position": "尾塞装磁铁&点UV胶固定",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 250.0,
+      "qty": 3000
+    },
+    {
+      "model": "A154-B(D11pro)",
+      "position": "贴咪网&中壳主板打热熔胶&套尾塞&保",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.08,
+      "containerSize": 33.0,
+      "qty": 3000
+    },
+    {
+      "model": "A154-B(D11pro)",
+      "position": "理电池&前腔打热熔胶&扣合中壳&保压 L",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.08,
+      "containerSize": 33.0,
+      "qty": 3000
+    },
+    {
+      "model": "A154-B(D11pro)",
+      "position": "下内托装磁铁",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 20.0,
+      "qty": 3000
+    },
+    {
+      "model": "A154-B(D11pro)",
+      "position": "下内托支架装磁铁&点胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 250.0,
+      "qty": 3000
+    },
+    {
+      "model": "A150",
+      "position": "前腔装喇叭&点UV胶&过UV灯",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.02,
+      "containerSize": 250.0,
+      "qty": 5045
+    },
+    {
+      "model": "A150",
+      "position": "FPC槽位点胶",
+      "glueModel": "GH-2705",
+      "gluePartNo": "M.301.01.00091",
+      "glueDesc": "硅胶\\光合GH-2705\\50mL/支\\白色\\ROSH,REACH",
+      "usage": 0.06,
+      "containerSize": 50.0,
+      "qty": 5045
+    },
+    {
+      "model": "A150",
+      "position": "前腔喇叭打黄胶&贴后腔调音网",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.08,
+      "containerSize": 4000.0,
+      "qty": 5045
+    },
+    {
+      "model": "A150",
+      "position": "前腔电池支架打黄胶&待干",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.08,
+      "containerSize": 4000.0,
+      "qty": 5045
+    },
+    {
+      "model": "A150",
+      "position": "中框装磁铁点胶",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.02,
+      "containerSize": 4000.0,
+      "qty": 5045
+    },
+    {
+      "model": "A150",
+      "position": "中框装磁铁点胶",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.014,
+      "containerSize": 20.0,
+      "qty": 5045
+    },
+    {
+      "model": "A150",
+      "position": "前腔打胶&固定电池&理线",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 33.0,
+      "qty": 5045
+    },
+    {
+      "model": "A150",
+      "position": "FPC扣主板",
+      "glueModel": "AP3347R",
+      "gluePartNo": "M.301.01.00060",
+      "glueDesc": "UV胶\\阿普邦AP3347R\\50g/支\\红色\\ROHS,REACH",
+      "usage": 0.01,
+      "containerSize": 50.0,
+      "qty": 5045
+    },
+    {
+      "model": "A150",
+      "position": "面盖装支撑块&粘贴天线FPC",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 20.0,
+      "qty": 5045
+    },
+    {
+      "model": "A150",
+      "position": "面盖FPC天线过孔点胶",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.08,
+      "containerSize": 50.0,
+      "qty": 5045
+    },
+    {
+      "model": "A150",
+      "position": "面盖点胶装中框&保压",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 33.0,
+      "qty": 5045
+    },
+    {
+      "model": "A150",
+      "position": "装异型磁铁&圆形磁铁&点UV胶&过UV灯",
+      "glueModel": "AP3319",
+      "gluePartNo": "M.301.01.00085",
+      "glueDesc": "UV胶\\阿普邦AP3319\\50mL/支\\透明\\ROHS,REACH",
+      "usage": 0.08,
+      "containerSize": 50.0,
+      "qty": 5045
+    },
+    {
+      "model": "A150",
+      "position": "上内托装磁铁&点UV胶&过UV灯",
+      "glueModel": "AP3319",
+      "gluePartNo": "M.301.01.00085",
+      "glueDesc": "UV胶\\阿普邦AP3319\\50mL/支\\透明\\ROHS,REACH",
+      "usage": 0.08,
+      "containerSize": 50.0,
+      "qty": 5045
+    },
+    {
+      "model": "A150",
+      "position": "装异型磁铁&圆形磁铁&点UV胶&过UV灯",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 20.0,
+      "qty": 5045
+    },
+    {
+      "model": "A150",
+      "position": "上内托装磁铁&点UV胶&过UV灯",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 20.0,
+      "qty": 5045
+    },
+    {
+      "model": "HAD03",
+      "position": "点胶固定线材",
+      "glueModel": "米歌888",
+      "gluePartNo": "M.301.01.00047",
+      "glueDesc": "快干胶\\米歌888\\50g/瓶\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD03",
+      "position": "头带线套热缩管&拉伸杆穿头带线&点胶固定",
+      "glueModel": "米歌888",
+      "gluePartNo": "M.301.01.00047",
+      "glueDesc": "快干胶\\米歌888\\50g/瓶\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD03",
+      "position": "左拉伸杆穿喇叭后盖装弹簧件&装转轴压盖&锁螺丝",
+      "glueModel": "DG-812阻尼脂",
+      "gluePartNo": "M.301.05.00001",
+      "glueDesc": "DG-812阻尼脂\\30ML/支\\透明\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 30.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD03",
+      "position": "右拉伸杆穿喇叭后盖装弹簧件&装转轴压盖&锁螺丝",
+      "glueModel": "DG-812阻尼脂",
+      "gluePartNo": "M.301.05.00001",
+      "glueDesc": "DG-812阻尼脂\\30ML/支\\透明\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 30.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD03",
+      "position": "护套扣位点阻尼脂&装护套",
+      "glueModel": "DG-812阻尼脂",
+      "gluePartNo": "M.301.05.00001",
+      "glueDesc": "DG-812阻尼脂\\30ML/支\\透明\\ROHS,REACH",
+      "usage": 0.15,
+      "containerSize": 30.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD03",
+      "position": "喇叭前盖咪打胶固定-L/R",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.08,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD03",
+      "position": "前腔装喇叭打胶-L/R",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.3,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD03",
+      "position": "喇叭密封盖点胶-L/R",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD03",
+      "position": "左耳后盖贴咪网&装FF咪&点硅胶密封",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.15,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD03",
+      "position": "右耳后盖贴咪网&装主、FF咪&点硅胶密封",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.3,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD03",
+      "position": "左后盖装硅胶垫圈&装转轴压件锁螺丝",
+      "glueModel": "DG-812阻尼脂",
+      "gluePartNo": "M.301.05.00001",
+      "glueDesc": "DG-812阻尼脂\\30ML/支\\透明\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 30.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD03",
+      "position": "右后盖装硅胶垫圈&装转轴压件锁螺丝",
+      "glueModel": "DG-812阻尼脂",
+      "gluePartNo": "M.301.05.00001",
+      "glueDesc": "DG-812阻尼脂\\30ML/支\\透明\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 30.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD03-B",
+      "position": "点胶固定线材",
+      "glueModel": "米歌888",
+      "gluePartNo": "M.301.01.00047",
+      "glueDesc": "快干胶\\米歌888\\50g/瓶\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD03-B",
+      "position": "头带线套热缩管&拉伸杆穿头带线&点胶固定",
+      "glueModel": "米歌888",
+      "gluePartNo": "M.301.01.00047",
+      "glueDesc": "快干胶\\米歌888\\50g/瓶\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD03-B",
+      "position": "左拉伸杆穿喇叭后盖装弹簧件&装转轴压盖&锁螺丝",
+      "glueModel": "DG-812阻尼脂",
+      "gluePartNo": "M.301.05.00001",
+      "glueDesc": "DG-812阻尼脂\\30ML/支\\透明\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 30.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD03-B",
+      "position": "右拉伸杆穿喇叭后盖装弹簧件&装转轴压盖&锁螺丝",
+      "glueModel": "DG-812阻尼脂",
+      "gluePartNo": "M.301.05.00001",
+      "glueDesc": "DG-812阻尼脂\\30ML/支\\透明\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 30.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD03-B",
+      "position": "护套扣位点阻尼脂&装护套",
+      "glueModel": "DG-812阻尼脂",
+      "gluePartNo": "M.301.05.00001",
+      "glueDesc": "DG-812阻尼脂\\30ML/支\\透明\\ROHS,REACH",
+      "usage": 0.15,
+      "containerSize": 30.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD03-B",
+      "position": "喇叭前盖咪打胶固定-L/R",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.08,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD03-B",
+      "position": "前腔装喇叭打胶-L/R",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.3,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD03-B",
+      "position": "喇叭密封盖点胶-L/R",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD03-B",
+      "position": "左耳后盖贴咪网&装FF咪&点硅胶密封",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.15,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD03-B",
+      "position": "右耳后盖贴咪网&装主、FF咪&点硅胶密封",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.3,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD03-B",
+      "position": "左后盖装硅胶垫圈&装转轴压件锁螺丝",
+      "glueModel": "DG-812阻尼脂",
+      "gluePartNo": "M.301.05.00001",
+      "glueDesc": "DG-812阻尼脂\\30ML/支\\透明\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 30.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD03-B",
+      "position": "右后盖装硅胶垫圈&装转轴压件锁螺丝",
+      "glueModel": "DG-812阻尼脂",
+      "gluePartNo": "M.301.05.00001",
+      "glueDesc": "DG-812阻尼脂\\30ML/支\\透明\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 30.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD03-C",
+      "position": "点胶固定线材",
+      "glueModel": "米歌888",
+      "gluePartNo": "M.301.01.00047",
+      "glueDesc": "快干胶\\米歌888\\50g/瓶\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 50.0,
+      "qty": 27440
+    },
+    {
+      "model": "HAD03-C",
+      "position": "头带线套热缩管&拉伸杆穿头带线&点胶固定",
+      "glueModel": "米歌888",
+      "gluePartNo": "M.301.01.00047",
+      "glueDesc": "快干胶\\米歌888\\50g/瓶\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 50.0,
+      "qty": 27440
+    },
+    {
+      "model": "HAD03-C",
+      "position": "左拉伸杆穿喇叭后盖装弹簧件&装转轴压盖&锁螺丝",
+      "glueModel": "DG-812阻尼脂",
+      "gluePartNo": "M.301.05.00001",
+      "glueDesc": "DG-812阻尼脂\\30ML/支\\透明\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 30.0,
+      "qty": 27440
+    },
+    {
+      "model": "HAD03-C",
+      "position": "右拉伸杆穿喇叭后盖装弹簧件&装转轴压盖&锁螺丝",
+      "glueModel": "DG-812阻尼脂",
+      "gluePartNo": "M.301.05.00001",
+      "glueDesc": "DG-812阻尼脂\\30ML/支\\透明\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 30.0,
+      "qty": 27440
+    },
+    {
+      "model": "HAD03-C",
+      "position": "护套扣位点阻尼脂&装护套",
+      "glueModel": "DG-812阻尼脂",
+      "gluePartNo": "M.301.05.00001",
+      "glueDesc": "DG-812阻尼脂\\30ML/支\\透明\\ROHS,REACH",
+      "usage": 0.15,
+      "containerSize": 30.0,
+      "qty": 27440
+    },
+    {
+      "model": "HAD03-C",
+      "position": "喇叭前盖咪打胶固定-L/R",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.08,
+      "containerSize": 250.0,
+      "qty": 27440
+    },
+    {
+      "model": "HAD03-C",
+      "position": "前腔装喇叭打胶-L/R",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.3,
+      "containerSize": 250.0,
+      "qty": 27440
+    },
+    {
+      "model": "HAD03-C",
+      "position": "喇叭密封盖点胶-L/R",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 50.0,
+      "qty": 27440
+    },
+    {
+      "model": "HAD03-C",
+      "position": "左耳后盖贴咪网&装FF咪&点硅胶密封",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.15,
+      "containerSize": 50.0,
+      "qty": 27440
+    },
+    {
+      "model": "HAD03-C",
+      "position": "右耳后盖贴咪网&装主、FF咪&点硅胶密封",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.3,
+      "containerSize": 50.0,
+      "qty": 27440
+    },
+    {
+      "model": "HAD03-C",
+      "position": "左后盖装硅胶垫圈&装转轴压件锁螺丝",
+      "glueModel": "DG-812阻尼脂",
+      "gluePartNo": "M.301.05.00001",
+      "glueDesc": "DG-812阻尼脂\\30ML/支\\透明\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 30.0,
+      "qty": 27440
+    },
+    {
+      "model": "HAD03-C",
+      "position": "右后盖装硅胶垫圈&装转轴压件锁螺丝",
+      "glueModel": "DG-812阻尼脂",
+      "gluePartNo": "M.301.05.00001",
+      "glueDesc": "DG-812阻尼脂\\30ML/支\\透明\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 30.0,
+      "qty": 27440
+    },
+    {
+      "model": "OWS808",
+      "position": "耳机前壳装喇叭&点UV胶固定&点硅胶密封",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "OWS808",
+      "position": "耳机前壳装喇叭&点UV胶固定&点硅胶密封",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "OWS808",
+      "position": "耳机后壳贴后腔防尘网&打热熔胶",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.08,
+      "containerSize": 33.0,
+      "qty": 0
+    },
+    {
+      "model": "OWS808",
+      "position": "前壳点胶&装C形桥&扣前盖&保压",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.04,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "OWS808",
+      "position": "焊点检查&点UV胶保护",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.06,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "OWS808",
+      "position": "耳机后壳点胶&装磁铁",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.02,
+      "containerSize": 4000.0,
+      "qty": 0
+    },
+    {
+      "model": "OWS808",
+      "position": "后壳点热熔胶",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 33.0,
+      "qty": 0
+    },
+    {
+      "model": "OWS808",
+      "position": "后盖点胶&卡C形桥&扣耳机后盖&保压",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.04,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "OWS808",
+      "position": "下内壳装磁铁&点胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.1,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "OWS808",
+      "position": "上内壳装磁铁&打胶&上内壳与上外壳组装",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.1,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "OWS808",
+      "position": "外下壳装导光件&点UV胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.03,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "PB08",
+      "position": "主板焊点及器件点UV胶过炉",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.5,
+      "containerSize": 250.0,
+      "qty": 3000
+    },
+    {
+      "model": "PB08",
+      "position": "焊点点UV胶&过UV灯",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.1,
+      "containerSize": 250.0,
+      "qty": 3000
+    },
+    {
+      "model": "PB09",
+      "position": "主板焊点及器件点UV胶过炉",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.5,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "PB09",
+      "position": "焊点点UV胶&过UV灯",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.1,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "PB07",
+      "position": "主板焊点及器件点UV胶过炉",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.2,
+      "containerSize": 250.0,
+      "qty": 12000
+    },
+    {
+      "model": "PB07",
+      "position": "焊点点UV胶&过UV灯",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.1,
+      "containerSize": 250.0,
+      "qty": 12000
+    },
+    {
+      "model": "PB06",
+      "position": "主板焊点及器件点UV胶过炉",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.3,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "PB06",
+      "position": "焊点点UV胶&过UV灯",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.1,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "PB06",
+      "position": "上盖装C型&条形磁铁&点UV胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.4,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD13-A",
+      "position": "FB咪插端子线&组装&点胶  L",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.03,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD13-A",
+      "position": "FB咪插端子线&组装&点胶  R",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.03,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD13-A",
+      "position": "前腔装喇叭&打胶 L/R",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.6,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD13-A",
+      "position": "喇叭前后盖点胶密封",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.08,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD13-A",
+      "position": "喇叭前盖装FF咪&点硅胶密封",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD13-A",
+      "position": "主咪插端子线&装主咪&点胶",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.15,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD13-A",
+      "position": "R副咪插端子线&装副咪&点胶",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.15,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD13-A",
+      "position": "插入耳FPC&按键转接FPC&点胶",
+      "glueModel": "AP1808B",
+      "gluePartNo": "M.301.01.00067",
+      "glueDesc": "硅胶\\阿普邦AP1808B\\55g/支\\黑色\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD13-A",
+      "position": "装电池上盖&点胶&看外观",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.1,
+      "containerSize": 4000.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD13-B",
+      "position": "FB咪插端子线&组装&点胶  L",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.03,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD13-B",
+      "position": "FB咪插端子线&组装&点胶  R",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.03,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD13-B",
+      "position": "前腔装喇叭&打胶 L/R",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.6,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD13-B",
+      "position": "喇叭前后盖点胶密封",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.08,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD13-B",
+      "position": "喇叭前盖装FF咪&点硅胶密封",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD13-B",
+      "position": "主咪插端子线&装主咪&点胶",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.15,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD13-B",
+      "position": "R副咪插端子线&装副咪&点胶",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.15,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD13-B",
+      "position": "插入耳FPC&按键转接FPC&点胶",
+      "glueModel": "AP1808B",
+      "gluePartNo": "M.301.01.00067",
+      "glueDesc": "硅胶\\阿普邦AP1808B\\55g/支\\黑色\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD13-B",
+      "position": "装电池上盖&点胶&看外观",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.1,
+      "containerSize": 4000.0,
+      "qty": 0
+    },
+    {
+      "model": "TAT2500",
+      "position": "PCBA固定咪套",
+      "glueModel": "AP1808C",
+      "gluePartNo": "M.301.01.00106",
+      "glueDesc": "硅胶\\阿普邦AP1808C\\无色透明半流淌液体\\50mL\\支",
+      "usage": 0.05,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "TAT2500",
+      "position": "耳机下壳装磁铁",
+      "glueModel": "K4703",
+      "gluePartNo": "M.301.01.00010",
+      "glueDesc": "K4703胶水\\20g/支\\ROHS,REACH",
+      "usage": 0.016,
+      "containerSize": 20.0,
+      "qty": 0
+    },
+    {
+      "model": "TAT2500",
+      "position": "主板打硅胶密封",
+      "glueModel": "GH-2705",
+      "gluePartNo": "M.301.01.00091",
+      "glueDesc": "硅胶\\光合GH-2705\\50mL/支\\白色\\ROSH,REACH",
+      "usage": 0.08,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "TAT2500",
+      "position": "电池固定",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.04,
+      "containerSize": 30.0,
+      "qty": 0
+    },
+    {
+      "model": "TAT2500",
+      "position": "上盖点胶",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.06,
+      "containerSize": 30.0,
+      "qty": 0
+    },
+    {
+      "model": "TAT2500",
+      "position": "下内托装磁铁",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "TAT2500",
+      "position": "固定电池",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.03,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "A137",
+      "position": "下内托装磁铁&点UV胶&过UV灯",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.1,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "A137",
+      "position": "按键硅胶防水件点胶&装按键",
+      "glueModel": "AP1537A",
+      "gluePartNo": "M.301.01.00078",
+      "glueDesc": "硅胶\\阿普邦AP1537A\\55g\\支\\半透明半流淌\\ROHS,REACH",
+      "usage": 0.08,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "A137",
+      "position": "下内托装弹簧波珠&波珠硅胶垫&波珠支架点胶&固定",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.08,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "A137",
+      "position": "主板扣FPC&下内托装主板锁附主板&主板电池母座点UV胶固定",
+      "glueModel": "AP3347R",
+      "gluePartNo": "M.301.01.00060",
+      "glueDesc": "UV胶\\阿普邦AP3347R\\50g/支\\红色\\ROHS,REACH",
+      "usage": 0.05,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "A137",
+      "position": "底壳装螺母点胶&装螺母固定件&锁附",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "A137",
+      "position": "下内托贴遮光棉&下壳点胶&装下内托",
+      "glueModel": "JN2365-1",
+      "gluePartNo": "M.301.01.00037",
+      "glueDesc": "JN2365-1密封胶\\30ml/支\\ROHS、REACH",
+      "usage": 0.3,
+      "containerSize": 30.0,
+      "qty": 0
+    },
+    {
+      "model": "A137",
+      "position": "点胶装底壳装TPP按键嵌入件与装按键配件2",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.02,
+      "containerSize": 4000.0,
+      "qty": 0
+    },
+    {
+      "model": "A137",
+      "position": "充电盒上盖装磁铁点胶&底壳套软胶防水塞",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.02,
+      "containerSize": 30.0,
+      "qty": 0
+    },
+    {
+      "model": "A137",
+      "position": "充电盒上盖装磁铁点胶&底壳套软胶防水塞",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.02,
+      "containerSize": 20.0,
+      "qty": 0
+    },
+    {
+      "model": "A137",
+      "position": "前腔装喇叭理线&点胶密封",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "A137",
+      "position": "前腔装喇叭理线&点胶密封",
+      "glueModel": "AP1536",
+      "gluePartNo": "M.301.01.00062",
+      "glueDesc": "硅胶\\阿普邦AP1536\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.08,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "A137",
+      "position": "前腔装磁铁&点胶固定",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 20.0,
+      "qty": 0
+    },
+    {
+      "model": "A137",
+      "position": "前腔装电池支架&打胶",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.05,
+      "containerSize": 4000.0,
+      "qty": 0
+    },
+    {
+      "model": "A137",
+      "position": "按键装按键支架&尾塞支架点胶&装按键组",
+      "glueModel": "AP1537A",
+      "gluePartNo": "M.301.01.00078",
+      "glueDesc": "硅胶\\阿普邦AP1537A\\55g\\支\\半透明半流淌\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "A137",
+      "position": "通话咪贴泡棉双面胶&中框点胶&装尾塞",
+      "glueModel": "JN6325-1黑色",
+      "gluePartNo": "M.301.01.00027",
+      "glueDesc": "热熔胶6325-1\\黑色固体\\30ml/支\\ROHS、REACH",
+      "usage": 0.06,
+      "containerSize": 30.0,
+      "qty": 0
+    },
+    {
+      "model": "A137",
+      "position": "测电流&前腔打胶",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 33.0,
+      "qty": 0
+    },
+    {
+      "model": "A136-YD",
+      "position": "下内托装磁铁",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.3,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "A136-YD",
+      "position": "插FPC&usb口&排线口点胶过UV灯",
+      "glueModel": "AP3347R",
+      "gluePartNo": "M.301.01.00060",
+      "glueDesc": "UV胶\\阿普邦AP3347R\\50g/支\\红色\\ROHS,REACH",
+      "usage": 0.005,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "A136-YD",
+      "position": "上内托装磁铁",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.2,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "A136-YD",
+      "position": "前腔点硅胶&装喇叭(双边)",
+      "glueModel": "JN1859",
+      "gluePartNo": "M.301.01.00023",
+      "glueDesc": "JN1859硅胶\\白色\\50ml/支\\ROHS、REACH",
+      "usage": 0.03,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "A136-YD",
+      "position": "前腔支架点胶(双边)",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 4000.0,
+      "qty": 0
+    },
+    {
+      "model": "A136-YD",
+      "position": "前腔支架点胶(双边)",
+      "glueModel": "JN1859",
+      "gluePartNo": "M.301.01.00023",
+      "glueDesc": "JN1859硅胶\\白色\\50ml/支\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "A136-YD",
+      "position": "中框装磁铁(双边)",
+      "glueModel": "K4703",
+      "gluePartNo": "M.301.01.00010",
+      "glueDesc": "K4703胶水\\20g/支\\ROHS,REACH",
+      "usage": 0.006,
+      "containerSize": 20.0,
+      "qty": 0
+    },
+    {
+      "model": "A136-YD",
+      "position": "中框装磁铁(双边)",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.006,
+      "containerSize": 4000.0,
+      "qty": 0
+    },
+    {
+      "model": "A136-YD",
+      "position": "前腔打胶(双边)",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 4000.0,
+      "qty": 0
+    },
+    {
+      "model": "A136-YD",
+      "position": "面盖点胶&装中框(双边)",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.08,
+      "containerSize": 33.0,
+      "qty": 0
+    },
+    {
+      "model": "A156-B",
+      "position": "下内托装磁铁&点UV胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "A156-B",
+      "position": "前腔点胶&装喇叭打UV胶固定",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.06,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "A156-B",
+      "position": "中壳贴后腔调音网&装磁铁&点胶",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 4000.0,
+      "qty": 0
+    },
+    {
+      "model": "A156-B",
+      "position": "中壳贴后腔调音网&装磁铁&点胶",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 20.0,
+      "qty": 0
+    },
+    {
+      "model": "A156-B",
+      "position": "主板扣压到位&穿线孔点胶密封&贴EVA",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.06,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "A156-B",
+      "position": "前腔打热熔胶&理电池",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.08,
+      "containerSize": 33.0,
+      "qty": 0
+    },
+    {
+      "model": "A156-B",
+      "position": "中壳主板打热熔胶&扣面盖&保压",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.08,
+      "containerSize": 33.0,
+      "qty": 0
+    },
+    {
+      "model": "HED06",
+      "position": "喇叭盖咪打胶固定-L/R",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.15,
+      "containerSize": 250.0,
+      "qty": 13220
+    },
+    {
+      "model": "HED06",
+      "position": "前腔装喇叭打胶-L/R",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.5,
+      "containerSize": 250.0,
+      "qty": 13220
+    },
+    {
+      "model": "HED06",
+      "position": "喇叭盖穿线孔打胶密封-L/R",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.06,
+      "containerSize": 55.0,
+      "qty": 13220
+    },
+    {
+      "model": "HED06",
+      "position": "耳壳L装FF驻极体麦克风&打胶密封",
+      "glueModel": "GH-2705",
+      "gluePartNo": "M.301.01.00091",
+      "glueDesc": "硅胶\\光合GH-2705\\50mL/支\\白色\\ROSH,REACH",
+      "usage": 0.1,
+      "containerSize": 50.0,
+      "qty": 13220
+    },
+    {
+      "model": "HED06",
+      "position": "主麦克风及FF麦克风点硅胶密封",
+      "glueModel": "GH-2705",
+      "gluePartNo": "M.301.01.00091",
+      "glueDesc": "硅胶\\光合GH-2705\\50mL/支\\白色\\ROSH,REACH",
+      "usage": 0.2,
+      "containerSize": 50.0,
+      "qty": 13220
+    },
+    {
+      "model": "B204-FN",
+      "position": "装咪点胶&合咪盖",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.02,
+      "containerSize": 20.0,
+      "qty": 0
+    },
+    {
+      "model": "B204-FN",
+      "position": "装咪点胶&合咪盖",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.1,
+      "containerSize": 4000.0,
+      "qty": 0
+    },
+    {
+      "model": "B204-FN",
+      "position": "上壳装磁铁点胶",
+      "glueModel": "3169k",
+      "gluePartNo": "M.301.01.00076",
+      "glueDesc": "UV胶\\好粘达 3169k红\\红色\\1KG/瓶\\ROHS,REACH",
+      "usage": 0.02,
+      "containerSize": 1000.0,
+      "qty": 0
+    },
+    {
+      "model": "B204-FN",
+      "position": "上壳装磁铁点胶",
+      "glueModel": "k4703",
+      "gluePartNo": "M.301.01.00010",
+      "glueDesc": "K4703胶水\\20g/支\\ROHS,REACH",
+      "usage": 0.005,
+      "containerSize": 20.0,
+      "qty": 0
+    },
+    {
+      "model": "B204-FN",
+      "position": "硬板装配&点胶固定",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.005,
+      "containerSize": 20.0,
+      "qty": 0
+    },
+    {
+      "model": "B204-FN",
+      "position": "硬板装配&点胶固定",
+      "glueModel": "JN2366",
+      "gluePartNo": "M.301.01.00028",
+      "glueDesc": "JN2366 密封胶\\30ml/支\\ROHS、REACH（改性硅胶）",
+      "usage": 0.005,
+      "containerSize": 30.0,
+      "qty": 0
+    },
+    {
+      "model": "B204-FN",
+      "position": "上下壳点胶&合盖",
+      "glueModel": "米歌888",
+      "gluePartNo": "M.301.01.00047",
+      "glueDesc": "快干胶\\米歌888\\50g/瓶\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "B204-FN",
+      "position": "下内托装磁铁点胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.05,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "B204-FN",
+      "position": "上内托装磁铁点胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.03,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "B204-FN",
+      "position": "内托与上盖组装",
+      "glueModel": "橡胶AP5120",
+      "gluePartNo": "M.301.01.00089",
+      "glueDesc": "橡胶\\阿普邦 AP5120\\透明液体\\500g/瓶\\ROSH,REACH",
+      "usage": 0.05,
+      "containerSize": 500.0,
+      "qty": 0
+    },
+    {
+      "model": "B204-FN",
+      "position": "下底壳装磁铁点胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.025,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "B204-FN",
+      "position": "贴双面胶&下底壳装导光柱点胶",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.008,
+      "containerSize": 20.0,
+      "qty": 0
+    },
+    {
+      "model": "B204-FN",
+      "position": "耳挂装磁铁&点UV胶固定",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.02,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "B204-FN",
+      "position": "耳挂尾部点胶装磁铁",
+      "glueModel": "米歌888",
+      "gluePartNo": "M.301.01.00047",
+      "glueDesc": "快干胶\\米歌888\\50g/瓶\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "B204-FN",
+      "position": "装喇叭点胶",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.06,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "B204-FN",
+      "position": "主板装咪套&贴遮光棉",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.06,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "B204-FN",
+      "position": "上盖点胶",
+      "glueModel": "JN2733-1（透明）",
+      "gluePartNo": "M.301.01.00087",
+      "glueDesc": "结构胶\\君粘JN2733-1\\50mL/支\\透明液体\\ROHS,REACH",
+      "usage": 0.03,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "B204-FN",
+      "position": "上盖装磁铁点胶",
+      "glueModel": "3169k",
+      "gluePartNo": "M.301.01.00076",
+      "glueDesc": "UV胶\\好粘达 3169k红\\红色\\1KG/瓶\\ROHS,REACH",
+      "usage": 0.04,
+      "containerSize": 1000.0,
+      "qty": 0
+    },
+    {
+      "model": "B204-FN",
+      "position": "耳机上盖组点胶合壳&保压",
+      "glueModel": "5606F",
+      "gluePartNo": "M.301.01.00084",
+      "glueDesc": "热熔胶\\德聚N-PU 5606F\\30mL/支\\透明\\ROHS,REACH",
+      "usage": 0.07,
+      "containerSize": 30.0,
+      "qty": 0
+    },
+    {
+      "model": "B204-FN",
+      "position": "测电流&电池正负极点UV胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.02,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "B204-FN",
+      "position": "尾盖点胶保压",
+      "glueModel": "米歌888",
+      "gluePartNo": "M.301.01.00047",
+      "glueDesc": "快干胶\\米歌888\\50g/瓶\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "B204-FN",
+      "position": "尾盖点胶保压",
+      "glueModel": "P-03处理剂",
+      "gluePartNo": "M.301.04.00007",
+      "glueDesc": "处理剂\\恂帅 P-03处理剂\\无色透明液体\\500mL\\瓶\\ROHS、REACH",
+      "usage": 0.06,
+      "containerSize": 500.0,
+      "qty": 0
+    },
+    {
+      "model": "A153",
+      "position": "下内托装配重块&点快干胶",
+      "glueModel": "米歌888",
+      "gluePartNo": "M.301.01.00047",
+      "glueDesc": "快干胶\\米歌888\\50g/瓶\\ROHS、REACH",
+      "usage": 0.016,
+      "containerSize": 50.0,
+      "qty": 9156
+    },
+    {
+      "model": "A153",
+      "position": "下内托装吸合磁铁&前腔吸耳磁铁&点UV胶&过UV灯",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.1,
+      "containerSize": 250.0,
+      "qty": 9156
+    },
+    {
+      "model": "A153",
+      "position": "下内托装吸耳柄磁铁&点快干胶&点黄胶",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 20.0,
+      "qty": 9156
+    },
+    {
+      "model": "A153",
+      "position": "下内托装吸耳柄磁铁&点快干胶&点黄胶",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 4000.0,
+      "qty": 9156
+    },
+    {
+      "model": "A153",
+      "position": "主板贴遮光EVA&主板插左右FPC&FPC排点UV胶过灯",
+      "glueModel": "3107",
+      "gluePartNo": "M.301.01.00048",
+      "glueDesc": "UV胶\\君粘3107\\50ml/支\\透明",
+      "usage": 0.005,
+      "containerSize": 50.0,
+      "qty": 9156
+    },
+    {
+      "model": "A153",
+      "position": "上内托装磁铁&点胶",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 4000.0,
+      "qty": 9156
+    },
+    {
+      "model": "A153",
+      "position": "上内托装磁铁&点胶",
+      "glueModel": "米歌888",
+      "gluePartNo": "M.301.01.00047",
+      "glueDesc": "快干胶\\米歌888\\50g/瓶\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 50.0,
+      "qty": 9156
+    },
+    {
+      "model": "A153",
+      "position": "上盖穿转轴&上盖内侧点胶",
+      "glueModel": "橡胶AP5120",
+      "gluePartNo": "M.301.01.00089",
+      "glueDesc": "橡胶\\阿普邦 AP5120\\透明液体\\500g/瓶\\ROSH,REACH",
+      "usage": 0.04,
+      "containerSize": 500.0,
+      "qty": 9156
+    },
+    {
+      "model": "A153",
+      "position": "前腔装喇叭&点UV胶过UV灯",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 250.0,
+      "qty": 9156
+    },
+    {
+      "model": "A153",
+      "position": "前腔点胶&装磁铁",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 20.0,
+      "qty": 9156
+    },
+    {
+      "model": "A153",
+      "position": "前腔点胶&装磁铁",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 4000.0,
+      "qty": 9156
+    },
+    {
+      "model": "A153",
+      "position": "贴后腔调音网&前腔喇叭打胶密封",
+      "glueModel": "JN1859",
+      "gluePartNo": "M.301.01.00023",
+      "glueDesc": "JN1859硅胶\\白色\\50ml/支\\ROHS、REACH",
+      "usage": 0.06,
+      "containerSize": 50.0,
+      "qty": 9156
+    },
+    {
+      "model": "A153",
+      "position": "前腔装电池支架",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 250.0,
+      "qty": 9156
+    },
+    {
+      "model": "A153",
+      "position": "前腔电池支架打黄胶&待干",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.08,
+      "containerSize": 4000.0,
+      "qty": 9156
+    },
+    {
+      "model": "A153",
+      "position": "CCD检焊点&点UV胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 250.0,
+      "qty": 9156
+    },
+    {
+      "model": "A153",
+      "position": "中框装磁铁点胶固定",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 20.0,
+      "qty": 9156
+    },
+    {
+      "model": "A153",
+      "position": "主麦贴密封EVA&中框装主麦&点胶密封",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 55.0,
+      "qty": 9156
+    },
+    {
+      "model": "A153",
+      "position": "前腔打胶&理线",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.08,
+      "containerSize": 33.0,
+      "qty": 9156
+    },
+    {
+      "model": "A153",
+      "position": "主板装主麦FPC&耳机FPC&扣主板点UV胶固定",
+      "glueModel": "3107",
+      "gluePartNo": "M.301.01.00048",
+      "glueDesc": "UV胶\\君粘3107\\50ml/支\\透明",
+      "usage": 0.03,
+      "containerSize": 50.0,
+      "qty": 9156
+    },
+    {
+      "model": "A153",
+      "position": "套耳挂&中框打胶",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.08,
+      "containerSize": 33.0,
+      "qty": 9156
+    },
+    {
+      "model": "OWS806",
+      "position": "耳挂刷处理剂&贴导电布&压合",
+      "glueModel": "XH-211",
+      "gluePartNo": "M.301.01.00050",
+      "glueDesc": "处理剂\\鑫慧XH-211/100ML\\瓶",
+      "usage": 0.02,
+      "containerSize": 100.0,
+      "qty": 0
+    },
+    {
+      "model": "OWS806",
+      "position": "耳挂刷处理剂&贴导电布&压合",
+      "glueModel": "研泰TS-770处理剂",
+      "gluePartNo": "M.301.01.00050",
+      "glueDesc": "研泰TS-770处理剂",
+      "usage": 0.02,
+      "containerSize": 500.0,
+      "qty": 0
+    },
+    {
+      "model": "OWS806",
+      "position": "面盖贴咪网&面盖点硅胶",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.04,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "OWS806",
+      "position": "点快干胶&面盖点胶&与耳挂组装&保压",
+      "glueModel": "米歌888",
+      "gluePartNo": "M.301.01.00047",
+      "glueDesc": "快干胶\\米歌888\\50g/瓶\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "OWS806",
+      "position": "喇叭装前腔预固定",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.02,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "OWS806",
+      "position": "前腔装喇叭&点硅胶",
+      "glueModel": "AP1536",
+      "gluePartNo": "M.301.01.00062",
+      "glueDesc": "硅胶\\阿普邦AP1536\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.04,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "OWS806",
+      "position": "中框贴后腔调音网&打热熔胶",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.06,
+      "containerSize": 33.0,
+      "qty": 0
+    },
+    {
+      "model": "OWS806",
+      "position": "穿喇叭线&扣合前腔&点硅胶密封",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.03,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "OWS806",
+      "position": "面盖装磁铁&点胶",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 4000.0,
+      "qty": 0
+    },
+    {
+      "model": "OWS806",
+      "position": "面盖点胶",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.06,
+      "containerSize": 33.0,
+      "qty": 0
+    },
+    {
+      "model": "OWS806",
+      "position": "电池仓下盖装磁铁&点硅胶",
+      "glueModel": "米歌888",
+      "gluePartNo": "M.301.01.00047",
+      "glueDesc": "快干胶\\米歌888\\50g/瓶\\ROHS、REACH",
+      "usage": 0.02,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "OWS806",
+      "position": "电池仓下盖装磁铁&点硅胶",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.04,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "OWS806",
+      "position": "电池仓上盖点胶&合壳&保压",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.06,
+      "containerSize": 33.0,
+      "qty": 0
+    },
+    {
+      "model": "OWS806",
+      "position": "内下托装磁铁&点胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.06,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD19",
+      "position": "喇叭盖咪打胶固定-L/R",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.15,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD19",
+      "position": "前腔装喇叭打胶-L/R",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.5,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD19",
+      "position": "喇叭密封盖点胶-L/R",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.1,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD19",
+      "position": "后盖FF咪点硅胶密封一L/R",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.15,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD19",
+      "position": "PCBA按键+音频母座点胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.1,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD19",
+      "position": "后盖装转轴下盖&点阻尼脂一L/R",
+      "glueModel": "DG-812阻尼脂",
+      "gluePartNo": "M.301.05.00001",
+      "glueDesc": "DG-812阻尼脂\\30ML/支\\透明\\ROHS,REACH",
+      "usage": 0.05,
+      "containerSize": 30.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD19",
+      "position": "拉伸杆穿头带线",
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "glueDesc": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "usage": 0.02,
+      "containerSize": 20.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD19",
+      "position": "头弓线点UV胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.04,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "SE101",
+      "position": "上壳装振动马达&点UV胶固定",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.02,
+      "containerSize": 250.0,
+      "qty": 0
+    },
+    {
+      "model": "H1H",
+      "position": "左外壳装咪垫打胶&装FF咪组件",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.02,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "H1H",
+      "position": "检查外观&扣FPC打UV胶&贴遮光棉",
+      "glueModel": "AP3347R",
+      "gluePartNo": "M.301.01.00060",
+      "glueDesc": "UV胶\\阿普邦AP3347R\\50g/支\\红色\\ROHS,REACH",
+      "usage": 0.01,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "H1H",
+      "position": "金属旋钮打胶装入后壳编码器旋钮",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.03,
+      "containerSize": 4000.0,
+      "qty": 0
+    },
+    {
+      "model": "H1H",
+      "position": "装咪套&打硅胶",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.03,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "H1H",
+      "position": "旋钮与拨动开关FPC扣入主板&FPC点胶固定",
+      "glueModel": "AP3347R",
+      "gluePartNo": "M.301.01.00060",
+      "glueDesc": "UV胶\\阿普邦AP3347R\\50g/支\\红色\\ROHS,REACH",
+      "usage": 0.01,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "H1H",
+      "position": "支臂锁螺丝&支臂打胶装入圆塞",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.02,
+      "containerSize": 4000.0,
+      "qty": 0
+    },
+    {
+      "model": "H1H",
+      "position": "前盖装FB麦&点UV胶&过UV灯",
+      "glueModel": "AP3347R",
+      "gluePartNo": "M.301.01.00060",
+      "glueDesc": "UV胶\\阿普邦AP3347R\\50g/支\\红色\\ROHS,REACH",
+      "usage": 0.03,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "H1H",
+      "position": "前盖装低音喇叭打胶&过UV灯",
+      "glueModel": "AP3378",
+      "gluePartNo": "M.301.01.00059",
+      "glueDesc": "UV胶/阿普邦 AP3378\\浅红色\\50g/支\\ROHS,REACH",
+      "usage": 0.4,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "H1H",
+      "position": "喇叭与FB麦穿线孔打硅胶密封",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.04,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "H1H",
+      "position": "喇叭装高音面盖打UV胶&过UV灯",
+      "glueModel": "AP3378",
+      "gluePartNo": "M.301.01.00059",
+      "glueDesc": "UV胶/阿普邦 AP3378\\浅红色\\50g/支\\ROHS,REACH",
+      "usage": 0.04,
+      "containerSize": 50.0,
+      "qty": 0
+    },
+    {
+      "model": "H1H",
+      "position": "打胶&穿线装后盖&保压",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.08,
+      "containerSize": 33.0,
+      "qty": 0
+    },
+    {
+      "model": "H1H",
+      "position": "后盖穿线孔打硅胶",
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "glueDesc": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "usage": 0.04,
+      "containerSize": 55.0,
+      "qty": 0
+    },
+    {
+      "model": "B148",
+      "position": "下内托磁铁点UV胶",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.1,
+      "containerSize": 250.0,
+      "qty": 20000
+    },
+    {
+      "model": "B148",
+      "position": "面盖点胶",
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "glueDesc": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "usage": 0.06,
+      "containerSize": 33.0,
+      "qty": 20000
+    },
+    {
+      "model": "B148",
+      "position": "中框磁铁点胶K(快干胶)",
+      "glueModel": "K4703",
+      "gluePartNo": "M.301.01.00010",
+      "glueDesc": "K4703胶水\\20g/支\\ROHS,REACH",
+      "usage": 0.01,
+      "containerSize": 20.0,
+      "qty": 20000
+    },
+    {
+      "model": "B148",
+      "position": "中框磁铁点胶（黄胶）",
+      "glueModel": "JN887",
+      "gluePartNo": "M.301.01.00036",
+      "glueDesc": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "usage": 0.01,
+      "containerSize": 4000.0,
+      "qty": 20000
+    },
+    {
+      "model": "B148",
+      "position": "焊点点UV胶&过炉",
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "glueDesc": "GH8226\\250g/支\\ROHS、REACH",
+      "usage": 0.03,
+      "containerSize": 250.0,
+      "qty": 20000
+    },
+    {
+      "model": "HAD13-A",
+      "position": "线材、拉伸杆刷润滑剂",
+      "glueModel": "A-1259EL",
+      "gluePartNo": "M.301.05.00004",
+      "glueDesc": "润滑剂\\富见雄FUMIO A-1259EL\\乳白色液体\\1KG/瓶\\ROHS、REACH",
+      "usage": 0.05,
+      "containerSize": 1000.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD13-A",
+      "position": "滑动支架、头弓、头弓护套刷润滑剂",
+      "glueModel": "A-1259EL",
+      "gluePartNo": "M.301.05.00004",
+      "glueDesc": "润滑剂\\富见雄FUMIO A-1259EL\\乳白色液体\\1KG/瓶\\ROHS、REACH",
+      "usage": 0.1,
+      "containerSize": 1000.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD13-B",
+      "position": "线材、拉伸杆刷润滑剂",
+      "glueModel": "A-1259EL",
+      "gluePartNo": "M.301.05.00004",
+      "glueDesc": "润滑剂\\富见雄FUMIO A-1259EL\\乳白色液体\\1KG/瓶\\ROHS、REACH",
+      "usage": 0.05,
+      "containerSize": 1000.0,
+      "qty": 0
+    },
+    {
+      "model": "HAD13-B",
+      "position": "滑动支架、头弓、头弓护套刷润滑剂",
+      "glueModel": "A-1259EL",
+      "gluePartNo": "M.301.05.00004",
+      "glueDesc": "润滑剂\\富见雄FUMIO A-1259EL\\乳白色液体\\1KG/瓶\\ROHS、REACH",
+      "usage": 0.1,
+      "containerSize": 1000.0,
+      "qty": 0
+    }
+  ],
+  "production": [
+    {
+      "actualModel": "A135",
+      "model": "A153",
+      "qty": 9156
+    },
+    {
+      "actualModel": "A136-NH",
+      "model": "A136-SL",
+      "qty": 3030
+    },
+    {
+      "actualModel": "A136-NL",
+      "model": "A136-SL",
+      "qty": 2020
+    },
+    {
+      "actualModel": "A150",
+      "model": "A150",
+      "qty": 5045
+    },
+    {
+      "actualModel": "A153",
+      "model": "A153",
+      "qty": 10512
+    },
+    {
+      "actualModel": "A154",
+      "model": "A154",
+      "qty": 3000
+    },
+    {
+      "actualModel": "A154-B(D11Pro)",
+      "model": "A154-B(D11Pro)",
+      "qty": 3000
+    },
+    {
+      "actualModel": "A155-C-中午版本",
+      "model": "A155",
+      "qty": 5000
+    },
+    {
+      "actualModel": "A156",
+      "model": "A156",
+      "qty": 48000
+    },
+    {
+      "actualModel": "A156-X(D11)",
+      "model": "A156",
+      "qty": 3000
+    },
+    {
+      "actualModel": "B140",
+      "model": "B140",
+      "qty": 10000
+    },
+    {
+      "actualModel": "B148",
+      "model": "B148",
+      "qty": 20000
+    },
+    {
+      "actualModel": "B401",
+      "model": "B401",
+      "qty": 42000
+    },
+    {
+      "actualModel": "HAD03-C",
+      "model": "HAD03-C",
+      "qty": 27440
+    },
+    {
+      "actualModel": "HAD05",
+      "model": "HAD05",
+      "qty": 9500
+    },
+    {
+      "actualModel": "HED06",
+      "model": "HED06",
+      "qty": 13220
+    },
+    {
+      "actualModel": "PB07",
+      "model": "PB07",
+      "qty": 12000
+    },
+    {
+      "actualModel": "PB08",
+      "model": "PB08",
+      "qty": 3000
+    },
+    {
+      "actualModel": "TAH2500",
+      "model": "HAD21",
+      "qty": 2000
+    }
+  ],
+  "inventory": [
+    {
+      "glueModel": "K4703",
+      "gluePartNo": "M.301.01.00010",
+      "stock": 28,
+      "productionDate": "2025-12-30 00:00:00",
+      "shelfLife": 360,
+      "expiryDate": "2026-12-25 00:00:00"
+    },
+    {
+      "glueModel": "JN3880",
+      "gluePartNo": "M.301.01.00038",
+      "stock": 28,
+      "productionDate": "2026-04-20 00:00:00",
+      "shelfLife": 360,
+      "expiryDate": "2027-04-15 00:00:00"
+    },
+    {
+      "glueModel": "AP1033",
+      "gluePartNo": "M.301.01.00057",
+      "stock": 4,
+      "productionDate": "2025-12-10 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2026-06-08 00:00:00"
+    },
+    {
+      "glueModel": "JN621",
+      "gluePartNo": "M.301.01.00041",
+      "stock": 0,
+      "productionDate": "",
+      "shelfLife": 360,
+      "expiryDate": "1900-12-25 00:00:00"
+    },
+    {
+      "glueModel": "米歌888",
+      "gluePartNo": "M.301.01.00047",
+      "stock": 17,
+      "productionDate": "2026-05-14 00:00:00",
+      "shelfLife": 300,
+      "expiryDate": "2027-03-10 00:00:00"
+    },
+    {
+      "glueModel": "固耐特704K",
+      "gluePartNo": "M.301.01.00069",
+      "stock": 0,
+      "productionDate": "",
+      "shelfLife": 0,
+      "expiryDate": ""
+    },
+    {
+      "glueModel": "卡夫特704",
+      "gluePartNo": "M.301.01.00009",
+      "stock": 180,
+      "productionDate": "2025-08-23 00:00:00",
+      "shelfLife": 360,
+      "expiryDate": "2026-08-18 00:00:00"
+    },
+    {
+      "glueModel": "JN1859",
+      "gluePartNo": "M.301.01.00023",
+      "stock": 47,
+      "productionDate": "2026-06-20 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2026-12-17 00:00:00"
+    },
+    {
+      "glueModel": "JN6325-1透明",
+      "gluePartNo": "M.301.01.00024",
+      "stock": 0,
+      "productionDate": "",
+      "shelfLife": 0,
+      "expiryDate": ""
+    },
+    {
+      "glueModel": "JN6325-1黑色",
+      "gluePartNo": "M.301.01.00027",
+      "stock": 40,
+      "productionDate": "2025-03-29 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2025-09-25 00:00:00"
+    },
+    {
+      "glueModel": "JN2366",
+      "gluePartNo": "M.301.01.00028",
+      "stock": 77,
+      "productionDate": "2026-04-25 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2026-10-22 00:00:00"
+    },
+    {
+      "glueModel": "K-6103",
+      "gluePartNo": "M.301.01.00054",
+      "stock": 0,
+      "productionDate": "",
+      "shelfLife": 0,
+      "expiryDate": ""
+    },
+    {
+      "glueModel": "JN2365-1",
+      "gluePartNo": "M.301.01.00037",
+      "stock": 197,
+      "productionDate": "2026-05-30 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2026-11-26 00:00:00"
+    },
+    {
+      "glueModel": "GH8226",
+      "gluePartNo": "M.301.01.00040",
+      "stock": 7,
+      "productionDate": "2026-06-05 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2026-12-02 00:00:00"
+    },
+    {
+      "glueModel": "3106F",
+      "gluePartNo": "M.301.01.00058",
+      "stock": 6,
+      "productionDate": "2025-05-10 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2025-11-06 00:00:00"
+    },
+    {
+      "glueModel": "AP3378",
+      "gluePartNo": "M.301.01.00059",
+      "stock": 88,
+      "productionDate": "2026-05-14 00:00:00",
+      "shelfLife": 360,
+      "expiryDate": "2027-05-09 00:00:00"
+    },
+    {
+      "glueModel": "AP3347R",
+      "gluePartNo": "M.301.01.00060",
+      "stock": 10,
+      "productionDate": "2026-04-28 00:00:00",
+      "shelfLife": 360,
+      "expiryDate": "2027-04-23 00:00:00"
+    },
+    {
+      "glueModel": "AP1804W",
+      "gluePartNo": "M.301.01.00061",
+      "stock": 37,
+      "productionDate": "2026-05-12 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2026-11-08 00:00:00"
+    },
+    {
+      "glueModel": "AP1536",
+      "gluePartNo": "M.301.01.00062",
+      "stock": 46,
+      "productionDate": "2026-06-16 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2026-12-13 00:00:00"
+    },
+    {
+      "glueModel": "AP100",
+      "gluePartNo": "M.301.01.00063",
+      "stock": 0,
+      "productionDate": "",
+      "shelfLife": 0,
+      "expiryDate": ""
+    },
+    {
+      "glueModel": "AP3560B荧光",
+      "gluePartNo": "M.301.01.00065",
+      "stock": 0,
+      "productionDate": "",
+      "shelfLife": 0,
+      "expiryDate": ""
+    },
+    {
+      "glueModel": "AP3560",
+      "gluePartNo": "M.301.01.00064",
+      "stock": 0,
+      "productionDate": "",
+      "shelfLife": 0,
+      "expiryDate": ""
+    },
+    {
+      "glueModel": "AP1808W",
+      "gluePartNo": "M.301.01.00066",
+      "stock": 335,
+      "productionDate": "2026-06-03 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2026-11-30 00:00:00"
+    },
+    {
+      "glueModel": "AP1808B",
+      "gluePartNo": "M.301.01.00067",
+      "stock": 20,
+      "productionDate": "2026-02-05 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2026-08-04 00:00:00"
+    },
+    {
+      "glueModel": "8137T",
+      "gluePartNo": "M.301.01.00070",
+      "stock": 0,
+      "productionDate": "",
+      "shelfLife": 0,
+      "expiryDate": ""
+    },
+    {
+      "glueModel": "研泰TS-770处理剂",
+      "gluePartNo": "M.301.01.00050",
+      "stock": 1,
+      "productionDate": "2026-03-02 00:00:00",
+      "shelfLife": 360,
+      "expiryDate": "2027-02-25 00:00:00"
+    },
+    {
+      "glueModel": "1504MB",
+      "gluePartNo": "M.301.01.00071",
+      "stock": 0,
+      "productionDate": "",
+      "shelfLife": 0,
+      "expiryDate": ""
+    },
+    {
+      "glueModel": "DG-812阻尼脂",
+      "gluePartNo": "M.301.05.00001",
+      "stock": 60,
+      "productionDate": "2026-06-03 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2026-11-30 00:00:00"
+    },
+    {
+      "glueModel": "AP3573",
+      "gluePartNo": "M.301.01.00073",
+      "stock": 57,
+      "productionDate": "2026-05-20 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2026-11-16 00:00:00"
+    },
+    {
+      "glueModel": "PW 1504MR-3",
+      "gluePartNo": "M.301.01.00072",
+      "stock": 30,
+      "productionDate": "2026-05-15 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2026-11-11 00:00:00"
+    },
+    {
+      "glueModel": "PUR1059",
+      "gluePartNo": "M.301.01.00035",
+      "stock": 0,
+      "productionDate": "",
+      "shelfLife": 0,
+      "expiryDate": ""
+    },
+    {
+      "glueModel": "3542k热熔胶",
+      "gluePartNo": "M.301.01.00074",
+      "stock": 0,
+      "productionDate": "",
+      "shelfLife": 180,
+      "expiryDate": "1900-06-28 00:00:00"
+    },
+    {
+      "glueModel": "AP1537A",
+      "gluePartNo": "M.301.01.00078",
+      "stock": 30,
+      "productionDate": "2024-09-27 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2025-03-26 00:00:00"
+    },
+    {
+      "glueModel": "N-PU5606-2S",
+      "gluePartNo": "M.301.01.00075",
+      "stock": 37,
+      "productionDate": "2025-07-09 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2026-01-05 00:00:00"
+    },
+    {
+      "glueModel": "JN6219",
+      "gluePartNo": "M.301.01.00079",
+      "stock": 0,
+      "productionDate": "",
+      "shelfLife": 0,
+      "expiryDate": "00:00:00"
+    },
+    {
+      "glueModel": "3169k(红胶)",
+      "gluePartNo": "M.301.01.00076",
+      "stock": 5,
+      "productionDate": "2025-04-10 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2025-10-07 00:00:00"
+    },
+    {
+      "glueModel": "AP1808w（桔粉）",
+      "gluePartNo": "M.301.01.00081",
+      "stock": 0,
+      "productionDate": "",
+      "shelfLife": 180,
+      "expiryDate": "1900-06-28 00:00:00"
+    },
+    {
+      "glueModel": "JN887（黄胶）",
+      "gluePartNo": "M.301.01.00036",
+      "stock": 1,
+      "productionDate": "2026-02-13 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2026-08-12 00:00:00"
+    },
+    {
+      "glueModel": "AP100(白)",
+      "gluePartNo": "M.301.01.00082",
+      "stock": 71,
+      "productionDate": "2024-12-25 00:00:00",
+      "shelfLife": 360,
+      "expiryDate": "2025-12-20 00:00:00"
+    },
+    {
+      "glueModel": "DG812(1)阻尼脂",
+      "gluePartNo": "M.301.05.00003",
+      "stock": 1,
+      "productionDate": "2024-08-12 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2025-02-08 00:00:00"
+    },
+    {
+      "glueModel": "JN2733-1（黑色)",
+      "gluePartNo": "M.301.01.00083",
+      "stock": 30,
+      "productionDate": "2026-01-10 00:00:00",
+      "shelfLife": 360,
+      "expiryDate": "2027-01-05 00:00:00"
+    },
+    {
+      "glueModel": "5606F",
+      "gluePartNo": "M.301.01.00084",
+      "stock": 115,
+      "productionDate": "2025-09-25 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2026-03-24 00:00:00"
+    },
+    {
+      "glueModel": "AP1028",
+      "gluePartNo": "M.301.01.00086",
+      "stock": 69,
+      "productionDate": "2026-05-29 00:00:00",
+      "shelfLife": 150,
+      "expiryDate": "2026-10-26 00:00:00"
+    },
+    {
+      "glueModel": "AP1808G",
+      "gluePartNo": "M.301.01.00077",
+      "stock": 0,
+      "productionDate": "",
+      "shelfLife": 180,
+      "expiryDate": "1900-06-28 00:00:00"
+    },
+    {
+      "glueModel": "JN2733-1（透明）",
+      "gluePartNo": "M.301.01.00087",
+      "stock": 22,
+      "productionDate": "2025-03-17 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2025-09-13 00:00:00"
+    },
+    {
+      "glueModel": "3030H",
+      "gluePartNo": "M.301.01.00088",
+      "stock": 25,
+      "productionDate": "2026-02-05 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2026-08-04 00:00:00"
+    },
+    {
+      "glueModel": "HF-800S速干性润滑剂",
+      "gluePartNo": "",
+      "stock": 2,
+      "productionDate": "2025-10-08 00:00:00",
+      "shelfLife": 1095,
+      "expiryDate": "2028-10-07 00:00:00"
+    },
+    {
+      "glueModel": "AP111底涂剂",
+      "gluePartNo": "",
+      "stock": 0,
+      "productionDate": "",
+      "shelfLife": 0,
+      "expiryDate": ""
+    },
+    {
+      "glueModel": "FUMIO A-1259EL",
+      "gluePartNo": "M.301.05.00004",
+      "stock": 1,
+      "productionDate": "2026-02-07 00:00:00",
+      "shelfLife": 1095,
+      "expiryDate": "2029-02-06 00:00:00"
+    },
+    {
+      "glueModel": "XH-211/100ML",
+      "gluePartNo": "M.301.01.00050",
+      "stock": 5,
+      "productionDate": "2025-09-15 00:00:00",
+      "shelfLife": 360,
+      "expiryDate": "2026-09-10 00:00:00"
+    },
+    {
+      "glueModel": "橡胶AP5120",
+      "gluePartNo": "M.301.01.00089",
+      "stock": 3,
+      "productionDate": "2025-10-31 00:00:00",
+      "shelfLife": 1095,
+      "expiryDate": "2028-10-30 00:00:00"
+    },
+    {
+      "glueModel": "凡士林",
+      "gluePartNo": "M.301.05.00002",
+      "stock": 1,
+      "productionDate": "2025-02-24 00:00:00",
+      "shelfLife": 720,
+      "expiryDate": "2027-02-14 00:00:00"
+    },
+    {
+      "glueModel": "P-03处理剂",
+      "gluePartNo": "M.301.04.00007",
+      "stock": 1,
+      "productionDate": "2025-10-21 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2026-04-19 00:00:00"
+    },
+    {
+      "glueModel": "蛇胶",
+      "gluePartNo": "M.301.01.00090",
+      "stock": 130,
+      "productionDate": "2024-02-16 00:00:00",
+      "shelfLife": 1095,
+      "expiryDate": "2027-02-15 00:00:00"
+    },
+    {
+      "glueModel": "GH-2705（小）",
+      "gluePartNo": "M.301.01.00091",
+      "stock": 183,
+      "productionDate": "2026-06-15 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2026-12-12 00:00:00"
+    },
+    {
+      "glueModel": "AP1887",
+      "gluePartNo": "M.301.01.00092",
+      "stock": 20,
+      "productionDate": "2026-06-10 00:00:00",
+      "shelfLife": 360,
+      "expiryDate": "2027-06-05 00:00:00"
+    },
+    {
+      "glueModel": "HM-538YK",
+      "gluePartNo": "M.301.01.00093",
+      "stock": 0,
+      "productionDate": "",
+      "shelfLife": 180,
+      "expiryDate": "1900-06-28 00:00:00"
+    },
+    {
+      "glueModel": "AP200",
+      "gluePartNo": "M.301.01.00094",
+      "stock": 0,
+      "productionDate": "",
+      "shelfLife": 0,
+      "expiryDate": "00:00:00"
+    },
+    {
+      "glueModel": "AP3309",
+      "gluePartNo": "M.301.01.00095",
+      "stock": 0,
+      "productionDate": "",
+      "shelfLife": 0,
+      "expiryDate": "00:00:00"
+    },
+    {
+      "glueModel": "AP3319",
+      "gluePartNo": "M.301.01.00085",
+      "stock": 0,
+      "productionDate": "",
+      "shelfLife": 0,
+      "expiryDate": "00:00:00"
+    },
+    {
+      "glueModel": "1503三防漆",
+      "gluePartNo": "M.301.01.00096",
+      "stock": 0,
+      "productionDate": "2025-08-20 00:00:00",
+      "shelfLife": 360,
+      "expiryDate": "2026-08-15 00:00:00"
+    },
+    {
+      "glueModel": "GH-2705(大)",
+      "gluePartNo": "M.301.01.00098",
+      "stock": 50,
+      "productionDate": "2026-06-06 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2026-12-03 00:00:00"
+    },
+    {
+      "glueModel": "JQ9505",
+      "gluePartNo": "M.301.01.00099",
+      "stock": 78,
+      "productionDate": "2025-09-18 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2026-03-17 00:00:00"
+    },
+    {
+      "glueModel": "3347B",
+      "gluePartNo": "",
+      "stock": 84,
+      "productionDate": "2025-10-08 00:00:00",
+      "shelfLife": 360,
+      "expiryDate": "2026-10-03 00:00:00"
+    },
+    {
+      "glueModel": "JN681",
+      "gluePartNo": "M.301.01.00097",
+      "stock": 6,
+      "productionDate": "2025-12-08 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2026-06-06 00:00:00"
+    },
+    {
+      "glueModel": "3107",
+      "gluePartNo": "M.301.01.00048",
+      "stock": 0,
+      "productionDate": "2025-08-20 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2026-02-16 00:00:00"
+    },
+    {
+      "glueModel": "DT-908助焊剂",
+      "gluePartNo": "M.301.03.00019",
+      "stock": 0,
+      "productionDate": "",
+      "shelfLife": 0,
+      "expiryDate": "00:00:00"
+    },
+    {
+      "glueModel": "AP701",
+      "gluePartNo": "M.301.01.00103",
+      "stock": 1,
+      "productionDate": "2026-04-10 00:00:00",
+      "shelfLife": 360,
+      "expiryDate": "2027-04-05 00:00:00"
+    },
+    {
+      "glueModel": "AP788",
+      "gluePartNo": "M.301.01.00102",
+      "stock": 10,
+      "productionDate": "2026-03-10 00:00:00",
+      "shelfLife": 360,
+      "expiryDate": "2027-03-05 00:00:00"
+    },
+    {
+      "glueModel": "AP1901",
+      "gluePartNo": "M.301.01.00101",
+      "stock": 37,
+      "productionDate": "2026-05-12 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2026-11-08 00:00:00"
+    },
+    {
+      "glueModel": "AP623",
+      "gluePartNo": "M.301.01.00105",
+      "stock": 1,
+      "productionDate": "2025-10-18 00:00:00",
+      "shelfLife": 360,
+      "expiryDate": "2026-10-13 00:00:00"
+    },
+    {
+      "glueModel": "AP1808C",
+      "gluePartNo": "M.301.01.00106",
+      "stock": 59,
+      "productionDate": "2025-11-28 00:00:00",
+      "shelfLife": 180,
+      "expiryDate": "2026-05-27 00:00:00"
+    },
+    {
+      "glueModel": "AP3381D",
+      "gluePartNo": "M.301.01.00107",
+      "stock": 106,
+      "productionDate": "2026-05-19 00:00:00",
+      "shelfLife": 360,
+      "expiryDate": "2027-05-14 00:00:00"
+    }
+  ],
+  "glueDB": [
+    {
+      "name": "RX-1605ST",
+      "partNo": "M.301.01.00001",
+      "type": "透明胶水",
+      "spec": "RX-1605ST胶水\\ROHS、REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "AP6211",
+      "partNo": "M.301.01.00002",
+      "type": "胶水",
+      "spec": "低发白快干胶6211胶水\\20g/支\\ROHS、REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "GH5955",
+      "partNo": "M.301.01.00003",
+      "type": "5955胶水",
+      "spec": "5955胶水\\30g/支\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "AP5211",
+      "partNo": "M.301.01.00005",
+      "type": "快干胶",
+      "spec": "AP5211快干胶水\\20g/支",
+      "containerSize": 0
+    },
+    {
+      "name": "卡夫特704",
+      "partNo": "M.301.01.00009",
+      "type": "卡夫特704",
+      "spec": "卡夫特704胶水\\45g/支\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "K4703",
+      "partNo": "M.301.01.00010",
+      "type": "K4703",
+      "spec": "K4703胶水\\20g/支\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "凡士林",
+      "partNo": "M.301.01.00016",
+      "type": "凡士林",
+      "spec": "瓶装\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "JN1859",
+      "partNo": "M.301.01.00023",
+      "type": "JN1859硅胶",
+      "spec": "JN1859硅胶\\白色\\50ml/支\\ROHS、REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "JN6325-1透明",
+      "partNo": "M.301.01.00024",
+      "type": "热熔胶6325-1",
+      "spec": "热熔胶6325-1\\白色至淡黄色固体\\30ml/支\\ROHS、REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "JN6325-1黑色",
+      "partNo": "M.301.01.00027",
+      "type": "热熔胶6325-1",
+      "spec": "热熔胶6325-1\\黑色固体\\30ml/支\\ROHS、REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "JN2366",
+      "partNo": "M.301.01.00028",
+      "type": "JN2366",
+      "spec": "JN2366 密封胶\\30ml/支\\ROHS、REACH（改性硅胶）",
+      "containerSize": 0
+    },
+    {
+      "name": "JN6203",
+      "partNo": "M.301.01.00032",
+      "type": "热熔胶",
+      "spec": "热熔胶\\JN6203\\透明\\30ml/支\\ROHS、REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "PUR1059",
+      "partNo": "M.301.01.00035",
+      "type": "PUR热熔胶",
+      "spec": "PUR热熔胶\\30ml/支\\佳信1059\\ROHS、REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "JN887",
+      "partNo": "M.301.01.00036",
+      "type": "JN887黄胶",
+      "spec": "JN887黄胶\\4KG/桶\\ROHS、REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "JN2365-1",
+      "partNo": "M.301.01.00037",
+      "type": "JN2365-1密封胶",
+      "spec": "JN2365-1密封胶\\30ml/支\\ROHS、REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "JN3880",
+      "partNo": "M.301.01.00038",
+      "type": "3880瞬干胶",
+      "spec": "3880瞬干胶\\20g/支\\ROHS、REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "GH8226",
+      "partNo": "M.301.01.00040",
+      "type": "胶水",
+      "spec": "GH8226\\250g/支\\ROHS、REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "JN621",
+      "partNo": "M.301.01.00041",
+      "type": "JN621瞬干胶",
+      "spec": "JN621瞬干胶\\20g/支\\ROHS、REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "AP6212",
+      "partNo": "M.301.01.00046",
+      "type": "快干胶",
+      "spec": "快干胶\\AP6212\\20g/瓶\\ROHS、REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "米歌888",
+      "partNo": "M.301.01.00047",
+      "type": "快干胶",
+      "spec": "快干胶\\米歌888\\50g/瓶\\ROHS、REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "3107",
+      "partNo": "M.301.01.00048",
+      "type": "UV胶",
+      "spec": "UV胶\\君粘3107\\50ml/支\\透明",
+      "containerSize": 0
+    },
+    {
+      "name": "JN500",
+      "partNo": "M.301.01.00049",
+      "type": "解胶剂",
+      "spec": "解胶剂\\JN500\\500ml/瓶\\透明",
+      "containerSize": 0
+    },
+    {
+      "name": "JN6203",
+      "partNo": "M.301.01.00051",
+      "type": "热熔胶",
+      "spec": "热熔胶\\JN6203\\黑色\\30ml/支\\ROHS、REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "GH-7419",
+      "partNo": "M.301.01.00052",
+      "type": "填充胶",
+      "spec": "底部填充胶\\GH-7419\\黑色\\50ml/支\\ROHS、REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "BY-2000H",
+      "partNo": "M.301.01.00053",
+      "type": "银浆",
+      "spec": "银浆\\宝银 BY-2000H\\1kg\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "K-6103",
+      "partNo": "M.301.01.00054",
+      "type": "UV胶",
+      "spec": "UV胶\\康铎K-6103\\透明/50g/支\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "AP1033",
+      "partNo": "M.301.01.00057",
+      "type": "冷胶",
+      "spec": "冷胶\\阿普邦AP1033\\50g/支\\透明\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "3106F",
+      "partNo": "M.301.01.00058",
+      "type": "UV胶",
+      "spec": "UV胶\\君粘3106F\\红色\\50ml/支\\\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "AP3378",
+      "partNo": "M.301.01.00059",
+      "type": "UV胶",
+      "spec": "UV胶/阿普邦 AP3378\\浅红色\\50g/支\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "AP3347R",
+      "partNo": "M.301.01.00060",
+      "type": "UV胶",
+      "spec": "UV胶\\阿普邦AP3347R\\50g/支\\红色\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "AP1804W",
+      "partNo": "M.301.01.00061",
+      "type": "硅胶",
+      "spec": "硅胶\\阿普邦AP1804W\\55g/支\\白色\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "AP1536",
+      "partNo": "M.301.01.00062",
+      "type": "硅胶",
+      "spec": "硅胶\\阿普邦AP1536\\55g/支\\白色\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "AP100",
+      "partNo": "M.301.01.00063",
+      "type": "AB胶",
+      "spec": "AB胶\\阿普邦AP100\\50g/支\\透明\\AB胶比例为1:1\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "AP3560",
+      "partNo": "M.301.01.00064",
+      "type": "热熔胶",
+      "spec": "热熔胶\\阿普邦 AP3560\\透明\\33g/支\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "AP3560B荧光",
+      "partNo": "M.301.01.00065",
+      "type": "热熔胶",
+      "spec": "热熔胶\\阿普邦 AP3560B荧光\\黑色\\33g/支\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "AP1808W",
+      "partNo": "M.301.01.00066",
+      "type": "硅胶",
+      "spec": "硅胶\\阿普邦AP1808W\\55g/支\\白色\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "AP1808B",
+      "partNo": "M.301.01.00067",
+      "type": "硅胶",
+      "spec": "硅胶\\阿普邦AP1808B\\55g/支\\黑色\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "AP1612",
+      "partNo": "M.301.01.00068",
+      "type": "快干胶",
+      "spec": "快干胶\\阿普邦 AP1612\\20g/瓶\\透明\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "固耐特704K",
+      "partNo": "M.301.01.00069",
+      "type": "硅胶",
+      "spec": "硅胶\\固耐特704K\\300ML/支\\黑色\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "8137T",
+      "partNo": "M.301.01.00070",
+      "type": "硅胶",
+      "spec": "硅胶\\德聚N-Sil 8137T\\50ML/支\\白色\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "1504MB",
+      "partNo": "M.301.01.00071",
+      "type": "UV胶",
+      "spec": "UV胶\\德聚PW 1504MB\\50ML/支\\蓝色透明\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "研泰TS-770处理剂",
+      "partNo": "M.301.01.00050",
+      "type": "处理剂",
+      "spec": "研泰TS-770处理剂",
+      "containerSize": 0
+    },
+    {
+      "name": "DG-812阻尼脂",
+      "partNo": "M.301.05.00001",
+      "type": "阻尼脂",
+      "spec": "DG-812阻尼脂\\30ML/支\\透明\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "AP3573",
+      "partNo": "M.301.01.00073",
+      "type": "热熔胶",
+      "spec": "热熔胶\\阿普邦 AP3573\\33g/支\\透明\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "PW 1504MR-1",
+      "partNo": "M.301.01.00072",
+      "type": "UV胶",
+      "spec": "UV胶\\德聚PW 1504MR-1\\250ML/瓶\\红色\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "AP3542K",
+      "partNo": "M.301.01.00074",
+      "type": "热熔胶",
+      "spec": "热熔胶 热熔胶\\阿普邦 AP3542K\\33g/支\\透明\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "AP1537A",
+      "partNo": "M.301.01.00078",
+      "type": "硅胶",
+      "spec": "硅胶\\阿普邦AP1537A\\55g\\支\\半透明半流淌\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "N-PU5606-2S",
+      "partNo": "M.301.01.00075",
+      "type": "热熔胶",
+      "spec": "热熔胶\\德聚N-PU 5606-2S\\30ML/支\\透明",
+      "containerSize": 0
+    },
+    {
+      "name": "3169k",
+      "partNo": "M.301.01.00076",
+      "type": "UV胶",
+      "spec": "UV胶\\好粘达 3169k红\\红色\\1KG/瓶\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "JN6219",
+      "partNo": "M.301.01.00079",
+      "type": "硅胶",
+      "spec": "硅胶\\君粘JN6219\\50ml\\支\\黑色粘稠液体\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "AP1808w（桔粉）",
+      "partNo": "M.301.01.00081",
+      "type": "硅胶",
+      "spec": "硅胶/阿普邦 AP1808w（桔粉）/粉红色/\n潘通号700C/55g/支",
+      "containerSize": 0
+    },
+    {
+      "name": "AP100（白）",
+      "partNo": "M.301.01.00082",
+      "type": "AB胶",
+      "spec": "AB胶\\阿普邦AP100（白）\\50g/支\\白色\\AB胶比例为1:1",
+      "containerSize": 0
+    },
+    {
+      "name": "DG812(1)阻尼脂",
+      "partNo": "M.301.05.00003",
+      "type": "阻尼脂",
+      "spec": "阻尼脂\\坚泰 DG812(1)稠\\浅色粘稠油膏/30mL\\支\\ROHS、REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "JN2733-1（黑色）",
+      "partNo": "M.301.01.00083",
+      "type": "结构胶",
+      "spec": "结构胶\\君粘JN2733-1\\50mL/支\\黑色液态\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "5606F",
+      "partNo": "M.301.01.00084",
+      "type": "热熔胶",
+      "spec": "热熔胶\\德聚N-PU 5606F\\30mL/支\\透明\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "AP3319",
+      "partNo": "M.301.01.00085",
+      "type": "UV胶",
+      "spec": "UV胶\\阿普邦AP3319\\50mL/支\\透明\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "AP1028",
+      "partNo": "M.301.01.00086",
+      "type": "冷胶",
+      "spec": "冷胶\\阿普邦AP1028\\50ml/支\\透明\\ROHS,REACH,",
+      "containerSize": 0
+    },
+    {
+      "name": "JN2733-1（透明）",
+      "partNo": "M.301.01.00087",
+      "type": "结构胶",
+      "spec": "结构胶\\君粘JN2733-1\\50mL/支\\透明液体\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "AP1808G",
+      "partNo": "M.301.01.00077",
+      "type": "硅胶",
+      "spec": "硅胶\\阿普邦AP1808G\\55g/支\\半透明半流淌\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "A-1259",
+      "partNo": "M.301.05.00004",
+      "type": "润滑剂",
+      "spec": "润滑剂\\富见雄FUMIO A-1259EL\\乳白色液体\\1KG/瓶\\ROHS、REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "3030H",
+      "partNo": "M.301.01.00088",
+      "type": "UV胶",
+      "spec": "UV胶\\君粘 3030H\\红色液体\\250mL\\瓶",
+      "containerSize": 0
+    },
+    {
+      "name": "蛇胶",
+      "partNo": "M.301.01.00090",
+      "type": "蛇胶",
+      "spec": "蛇胶(丁基密封胶带)\\直径8mm\\4米/卷\\带离型纸\\ROSH,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "橡胶AP5120",
+      "partNo": "M.301.01.00089",
+      "type": "橡胶",
+      "spec": "橡胶\\阿普邦 AP5120\\透明液体\\500g/瓶\\ROSH,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "HF-800S速干性润滑剂",
+      "partNo": "",
+      "type": "速干性润滑剂",
+      "spec": "http://e.tb.cn/h.TaX9Wp0kedT9hAp?tk=ZQ6N3qW7yYD HU0854 「正品台湾FUMIO富见雄HF-800S速干性润滑剂电子数码干膜皮膜油 1KG」",
+      "containerSize": 0
+    },
+    {
+      "name": "AP111底涂剂",
+      "partNo": "",
+      "type": "处理剂",
+      "spec": "",
+      "containerSize": 0
+    },
+    {
+      "name": "A-1259EL",
+      "partNo": "M.301.05.00004",
+      "type": "润滑剂",
+      "spec": "润滑剂\\富见雄FUMIO A-1259EL\\乳白色液体\\1KG/瓶\\ROHS、REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "XH-211",
+      "partNo": "M.301.01.00050",
+      "type": "处理剂",
+      "spec": "处理剂\\鑫慧XH-211/100ML\\瓶",
+      "containerSize": 0
+    },
+    {
+      "name": "P-03处理剂",
+      "partNo": "M.301.04.00007",
+      "type": "处理剂",
+      "spec": "处理剂\\恂帅 P-03处理剂\\无色透明液体\\500mL\\瓶\\ROHS、REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "GH-2705",
+      "partNo": "M.301.01.00091",
+      "type": "硅胶",
+      "spec": "硅胶\\光合GH-2705\\50mL/支\\白色\\ROSH,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "AP1887",
+      "partNo": "M.301.01.00092",
+      "type": "瞬干胶",
+      "spec": "瞬干胶\\阿普邦 AP1887\\20g/瓶\\透明无色液体\\ROSH,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "HM-538YK",
+      "partNo": "M.301.01.00093",
+      "type": "硅胶",
+      "spec": "硅胶\\光合 HM-538YK\\300mL\\支\\白色\\ROSH,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "AP200",
+      "partNo": "M.301.01.00094",
+      "type": "处理剂",
+      "spec": "处理剂\\阿普邦AP200\\无色透明液体\\500mL\\瓶",
+      "containerSize": 0
+    },
+    {
+      "name": "AP3309",
+      "partNo": "M.301.01.00095",
+      "type": "UV胶",
+      "spec": "UV胶\\阿普邦AP3309\\红色液体\\50g\\支",
+      "containerSize": 0
+    },
+    {
+      "name": "AP3319",
+      "partNo": "M.301.01.00085",
+      "type": "UV胶",
+      "spec": "UV胶\\阿普邦AP3319\\50mL/支\\透明\\ROHS,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "1503",
+      "partNo": "M.301.01.00096",
+      "type": "三防漆",
+      "spec": "三防漆\\君粘 1503三防漆\\透明液体\\1KG\\桶",
+      "containerSize": 0
+    },
+    {
+      "name": "GH-2705(大)",
+      "partNo": "M.301.01.00098",
+      "type": "硅胶",
+      "spec": "硅胶\\光合GH-2705\\300mL/支\\白色\\ROSH,REACH",
+      "containerSize": 0
+    },
+    {
+      "name": "JN681",
+      "partNo": "M.301.01.00097",
+      "type": "瞬干胶",
+      "spec": "瞬干胶\\君粘\\JN681\\20g/瓶",
+      "containerSize": 0
+    },
+    {
+      "name": "JQ9505",
+      "partNo": "M.301.01.00099",
+      "type": "结构胶",
+      "spec": "结构胶\\邦德仕 JQ9505\\乳白色粘稠液体\\2.5kg/罐",
+      "containerSize": 0
+    },
+    {
+      "name": "DT-908助焊剂",
+      "partNo": "M.301.03.00019",
+      "type": "水性助焊剂",
+      "spec": "性助焊剂帝腾DT-908助焊剂黄色液体\\5L/瓶",
+      "containerSize": 0
+    },
+    {
+      "name": "AP701",
+      "partNo": "M.301.01.00103",
+      "type": "处理剂",
+      "spec": "处理剂V阿普邦AP701活化剂透明琥珀色\\500g/瓶",
+      "containerSize": 0
+    },
+    {
+      "name": "AP788",
+      "partNo": "M.301.01.00102",
+      "type": "瞬干胶",
+      "spec": "瞬干胶V阿普邦AP788\\透明无色液体\\20g/支",
+      "containerSize": 0
+    },
+    {
+      "name": "AP1901",
+      "partNo": "M.301.01.00101",
+      "type": "硅胶",
+      "spec": "硅胶阿普邦AP1901\\白色半流淌55g/支",
+      "containerSize": 0
+    },
+    {
+      "name": "AP623",
+      "partNo": "M.301.01.00105",
+      "type": "螺纹胶",
+      "spec": "螺纹胶\\阿普邦 AP623\\红色液体\\250mL/瓶",
+      "containerSize": 0
+    },
+    {
+      "name": "AP1808C",
+      "partNo": "M.301.01.00106",
+      "type": "硅胶",
+      "spec": "硅胶\\阿普邦AP1808C\\无色透明半流淌液体\\50mL\\支",
+      "containerSize": 0
+    },
+    {
+      "name": "AP3381D",
+      "partNo": "M.301.01.00107",
+      "type": "UV胶",
+      "spec": "UV胶/阿普邦AP3381D/浅红色/50ml/支",
+      "containerSize": 0
+    }
+  ],
+  "demand": [
+    {
+      "glueModel": "A-1259EL",
+      "totalDemand": 0.0,
+      "monthlyUsage": 0.30075
+    },
+    {
+      "glueModel": "AP1536",
+      "totalDemand": 52.3636363636363,
+      "monthlyUsage": 17.1723636363636
+    },
+    {
+      "glueModel": "AP1804W",
+      "totalDemand": 5.45454545454545,
+      "monthlyUsage": 5.45454545454545
+    },
+    {
+      "glueModel": "AP1808B",
+      "totalDemand": 34.9090909090909,
+      "monthlyUsage": 16.8274545454546
+    },
+    {
+      "glueModel": "AP1808W",
+      "totalDemand": 465.162909090909,
+      "monthlyUsage": 135.474
+    },
+    {
+      "glueModel": "AP1887",
+      "totalDemand": 2.4,
+      "monthlyUsage": 9.648
+    },
+    {
+      "glueModel": "AP3347R",
+      "totalDemand": 13.312,
+      "monthlyUsage": 9.6
+    },
+    {
+      "glueModel": "AP3378",
+      "totalDemand": 9.6,
+      "monthlyUsage": 2.4
+    },
+    {
+      "glueModel": "AP3573",
+      "totalDemand": 614.132121212121,
+      "monthlyUsage": 185.791515151515
+    },
+    {
+      "glueModel": "DG-812阻尼脂",
+      "totalDemand": 503.066666666667,
+      "monthlyUsage": 67.7350000000001
+    },
+    {
+      "glueModel": "GH-2705",
+      "totalDemand": 151.174,
+      "monthlyUsage": 99.576
+    },
+    {
+      "glueModel": "GH-2705(大)",
+      "totalDemand": 6.0,
+      "monthlyUsage": 24.12
+    },
+    {
+      "glueModel": "GH8226",
+      "totalDemand": 185.92424,
+      "monthlyUsage": 146.72752
+    },
+    {
+      "glueModel": "JN2366",
+      "totalDemand": 6.66666666666667,
+      "monthlyUsage": 29.1146666666667
+    },
+    {
+      "glueModel": "JN2733-1（透明）",
+      "totalDemand": 0.0,
+      "monthlyUsage": 0.0
+    },
+    {
+      "glueModel": "JN3880",
+      "totalDemand": 86.567,
+      "monthlyUsage": 33.458
+    },
+    {
+      "glueModel": "JN887",
+      "totalDemand": 1.05263,
+      "monthlyUsage": 0.593755
+    },
+    {
+      "glueModel": "JQ9505",
+      "totalDemand": 1.76,
+      "monthlyUsage": 7.0752
+    },
+    {
+      "glueModel": "K4703",
+      "totalDemand": 49.909,
+      "monthlyUsage": 23.612
+    },
+    {
+      "glueModel": "XH-211",
+      "totalDemand": 0.0,
+      "monthlyUsage": 0.0
+    },
+    {
+      "glueModel": "米歌888",
+      "totalDemand": 15.73712,
+      "monthlyUsage": 1.2044
+    },
+    {
+      "glueModel": "研泰TS-770处理剂",
+      "totalDemand": 0.0,
+      "monthlyUsage": 0.0
+    },
+    {
+      "glueModel": "(空白)",
+      "totalDemand": 0,
+      "monthlyUsage": 0
+    },
+    {
+      "glueModel": "AP1028",
+      "totalDemand": 14.0,
+      "monthlyUsage": 17.624
+    },
+    {
+      "glueModel": "JN1859",
+      "totalDemand": 15.2292,
+      "monthlyUsage": 2.416
+    },
+    {
+      "glueModel": "蛇胶",
+      "totalDemand": 0.0,
+      "monthlyUsage": 0.0
+    },
+    {
+      "glueModel": "AP1808C",
+      "totalDemand": 0.0,
+      "monthlyUsage": 0.0
+    },
+    {
+      "glueModel": "AP3319",
+      "totalDemand": 16.144,
+      "monthlyUsage": 0.0
+    },
+    {
+      "glueModel": "AP1537A",
+      "totalDemand": 0.0,
+      "monthlyUsage": 0.0
+    },
+    {
+      "glueModel": "JN2365-1",
+      "totalDemand": 0.0,
+      "monthlyUsage": 0.0
+    },
+    {
+      "glueModel": "JN6325-1黑色",
+      "totalDemand": 0.0,
+      "monthlyUsage": 0.0
+    },
+    {
+      "glueModel": "3169k",
+      "totalDemand": 0.0,
+      "monthlyUsage": 0.0
+    },
+    {
+      "glueModel": "橡胶AP5120",
+      "totalDemand": 0.73248,
+      "monthlyUsage": 0.0
+    },
+    {
+      "glueModel": "5606F",
+      "totalDemand": 0.0,
+      "monthlyUsage": 0.0
+    },
+    {
+      "glueModel": "P-03处理剂",
+      "totalDemand": 0.0,
+      "monthlyUsage": 0.0
+    },
+    {
+      "glueModel": "3107",
+      "totalDemand": 6.4092,
+      "monthlyUsage": 0.0
+    }
+  ],
+  "stats": {
+    "bom_rows": 399,
+    "production_rows": 19,
+    "inventory_rows": 73,
+    "glueDB_rows": 85,
+    "demand_rows": 36,
+    "bom_models": [
+      "A136-SL",
+      "A136-YD",
+      "A137",
+      "A150",
+      "A153",
+      "A154",
+      "A154-B(D11pro)",
+      "A155",
+      "A156",
+      "A156-B",
+      "B140",
+      "B148",
+      "B149",
+      "B203-PS",
+      "B204-FN",
+      "B401",
+      "B402",
+      "B88-E",
+      "BS206",
+      "H1H",
+      "HAD03",
+      "HAD03-B",
+      "HAD03-C",
+      "HAD05",
+      "HAD13-A",
+      "HAD13-B",
+      "HAD18",
+      "HAD19",
+      "HAD21",
+      "HED06",
+      "HED07",
+      "HKD03",
+      "HL301",
+      "HL301-B",
+      "HLD01",
+      "L303",
+      "OWS806",
+      "OWS808",
+      "PB06",
+      "PB07",
+      "PB08",
+      "PB09",
+      "SE101",
+      "TAT1500",
+      "TAT2500",
+      "ows811"
+    ],
+    "production_models": [
+      "A136-SL",
+      "A150",
+      "A153",
+      "A154",
+      "A154-B(D11Pro)",
+      "A155",
+      "A156",
+      "B140",
+      "B148",
+      "B401",
+      "HAD03-C",
+      "HAD05",
+      "HAD21",
+      "HED06",
+      "PB07",
+      "PB08"
+    ],
+    "inventory_with_stock": 51
+  }
+}

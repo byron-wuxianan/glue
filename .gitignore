@@ -1,0 +1,19 @@
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Database file (will be initialized by init-db.js)
+glue.db
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# WorkBuddy
+.workbuddy/

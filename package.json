@@ -1,0 +1,19 @@
+{
+  "name": "glue-management-system",
+  "version": "1.0.0",
+  "description": "胶水采购需求管理系统 - 多人在线版本",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "init": "node init-db.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "sqlite3": "^5.1.6",
+    "bcryptjs": "^2.4.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

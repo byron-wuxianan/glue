@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>胶水采购需求管理系统</title>
+<script src="chart.umd.min.js"></script>
+<style>
+:root {
+    --primary: #2563eb; --primary-light: #dbeafe; --primary-dark: #1e40af;
+    --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb; --gray-300: #d1d5db;
+    --gray-500: #6b7280; --gray-700: #374151; --gray-900: #111827;
+    --red: #ef4444; --red-light: #fef2f2; --red-dark: #dc2626;
+    --green: #10b981; --green-light: #d1fae5; --orange: #f59e0b; --orange-light: #fef3c7;
+    --white: #ffffff; --shadow: 0 1px 3px rgba(0,0,0,0.1); --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+    --radius: 10px; --radius-sm: 6px;
+    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font); background: var(--gray-50); color: var(--gray-900); line-height: 1.6; }
+.container { max-width: 1300px; margin: 0 auto; padding: 20px; }
+
+/* Header */
+.header { background: var(--white); border-bottom: 1px solid var(--gray-200); padding: 16px 24px; margin-bottom: 20px;
+    display: flex; justify-content: space-between; align-items: center; border-radius: var(--radius); box-shadow: var(--shadow); }
+.header h1 { font-size: 22px; display: flex; align-items: center; gap: 10px; }
+.header h1 span { font-size: 12px; color: var(--gray-500); font-weight: normal; margin-left: 8px; padding: 3px 8px; background: var(--gray-100); border-radius: 20px; }
+.header-actions { display: flex; gap: 8px; }
+
+/* Buttons */
+.btn { padding: 8px 16px; border-radius: var(--radius-sm); border: none; cursor: pointer; font-size: 13px; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 6px; transition: all 0.15s; font-family: var(--font); }
+.btn-primary { background: var(--primary); color: white; }
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-outline { background: var(--white); color: var(--gray-700); border: 1px solid var(--gray-300); }
+.btn-outline:hover { background: var(--gray-50); border-color: var(--primary); color: var(--primary); }
+.btn-danger { background: var(--red-light); color: var(--red-dark); }
+.btn-danger:hover { background: var(--red); color: white; }
+.btn-sm { padding: 5px 10px; font-size: 12px; }
+
+/* KPI Cards */
+.kpi-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+.kpi-card { background: var(--white); border-radius: var(--radius); padding: 18px 20px; box-shadow: var(--shadow);
+    border-left: 4px solid var(--primary); }
+.kpi-card.green { border-left-color: var(--green); }
+.kpi-card.orange { border-left-color: var(--orange); }
+.kpi-card.red { border-left-color: var(--red); }
+.kpi-label { font-size: 12px; color: var(--gray-500); margin-bottom: 4px; }
+.kpi-value { font-size: 28px; font-weight: 700; color: var(--gray-900); }
+.kpi-unit { font-size: 13px; font-weight: 400; color: var(--gray-500); margin-left: 4px; }
+
+/* Cards */
+.card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 20px; overflow: hidden; }
+.card-header { padding: 14px 20px; border-bottom: 1px solid var(--gray-200); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+.card-header h2 { font-size: 16px; display: flex; align-items: center; gap: 6px; }
+.card-body { padding: 20px; }
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { background: var(--gray-50); padding: 10px 12px; text-align: left; font-weight: 600; color: var(--gray-700);
+    border-bottom: 2px solid var(--gray-200); white-space: nowrap; font-size: 12px; }
+td { padding: 8px 12px; border-bottom: 1px solid var(--gray-100); }
+tr:hover { background: var(--gray-50); }
+.text-red { color: var(--red); }
+.text-green { color: var(--green); }
+.fw-bold { font-weight: 600; }
+.bg-green-light { background: var(--green-light); }
+.empty-state { text-align: center; padding: 40px; color: var(--gray-500); }
+
+/* Inputs */
+input[type="text"], input[type="number"] { border: 1px solid var(--gray-300); border-radius: var(--radius-sm);
+    padding: 5px 8px; font-size: 13px; font-family: var(--font); }
+input[type="text"]:focus, input[type="number"]:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px var(--primary-light); }
+input.tight { width: 80px; text-align: center; }
+input.mid { width: 130px; }
+input.wide { width: 100%; }
+
+/* Model card */
+.model-card { border: 1px solid var(--gray-200); border-radius: var(--radius-sm); margin-bottom: 12px; overflow: hidden; }
+.model-card-header { background: var(--gray-50); padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.model-info { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.model-name { font-weight: 600; font-size: 15px; }
+.model-qty-label { font-size: 13px; color: var(--gray-500); }
+.model-qty-input { width: 90px; text-align: center; }
+.model-actions { display: flex; gap: 6px; }
+.model-card-body { padding: 12px 16px; }
+
+/* Copy BOM badge */
+.copy-bom-badge { display: inline-flex; align-items: center; gap: 3px; padding: 3px 10px; border-radius: 12px;
+    font-size: 11px; font-weight: 600; cursor: pointer; background: var(--primary-light); color: var(--primary-dark);
+    border: 1px solid transparent; transition: all 0.15s; }
+.copy-bom-badge:hover { background: var(--primary); color: white; border-color: var(--primary-dark); }
+
+/* Search dropdown */
+.search-container { position: relative; max-width: 500px; }
+.search-input { width: 100%; padding: 10px 14px; border: 1px solid var(--gray-300); border-radius: var(--radius-sm); font-size: 14px; font-family: var(--font); }
+.search-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px var(--primary-light); }
+.search-results { position: absolute; top: 100%; left: 0; right: 0; background: white; border: 1px solid var(--gray-300); border-radius: 0 0 var(--radius-sm) var(--radius-sm); box-shadow: var(--shadow-md); max-height: 300px; overflow-y: auto; z-index: 200; display: none; }
+.search-result-item { padding: 10px 14px; cursor: pointer; border-bottom: 1px solid var(--gray-100); display: flex; justify-content: space-between; align-items: center; transition: background 0.1s; }
+.search-result-item:hover { background: var(--primary-light); }
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item .model-badge { font-size: 11px; color: var(--gray-500); }
+.search-result-item.added { opacity: 0.5; cursor: not-allowed; }
+
+/* Month toolbar */
+.month-toolbar { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow);
+    padding: 12px 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+.month-nav { display: flex; align-items: center; gap: 12px; }
+
+/* Module tabs */
+.module-tabs { display: flex; gap: 4px; margin-bottom: 20px; background: var(--white); border-radius: var(--radius); padding: 6px; box-shadow: var(--shadow); }
+.module-tab { flex: 1; padding: 12px 16px; text-align: center; cursor: pointer; border-radius: var(--radius-sm);
+    font-size: 14px; font-weight: 500; color: var(--gray-500); transition: all 0.2s; }
+.module-tab:hover { background: var(--gray-50); color: var(--gray-700); }
+.module-tab.active { background: var(--primary); color: white; box-shadow: var(--shadow); }
+.module-content { display: none; }
+.module-content.active { display: block; }
+
+/* Modal */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5);
+    display: none; align-items: center; justify-content: center; z-index: 5000; }
+.modal { background: white; border-radius: var(--radius); box-shadow: var(--shadow-md); width: 600px; max-width: 95vw; max-height: 90vh; overflow-y: auto; }
+.modal-header { padding: 16px 20px; border-bottom: 1px solid var(--gray-200); display: flex; justify-content: space-between; align-items: center; }
+.modal-body { padding: 20px; }
+.modal-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--gray-200); }
+.modal-tab { padding: 8px 20px; cursor: pointer; font-size: 13px; color: var(--gray-500); border-bottom: 2px solid transparent; }
+.modal-tab.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 600; }
+.csv-textarea { width: 100%; min-height: 180px; border: 1px solid var(--gray-300); border-radius: var(--radius-sm); padding: 10px;
+    font-family: monospace; font-size: 12px; resize: vertical; }
+.csv-textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px var(--primary-light); }
+
+/* Toast */
+.toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--gray-900); color: white;
+    padding: 12px 24px; border-radius: var(--radius-sm); font-size: 14px; z-index: 9999; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+.toast.show { opacity: 1; }
+
+/* Chart */
+.chart-wrapper { max-height: 300px; }
+
+/* Login */
+.login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 50%, #1e40af 100%);
+    display: flex; align-items: center; justify-content: center; z-index: 10000; }
+.login-box { background: white; border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); width: 400px; max-width: 90vw; overflow: hidden; }
+.login-header { background: linear-gradient(135deg, #1e3a5f, #2563eb); color: white; padding: 30px 30px 24px; text-align: center; }
+.login-header h2 { font-size: 22px; margin-bottom: 6px; }
+.login-header p { font-size: 13px; opacity: 0.8; }
+.login-body { padding: 28px 30px; }
+.login-field { margin-bottom: 16px; }
+.login-field label { display: block; font-size: 13px; font-weight: 600; color: var(--gray-700); margin-bottom: 6px; }
+.login-field input { width: 100%; padding: 10px 14px; border: 1px solid var(--gray-300); border-radius: var(--radius-sm);
+    font-size: 14px; font-family: var(--font); }
+.login-field input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-light); }
+.login-btn { width: 100%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: var(--radius-sm);
+    font-size: 15px; font-weight: 600; cursor: pointer; font-family: var(--font); transition: background 0.15s; }
+.login-btn:hover { background: var(--primary-dark); }
+.login-toggle { text-align: center; margin-top: 16px; font-size: 13px; color: var(--gray-500); }
+.login-toggle a { color: var(--primary); cursor: pointer; text-decoration: none; font-weight: 500; }
+.login-toggle a:hover { text-decoration: underline; }
+.login-error { color: var(--red); font-size: 13px; text-align: center; margin-bottom: 12px; display: none; }
+.login-hint { font-size: 11px; color: var(--gray-500); text-align: center; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--gray-100); }
+
+/* User badge */
+.user-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; background: var(--primary-light);
+    border-radius: 20px; font-size: 12px; font-weight: 600; color: var(--primary-dark); }
+.user-badge .avatar { width: 22px; height: 22px; border-radius: 50%; background: var(--primary); color: white;
+    display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; }
+
+/* Save status */
+.save-status { font-size: 11px; color: var(--gray-500); display: inline-flex; align-items: center; gap: 4px; }
+.save-status.saved { color: var(--green); }
+.save-status.saving { color: var(--orange); }
+
+/* Copy BOM modal */
+#copyBomOverlay .modal { max-width: 500px; }
+
+/* Responsive */
+.table-wrapper { overflow-x: auto; }
+@media (max-width: 768px) {
+    .header { flex-direction: column; gap: 10px; text-align: center; }
+    .model-card-header { flex-direction: column; align-items: flex-start; }
+    .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    .header-actions { flex-wrap: wrap; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== LOGIN OVERLAY ==================== -->
+<div class="login-overlay" id="loginOverlay">
+    <div class="login-box">
+        <div class="login-header">
+            <h2>🧴 胶水采购需求管理系统</h2>
+            <p>多人协作版 · 数据实时同步</p>
+        </div>
+        <div class="login-body">
+            <div class="login-error" id="loginError"></div>
+            <div id="loginForm">
+                <div class="login-field">
+                    <label>用户名</label>
+                    <input type="text" id="loginUser" placeholder="请输入用户名" onkeydown="if(event.key==='Enter')doLogin()">
+                </div>
+                <div class="login-field">
+                    <label>密码</label>
+                    <input type="password" id="loginPass" placeholder="请输入密码" onkeydown="if(event.key==='Enter')doLogin()">
+                </div>
+                <button class="login-btn" onclick="doLogin()">登 录</button>
+                <div class="login-toggle">
+                    没有账号？<a onclick="showRegister()">注册新账号</a>
+                </div>
+                <div class="login-hint">默认账号：admin / admin123</div>
+            </div>
+            <div id="registerForm" style="display:none;">
+                <div class="login-field">
+                    <label>用户名</label>
+                    <input type="text" id="regUser" placeholder="请设置用户名">
+                </div>
+                <div class="login-field">
+                    <label>密码</label>
+                    <input type="password" id="regPass" placeholder="请设置密码">
+                </div>
+                <div class="login-field">
+                    <label>确认密码</label>
+                    <input type="password" id="regPass2" placeholder="请再次输入密码">
+                </div>
+                <button class="login-btn" onclick="doRegister()">注 册</button>
+                <div class="login-toggle">
+                    已有账号？<a onclick="showLogin()">返回登录</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== USER MANAGEMENT MODAL ==================== -->
+<div class="modal-overlay" id="userMgmtModal">
+<div class="modal" style="max-width:500px;">
+<div class="modal-header">
+    <h3 style="font-size:16px;">👥 用户管理</h3>
+    <button class="btn btn-outline btn-sm" onclick="closeUserMgmt()">✕</button>
+</div>
+<div class="modal-body">
+    <div id="userListContainer"></div>
+</div>
+</div>
+</div>
+
+<!-- ==================== COPY BOM MODAL ==================== -->
+<div class="modal-overlay" id="copyBomOverlay">
+<div class="modal" style="max-width:500px;">
+<div class="modal-header">
+    <h3 style="font-size:16px;">📋 复制BOM配置</h3>
+    <button class="btn btn-outline btn-sm" onclick="cancelCopyBOM()">✕</button>
+</div>
+<div class="modal-body">
+    <p style="font-size:13px;color:var(--gray-700);margin-bottom:12px;">
+        源机型：<strong id="copyBomSourceInfo"></strong>
+    </p>
+    <div class="section-label">复制到：</div>
+    <select id="copyBomTargetSelect" style="width:100%;padding:8px 10px;border:1px solid var(--gray-300);border-radius:var(--radius-sm);font-size:13px;font-family:var(--font);margin-bottom:12px;" onchange="onCopyTargetChange()">
+        <option value="">-- 创建新机型（输入名称） --</option>
+    </select>
+    <input type="text" id="copyBomNewName" placeholder="输入新机型名称" style="width:100%;padding:8px 10px;border:1px solid var(--gray-300);border-radius:var(--radius-sm);font-size:13px;font-family:var(--font);margin-bottom:16px;">
+    <p style="font-size:11px;color:var(--gray-500);margin-bottom:16px;">※ 复制到已有机型将覆盖其现有BOM配置</p>
+    <div style="display:flex;gap:8px;justify-content:flex-end;">
+        <button class="btn btn-outline" onclick="cancelCopyBOM()">取消</button>
+        <button class="btn btn-primary" onclick="confirmCopyBOM()">确认复制</button>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+    <h1>🧴 胶水采购需求管理系统<span>多人协作版 · 数据实时同步</span></h1>
+    <div class="header-actions">
+        <span class="save-status" id="saveStatus">已连接</span>
+        <span class="user-badge" id="userBadge"></span>
+        <button class="btn btn-outline btn-sm" onclick="openUserMgmt()">👥 用户</button>
+        <button class="btn btn-outline btn-sm" onclick="doLogout()">退出登录</button>
+    </div>
+</div>
+
+<!-- Month Toolbar -->
+<div class="month-toolbar">
+    <div class="month-nav">
+        <button class="month-btn" onclick="changeMonth(-1)">◀</button>
+        <input type="month" class="month-picker" id="monthPicker" onchange="onMonthChange()">
+        <span class="month-display" id="monthDisplay">2026-07</span>
+        <button class="month-btn" onclick="changeMonth(1)">▶</button>
+    </div>
+    <div class="month-actions">
+        <span class="month-badge" id="monthDataBadge">本月无数据</span>
+        <button class="btn btn-outline btn-sm" onclick="copyFromPrevMonth()">📋 从上月复制</button>
+        <button class="btn btn-outline btn-sm" onclick="gotoThisMonth()">📍 回到本月</button>
+    </div>
+</div>
+
+<!-- Module Tabs -->
+<div class="module-tabs">
+    <div class="module-tab active" id="tab1" onclick="switchModule(1)">🏭 模块一：机型及月生产数量</div>
+    <div class="module-tab" id="tab2" onclick="switchModule(2)">🧴 模块二：机型及胶水需求录入</div>
+    <div class="module-tab" id="tab3" onclick="switchModule(3)">📦 模块三：库存录入及采购需求</div>
+</div>
+
+<!-- ==================== MODULE 1: 机型及月生产数量 ==================== -->
+<div id="module1" class="module-content active">
+    <div class="kpi-row">
+        <div class="kpi-card"><div class="kpi-label">机型总数</div><div class="kpi-value" id="kpiProdModels">0</div></div>
+        <div class="kpi-card green"><div class="kpi-label">已排产机型</div><div class="kpi-value" id="kpiProdScheduled">0</div></div>
+        <div class="kpi-card orange"><div class="kpi-label"><span id="kpiProdMonthLabel">当月</span>总产量</div><div class="kpi-value" id="kpiProdTotal">0<span class="kpi-unit">台</span></div></div>
+    </div>
+    <div class="card">
+        <div class="card-header" style="flex-wrap:wrap;gap:10px;">
+            <h2>📋 机型及月生产数量</h2>
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                <div class="search-container" style="max-width:240px;">
+                    <input type="text" class="search-input" id="prodSearchInput" placeholder="🔍 搜索机型..." style="font-size:12px;padding:6px 10px;" oninput="renderProduction()">
+                </div>
+                <button class="btn btn-outline btn-sm" onclick="openProdImport()">📥 批量导入产量</button>
+                <button class="btn btn-primary btn-sm" onclick="addManualModel()">+ 添加机型</button>
+            </div>
+        </div>
+        <div class="table-wrapper" style="padding:16px 20px;">
+            <table>
+                <thead><tr>
+                    <th>机型名称</th><th>月产量</th><th>BOM位置数</th><th>胶水种类</th><th>操作</th>
+                </tr></thead>
+                <tbody id="prodTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== MODULE 2: 机型及胶水需求录入 ==================== -->
+<div id="module2" class="module-content">
+    <div class="card" id="bomSection">
+        <div class="card-header" style="flex-wrap:wrap;gap:10px;">
+            <h2>📋 机型BOM配置 — 机型 × 位置 × 胶水用量</h2>
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                <div class="search-container" style="max-width:240px;">
+                    <input type="text" class="search-input" id="bomSearchInput" placeholder="🔍 搜索机型..." style="font-size:12px;padding:6px 10px;" oninput="renderBOM()">
+                </div>
+                <button class="btn btn-outline btn-sm" onclick="openImportBOM()">📥 批量导入BOM</button>
+                <button class="btn btn-primary btn-sm" onclick="addModel()">+ 添加机型</button>
+            </div>
+        </div>
+        <p style="font-size:12px;color:var(--gray-500);padding:8px 20px 0;" id="bomSearchInfo">※ 机型列表来自模块一，月产量请在模块一中编辑（共 0 个机型）</p>
+        <div id="bomContainer" style="padding:16px 20px;"></div>
+    </div>
+
+    <!-- Glue Catalog -->
+    <details class="card" style="margin-bottom:20px;">
+        <summary class="card-header" style="cursor:pointer;" onclick="toggleCatalog()">
+            <h2>📖 胶水料号库 <span id="catalogToggleBtn" style="font-size:12px;color:var(--gray-500);">▼ 展开</span></h2>
+            <div style="display:flex;gap:8px;">
+                <input type="text" id="catalogSearch" placeholder="搜索型号/料号/描述..." style="width:220px;font-size:12px;padding:5px 10px;" oninput="renderGlueCatalog()">
+            </div>
+        </summary>
+        <div id="glueCatalogContainer" style="display:none;padding:16px 20px;">
+            <p style="font-size:12px;color:var(--gray-500);margin-bottom:12px;" id="catalogInfo"></p>
+            <div class="table-wrapper">
+                <table id="glueCatalogTable">
+                    <thead><tr><th>#</th><th>胶水型号</th><th>料号</th><th>类型</th><th>规格</th><th>容量</th></tr></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </details>
+
+    <!-- Demand Table -->
+    <div class="card">
+        <div class="card-header">
+            <h2>📊 胶水需求量汇总 — <span id="resultMonthLabel"></span></h2>
+            <button class="btn btn-outline btn-sm" onclick="exportDemandCSV()">📤 导出需求表</button>
+        </div>
+        <div class="table-wrapper" style="padding:16px 20px;">
+            <table id="demandTable">
+                <thead><tr>
+                    <th>胶水型号</th><th>胶水料号</th><th>胶水描述</th>
+                    <th>规格容量(g)</th><th>月需求量(支/桶)</th><th>涉及机型/位置</th>
+                </tr></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== MODULE 3: 库存录入及采购需求 ==================== -->
+<div id="module3" class="module-content">
+    <div class="kpi-row">
+        <div class="kpi-card red"><div class="kpi-label">需采购胶水种类</div><div class="kpi-value" id="kpiNeedBuy">0</div></div>
+        <div class="kpi-card orange"><div class="kpi-label">建议采购总量</div><div class="kpi-value" id="kpiTotalPurchase">0<span class="kpi-unit">支/桶</span></div></div>
+        <div class="kpi-card"><div class="kpi-label">库存胶水种类</div><div class="kpi-value" id="kpiInvCount">0</div></div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h2>📦 库存胶水数量录入 — <span id="invMonthLabel"></span></h2>
+            <div style="display:flex;gap:8px;">
+                <button class="btn btn-outline btn-sm" onclick="addInventoryRow()">+ 新增胶水</button>
+                <button class="btn btn-outline btn-sm" onclick="openImportInventory()">📥 导入库存</button>
+                <button class="btn btn-outline btn-sm" onclick="syncInventoryFromBOM()">🔄 从BOM同步</button>
+            </div>
+        </div>
+        <div class="table-wrapper" style="padding:16px 20px;">
+            <table id="inventoryTable">
+                <thead><tr>
+                    <th>胶水型号</th><th>胶水料号</th><th>描述</th><th>规格容量</th>
+                    <th>当前库存(支/桶)</th><th>有效期</th><th>操作</th>
+                </tr></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h2>🛒 采购需求 — <span id="resultMonthLabel2"></span></h2>
+            <button class="btn btn-outline btn-sm" onclick="exportCSV()">📤 导出采购需求</button>
+        </div>
+        <p style="font-size:12px;color:var(--gray-500);padding:8px 20px 0;">
+            计算公式：需求取整 = ⌈月需求量⌉，需采购量 = ⌈需求取整⌉ − 当前库存
+        </p>
+        <div class="table-wrapper" style="padding:16px 20px;">
+            <table id="resultTable">
+                <thead><tr>
+                    <th>胶水型号</th><th>胶水料号</th><th>胶水描述</th>
+                    <th>月需求量(取整)</th><th>当前库存(支/桶)</th>
+                    <th>建议采购(支/桶)</th><th>状态</th>
+                </tr></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header"><h2>📋 计算明细 — <span id="detailMonthLabel"></span></h2></div>
+        <div class="table-wrapper" style="padding:16px 20px;">
+            <table id="detailTable">
+                <thead><tr>
+                    <th>机型</th><th>月产量</th><th>打胶位置</th>
+                    <th>胶水型号</th><th>胶水料号</th><th>单套用量(支/桶)</th><th>规格容量(g)</th>
+                    <th>月消耗(精确)</th><th>月消耗(取整)</th>
+                </tr></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <details style="margin-bottom:20px;">
+        <summary class="card-header" style="cursor:pointer;">
+            <h2>📊 采购需求图表</h2>
+        </summary>
+        <div class="chart-wrapper" style="padding:0 20px 16px;"><canvas id="purchaseChart"></canvas></div>
+    </details>
+</div>
+
+</div><!-- /container -->
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- ==================== MODAL: 产量导入 ==================== -->
+<div class="modal-overlay" id="prodImportModal">
+<div class="modal">
+<div class="modal-header">
+    <h3 style="font-size:16px;">📥 批量导入机型及月生产数量</h3>
+    <button class="btn btn-outline btn-sm" onclick="closeProdImport()">✕</button>
+</div>
+<div class="modal-body">
+    <div class="modal-tabs">
+        <div class="modal-tab active" onclick="switchTab('prod-paste',this)">粘贴 CSV</div>
+        <div class="modal-tab" onclick="switchTab('prod-file',this)">上传文件</div>
+        <div class="modal-tab" onclick="switchTab('prod-template',this)">模板说明</div>
+    </div>
+    <div class="import-tab-content active" id="prod-paste">
+        <div class="section-label">粘贴 CSV 数据（格式：机型名称,月产量）：</div>
+        <textarea class="csv-textarea" id="prodCsvText" placeholder="A154,3000&#10;A113,1200&#10;D11Pro,800"></textarea>
+        <button class="btn btn-primary" style="margin-top:10px;" onclick="doImportProd()">确认导入</button>
+    </div>
+    <div class="import-tab-content" id="prod-file">
+        <div class="drop-zone" id="prodDropZone" onclick="document.getElementById('prodFileInput').click()">
+            📎 点击或拖拽 CSV 文件到此处
+        </div>
+        <input type="file" id="prodFileInput" accept=".csv,.txt" style="display:none;" onchange="handleProdFile(event)">
+    </div>
+    <div class="import-tab-content" id="prod-template">
+        <div class="template-preview">
+            <table><thead><tr><th>机型名称</th><th>月产量</th></tr></thead>
+            <tbody><tr><td>A154</td><td>3000</td></tr><tr><td>A113</td><td>1200</td></tr></tbody></table>
+        </div>
+        <p style="font-size:12px;color:var(--gray-500);">CSV格式：第一列机型名称，第二列月产量，支持大小写模糊匹配</p>
+    </div>
+</div>
+</div>
+</div>
+
+<!-- ==================== MODAL: BOM导入 ==================== -->
+<div class="modal-overlay" id="bomImportModal">
+<div class="modal" style="max-width:700px;">
+<div class="modal-header">
+    <h3 style="font-size:16px;">📥 批量导入BOM配置</h3>
+    <button class="btn btn-outline btn-sm" onclick="closeBomImport()">✕</button>
+</div>
+<div class="modal-body">
+    <div class="modal-tabs">
+        <div class="modal-tab active" onclick="switchTab('bom-paste',this)">粘贴 CSV</div>
+        <div class="modal-tab" onclick="switchTab('bom-file',this)">上传文件</div>
+        <div class="modal-tab" onclick="switchTab('bom-template',this)">模板说明</div>
+    </div>
+    <div class="import-tab-content active" id="bom-paste">
+        <div class="section-label">粘贴 CSV 数据（格式：机型,打胶位置,胶水型号,胶水料号,胶水描述,单套用量(支/桶),规格容量(g)）：</div>
+        <textarea class="csv-textarea" id="bomCsvText" placeholder="A154,前腔装喇叭打胶,AP1536,M.301.01.00062,硅胶|阿普邦AP1536|55g/支|白色,0.001091,55"></textarea>
+        <button class="btn btn-primary" style="margin-top:10px;" onclick="doImportBOM()">确认导入</button>
+    </div>
+    <div class="import-tab-content" id="bom-file">
+        <div class="drop-zone" id="bomDropZone" onclick="document.getElementById('bomFileInput').click()">
+            📎 点击或拖拽 CSV 文件到此处
+        </div>
+        <input type="file" id="bomFileInput" accept=".csv,.txt" style="display:none;" onchange="handleBomFile(event)">
+    </div>
+    <div class="import-tab-content" id="bom-template">
+        <div class="template-preview">
+            <table><thead><tr><th>机型</th><th>打胶位置</th><th>胶水型号</th><th>胶水料号</th><th>胶水描述</th><th>单套用量(支/桶)</th><th>规格容量(g)</th></tr></thead>
+            <tbody><tr><td>A154</td><td>前腔装喇叭打胶</td><td>AP1536</td><td>M.301.01.00062</td><td>硅胶|55g/支|白色</td><td>0.001091</td><td>55</td></tr></tbody></table>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<!-- ==================== MODAL: 库存导入 ==================== -->
+<div class="modal-overlay" id="invImportModal">
+<div class="modal">
+<div class="modal-header">
+    <h3 style="font-size:16px;">📥 批量导入库存</h3>
+    <button class="btn btn-outline btn-sm" onclick="closeInvImport()">✕</button>
+</div>
+<div class="modal-body">
+    <div class="modal-tabs">
+        <div class="modal-tab active" onclick="switchTab('inv-paste',this)">粘贴 CSV</div>
+        <div class="modal-tab" onclick="switchTab('inv-file',this)">上传文件</div>
+        <div class="modal-tab" onclick="switchTab('inv-template',this)">模板说明</div>
+    </div>
+    <div class="import-tab-content active" id="inv-paste">
+        <div class="section-label">粘贴 CSV 数据（格式：胶水型号,胶水料号,当前库存(支/桶)）：</div>
+        <textarea class="csv-textarea" id="invCsvText" placeholder="AP1536,M.301.01.00062,50&#10;AP1808B,M.301.01.00067,30"></textarea>
+        <button class="btn btn-primary" style="margin-top:10px;" onclick="doImportInventory()">确认导入</button>
+    </div>
+    <div class="import-tab-content" id="inv-file">
+        <div class="drop-zone" id="invDropZone" onclick="document.getElementById('invFileInput').click()">
+            📎 点击或拖拽 CSV 文件到此处
+        </div>
+        <input type="file" id="invFileInput" accept=".csv,.txt" style="display:none;" onchange="handleInvFile(event)">
+    </div>
+    <div class="import-tab-content" id="inv-template">
+        <div class="template-preview">
+            <table><thead><tr><th>胶水型号</th><th>胶水料号</th><th>当前库存(支/桶)</th></tr></thead>
+            <tbody><tr><td>AP1536</td><td>M.301.01.00062</td><td>50</td></tr></tbody></table>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<script>
+// ==================== API 配置 ====================
+const API_BASE = '/api';
+
+let authToken = '';
+let currentUser = null;
+
+// ==================== 认证 ====================
+function getUsers() {
+    // 前端不再维护用户列表，由后端处理
+    return {};
+}
+
+function showLogin() {
+    document.getElementById('loginForm').style.display = 'block';
+    document.getElementById('registerForm').style.display = 'none';
+    document.getElementById('loginError').style.display = 'none';
+    document.getElementById('loginUser').focus();
+}
+
+function showRegister() {
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('registerForm').style.display = 'block';
+    document.getElementById('loginError').style.display = 'none';
+    document.getElementById('regUser').focus();
+}
+
+async function doLogin() {
+    const username = document.getElementById('loginUser').value.trim();
+    const password = document.getElementById('loginPass').value;
+    const errEl = document.getElementById('loginError');
+    if (!username || !password) {
+        errEl.textContent = '请输入用户名和密码';
+        errEl.style.display = 'block';
+        return;
+    }
+    try {
+        const data = await fetch(API_BASE + '/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password })
+        }).then(r => r.json());
+        if (data.error) { errEl.textContent = data.error; errEl.style.display = 'block'; return; }
+        authToken = data.username;
+        currentUser = data;
+        localStorage.setItem('glue_session_user', data.username);
+        enterSystem();
+    } catch(e) {
+        errEl.textContent = '登录失败：' + e.message;
+        errEl.style.display = 'block';
+    }
+}
+
+async function doRegister() {
+    const username = document.getElementById('regUser').value.trim();
+    const password = document.getElementById('regPass').value;
+    const password2 = document.getElementById('regPass2').value;
+    const errEl = document.getElementById('loginError');
+    if (!username || !password) {
+        errEl.textContent = '请输入用户名和密码';
+        errEl.style.display = 'block';
+        return;
+    }
+    if (username.length < 2) { errEl.textContent = '用户名至少2个字符'; errEl.style.display = 'block'; return; }
+    if (password.length < 4) { errEl.textContent = '密码至少4个字符'; errEl.style.display = 'block'; return; }
+    if (password !== password2) { errEl.textContent = '两次输入的密码不一致'; errEl.style.display = 'block'; return; }
+    try {
+        const data = await fetch(API_BASE + '/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password })
+        }).then(r => r.json());
+        if (data.error) { errEl.textContent = data.error; errEl.style.display = 'block'; return; }
+        authToken = data.username;
+        currentUser = data;
+        localStorage.setItem('glue_session_user', data.username);
+        enterSystem();
+    } catch(e) {
+        errEl.textContent = '注册失败：' + e.message;
+        errEl.style.display = 'block';
+    }
+}
+
+function doLogout() {
+    if (!confirm('确定要退出登录吗？')) return;
+    authToken = '';
+    currentUser = null;
+    localStorage.removeItem('glue_session_user');
+    document.getElementById('loginOverlay').style.display = 'flex';
+    document.getElementById('loginUser').value = '';
+    document.getElementById('loginPass').value = '';
+    showLogin();
+}
+
+function enterSystem() {
+    document.getElementById('loginOverlay').style.display = 'none';
+    updateUserBadge();
+    init();
+}
+
+function updateUserBadge() {
+    const badge = document.getElementById('userBadge');
+    if (currentUser) {
+        const initial = currentUser.username.charAt(0).toUpperCase();
+        badge.innerHTML = '<span class="avatar">' + initial + '</span>' + currentUser.username + (currentUser.role === 'admin' ? ' · 管理员' : '');
+    }
+}
+
+async function openUserMgmt() {
+    try {
+        const users = await fetch(API_BASE + '/users', {
+            headers: { 'Authorization': 'Bearer ' + authToken }
+        }).then(r => r.json());
+        if (users.error) { showToast(users.error); return; }
+        const container = document.getElementById('userListContainer');
+        let html = '<table style="width:100%;"><thead><tr><th>用户名</th><th>角色</th><th>注册时间</th><th>操作</th></tr></thead><tbody>';
+        users.forEach(u => {
+            const date = new Date(u.created_at * 1000).toLocaleString('zh-CN');
+            const canDelete = u.username !== 'admin' && u.username !== currentUser.username;
+            html += '<tr><td class="fw-bold">' + escHtml(u.username) + (u.username === currentUser.username ? ' (当前)' : '') + '</td>'
+                + '<td>' + (u.role === 'admin' ? '管理员' : '普通用户') + '</td>'
+                + '<td style="font-size:12px;">' + date + '</td>'
+                + '<td>' + (canDelete ? '<button class="btn btn-danger btn-sm" onclick="deleteUser(\'' + escAttr(u.username) + '\')">删除</button>' : '-') + '</td></tr>';
+        });
+        html += '</tbody></table>';
+        container.innerHTML = html;
+        document.getElementById('userMgmtModal').style.display = 'flex';
+    } catch(e) { showToast('加载用户列表失败'); }
+}
+
+function closeUserMgmt() { document.getElementById('userMgmtModal').style.display = 'none'; }
+
+async function deleteUser(name) {
+    if (!confirm('确定删除用户 "' + name + '" 吗？')) return;
+    try {
+        await fetch(API_BASE + '/users/' + encodeURIComponent(name), {
+            method: 'DELETE',
+            headers: { 'Authorization': 'Bearer ' + authToken }
+        }).then(r => r.json());
+        openUserMgmt();
+        showToast('已删除用户：' + name);
+    } catch(e) { showToast('删除失败'); }
+}
+
+// ==================== DATA (API) ====================
+let models = [];  // {id, name, positions: [{id, name, glueModel, gluePartNo, glueDesc, perUnitUsage, containerSize}], qtyMap: {month: qty}}
+let modelIdCounter = 0;
+let inventoryList = [];  // [{id, glueModel, gluePartNo, glueDesc, containerSize, stockMap: {month: stock}}]
+let chartInstance = null;
+let currentMonth = '';
+let glueCatalog = [];
+
+// ==================== MONTH HELPERS ====================
+function getThisMonthStr() {
+    const d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
+}
+function getPrevMonthStr(monthStr) {
+    const [y, m] = monthStr.split('-').map(Number);
+    const d = new Date(y, m - 2, 1);
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
+}
+function getNextMonthStr(monthStr) {
+    const [y, m] = monthStr.split('-').map(Number);
+    const d = new Date(y, m, 1);
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
+}
+function getMonthQty(m) { return (m.qtyMap && m.qtyMap[currentMonth]) || 0; }
+function setMonthQty(m, qty) { if (!m.qtyMap) m.qtyMap = {}; m.qtyMap[currentMonth] = qty; }
+function getMonthStock(inv) { return (inv.stockMap && inv.stockMap[currentMonth]) || 0; }
+function setMonthStock(inv, stock) { if (!inv.stockMap) inv.stockMap = {}; inv.stockMap[currentMonth] = stock; }
+function formatMonthDisplay(ms) {
+    const [y, m] = ms.split('-');
+    return y + '年' + parseInt(m) + '月';
+}
+
+function changeMonth(delta) {
+    const newMonth = delta > 0 ? getNextMonthStr(currentMonth) : getPrevMonthStr(currentMonth);
+    setCurrentMonth(newMonth);
+}
+function onMonthChange() {
+    const val = document.getElementById('monthPicker').value;
+    if (val) setCurrentMonth(val);
+}
+function setCurrentMonth(ms) {
+    currentMonth = ms;
+    document.getElementById('monthPicker').value = ms;
+    document.getElementById('monthDisplay').textContent = formatMonthDisplay(ms);
+    refreshAll();
+    updateMonthBadge();
+}
+function gotoThisMonth() { setCurrentMonth(getThisMonthStr()); }
+
+function updateMonthBadge() {
+    let hasData = false;
+    models.forEach(m => { if (getMonthQty(m) > 0) hasData = true; });
+    if (!hasData) {
+        inventoryList.forEach(inv => { if (getMonthStock(inv) > 0) hasData = true; });
+    }
+    const badge = document.getElementById('monthDataBadge');
+    badge.textContent = hasData ? formatMonthDisplay(currentMonth) + ' 已有数据' : formatMonthDisplay(currentMonth) + ' 暂无数据';
+    badge.style.background = hasData ? 'var(--green-light)' : 'var(--gray-100)';
+    badge.style.color = hasData ? '#065f46' : 'var(--gray-500)';
+}
+
+async function copyFromPrevMonth() {
+    const prevMonth = getPrevMonthStr(currentMonth);
+    // 复制月产量
+    for (const m of models) {
+        const prevQty = (m.qtyMap && m.qtyMap[prevMonth]) || 0;
+        if (prevQty > 0) {
+            await saveProduction(m.id, currentMonth, prevQty);
+            setMonthQty(m, prevQty);
+        }
+    }
+    // 复制月库存
+    for (const inv of inventoryList) {
+        const prevStock = (inv.stockMap && inv.stockMap[prevMonth]) || 0;
+        if (prevStock > 0) {
+            await saveStock(inv.id, currentMonth, prevStock);
+            setMonthStock(inv, prevStock);
+        }
+    }
+    refreshAll();
+    showToast('已从' + formatMonthDisplay(prevMonth) + '复制产量及库存');
+}
+
+// ==================== API 调用封装 ====================
+async function apiRequest(url, options = {}) {
+    const headers = { 'Content-Type': 'application/json', ...options.headers };
+    if (authToken) headers['Authorization'] = 'Bearer ' + authToken;
+    const res = await fetch(API_BASE + url, { ...options, headers });
+    if (res.status === 401) { doLogout(); throw new Error('会话过期'); }
+    return res.json();
+}
+
+async function loadModels() {
+    const data = await apiRequest('/models?month=' + currentMonth);
+    models = data.map(m => ({
+        id: m.id,
+        name: m.name,
+        positions: m.positions || [],
+        qtyMap: m.qtyMap || {}
+    }));
+    modelIdCounter = models.length > 0 ? Math.max(...models.map(m => m.id)) : 0;
+}
+
+async function saveModel(m) {
+    if (m.id > 0 && models.find(em => em.id === m.id)) {
+        return apiRequest('/models/' + m.id, {
+            method: 'PUT',
+            body: JSON.stringify({ name: m.name, positions: m.positions })
+        });
+    } else {
+        const data = await apiRequest('/models', {
+            method: 'POST',
+            body: JSON.stringify({ name: m.name, positions: m.positions })
+        });
+        m.id = data.id;
+        return data;
+    }
+}
+
+async function deleteModelApi(id) {
+    return apiRequest('/models/' + id, { method: 'DELETE' });
+}
+
+async function saveProduction(modelId, month, qty) {
+    return apiRequest('/production', {
+        method: 'PUT',
+        body: JSON.stringify({ modelId, month, qty })
+    });
+}
+
+async function loadInventory() {
+    const data = await apiRequest('/inventory?month=' + currentMonth);
+    inventoryList = data.map(inv => ({
+        id: inv.id,
+        glueModel: inv.glue_model || inv.glueModel,
+        gluePartNo: inv.glue_part_no || inv.gluePartNo,
+        glueDesc: inv.glue_desc || inv.glueDesc,
+        containerSize: inv.container_size || inv.containerSize || 0,
+        stockMap: inv.stockMap || {}
+    }));
+}
+
+async function saveInventoryItem(inv) {
+    if (inv.id > 0 && inventoryList.find(ei => ei.id === inv.id)) {
+        return apiRequest('/inventory/' + inv.id, {
+            method: 'PUT',
+            body: JSON.stringify({ glueModel: inv.glueModel, gluePartNo: inv.gluePartNo, glueDesc: inv.glueDesc, containerSize: inv.containerSize })
+        });
+    } else {
+        const data = await apiRequest('/inventory', {
+            method: 'POST',
+            body: JSON.stringify({ glueModel: inv.glueModel, gluePartNo: inv.gluePartNo, glueDesc: inv.glueDesc, containerSize: inv.containerSize })
+        });
+        inv.id = data.id || data.success ? inv.id : 0;
+        return data;
+    }
+}
+
+async function saveStock(inventoryId, month, stock) {
+    return apiRequest('/stock', {
+        method: 'PUT',
+        body: JSON.stringify({ inventoryId, month, stock })
+    });
+}
+
+async function deleteInventoryApi(id) {
+    return apiRequest('/inventory/' + id, { method: 'DELETE' });
+}
+
+// ==================== MODULE SWITCH ====================
+function switchModule(n) {
+    document.querySelectorAll('.module-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.module-content').forEach(c => c.classList.remove('active'));
+    document.getElementById('tab' + n).classList.add('active');
+    document.getElementById('module' + n).classList.add('active');
+    if (n === 3 && chartInstance) chartInstance.resize();
+}
+
+// ==================== INIT ====================
+async function init() {
+    if (!authToken) {
+        const saved = localStorage.getItem('glue_session_user');
+        if (saved) {
+            // Verify token is still valid
+            try {
+                const res = await fetch(API_BASE + '/users', {
+                    headers: { 'Authorization': 'Bearer ' + saved }
+                });
+                if (res.ok) {
+                    authToken = saved;
+                    currentUser = { username: saved, role: 'user' };
+                    updateUserBadge();
+                }
+            } catch(e) { /* ignore */ }
+        }
+        if (!authToken) {
+            document.getElementById('loginOverlay').style.display = 'flex';
+            showLogin();
+            return;
+        }
+    }
+    document.getElementById('loginOverlay').style.display = 'none';
+
+    currentMonth = getThisMonthStr();
+    document.getElementById('monthPicker').value = currentMonth;
+    document.getElementById('monthDisplay').textContent = formatMonthDisplay(currentMonth);
+
+    try {
+        await loadModels();
+        await loadInventory();
+    } catch(e) {
+        showToast('加载数据失败：' + e.message);
+    }
+
+    // Load glue catalog from database.js (static reference data)
+    if (typeof GLUE_DATABASE !== 'undefined' && GLUE_DATABASE.glueCatalog) {
+        glueCatalog = GLUE_DATABASE.glueCatalog;
+    }
+
+    refreshAll();
+    updateMonthBadge();
+    showToast('数据已加载：' + models.length + '个机型 · ' + inventoryList.length + '条库存');
+}
+
+// ==================== MODULE 1: PRODUCTION ====================
+function renderProduction() {
+    const tbody = document.getElementById('prodTableBody');
+    const searchInput = document.getElementById('prodSearchInput');
+    const query = searchInput ? (searchInput.value || '').toLowerCase().trim() : '';
+
+    let filtered = models;
+    if (query) filtered = models.filter(m => m.name.toLowerCase().includes(query));
+
+    if (filtered.length === 0 && models.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--gray-500);padding:24px;">暂无机型，请点击"添加机型"或导入</td></tr>';
+        return;
+    }
+    if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--gray-500);padding:24px;">未找到匹配的机型</td></tr>';
+        return;
+    }
+
+    tbody.innerHTML = filtered.map(m => {
+        const qty = getMonthQty(m);
+        const posCount = m.positions.length;
+        const glueSet = new Set(m.positions.map(p => p.glueModel).filter(Boolean));
+        return `<tr>
+            <td class="fw-bold">${escHtml(m.name)}</td>
+            <td><input type="number" class="model-qty-input" value="${qty}" min="0" onchange="onProdQtyChange(${m.id}, this.value)" style="${qty > 0 ? 'border-color:var(--green);background:var(--green-light);' : ''}"></td>
+            <td style="text-align:center;">${posCount}</td>
+            <td style="text-align:center;">${glueSet.size}</td>
+            <td><button class="btn btn-danger btn-sm" onclick="onDeleteModel(${m.id})">删除</button></td>
+        </tr>`;
+    }).join('');
+}
+
+async function onProdQtyChange(id, value) {
+    const qty = parseInt(value) || 0;
+    const m = models.find(m => m.id === id);
+    if (m) { setMonthQty(m, qty); }
+    try {
+        await saveProduction(id, currentMonth, qty);
+        updateKPIs();
+        updateMonthBadge();
+        renderProduction();
+    } catch(e) { showToast('保存失败'); }
+}
+
+async function onDeleteModel(id) {
+    if (!confirm('确定删除此机型及其BOM配置吗？')) return;
+    try {
+        await deleteModelApi(id);
+        models = models.filter(m => m.id !== id);
+        refreshAll();
+        showToast('已删除机型');
+    } catch(e) { showToast('删除失败'); }
+}
+
+function addManualModel() {
+    const name = prompt('请输入机型名称：', '新机型');
+    if (!name) return;
+    addModelByName(name);
+}
+
+async function addModelByName(name) {
+    try {
+        const data = await apiRequest('/models', {
+            method: 'POST',
+            body: JSON.stringify({ name, positions: [] })
+        });
+        models.push({ id: data.id, name, positions: [], qtyMap: {} });
+        refreshAll();
+        showToast('已添加机型：' + name);
+    } catch(e) { showToast('添加失败'); }
+}
+
+// ==================== MODULE 2: BOM ====================
+function renderBOM() {
+    const container = document.getElementById('bomContainer');
+    const searchInput = document.getElementById('bomSearchInput');
+    const searchQuery = searchInput ? (searchInput.value || '').toLowerCase().trim() : '';
+    const infoEl = document.getElementById('bomSearchInfo');
+
+    if (models.length === 0) {
+        container.innerHTML = '<div class="empty-state"><div style="font-size:32px;">🧴</div><p>暂无机型，请先在模块一添加机型</p></div>';
+        if (infoEl) infoEl.textContent = '※ 机型列表来自模块一，月产量请在模块一中编辑';
+        return;
+    }
+
+    let filteredModels = models;
+    if (searchQuery) {
+        filteredModels = models.filter(m => m.name.toLowerCase().includes(searchQuery));
+        if (infoEl) infoEl.textContent = '🔍 搜索"' + searchQuery + '"，找到 ' + filteredModels.length + ' 个机型（共 ' + models.length + ' 个）';
+    } else {
+        if (infoEl) infoEl.textContent = '※ 机型列表来自模块一，月产量请在模块一中编辑（共 ' + models.length + ' 个机型）';
+    }
+
+    if (filteredModels.length === 0) {
+        container.innerHTML = '<div class="empty-state"><div style="font-size:32px;">🔍</div><p>未找到匹配的机型</p></div>';
+        return;
+    }
+
+    container.innerHTML = filteredModels.map(m => `
+        <div class="model-card" id="bomModel${m.id}">
+            <div class="model-card-header">
+                <div class="model-info">
+                    <span class="model-name">📱 ${escHtml(m.name)}</span>
+                    <span style="font-size:12px;color:var(--gray-500);">${m.positions.length}个位置</span>
+                </div>
+                <div class="model-actions">
+                    <button class="btn btn-outline btn-sm" onclick="addPosition(${m.id})">+ 添加位置</button>
+                    <button class="btn btn-outline btn-sm" onclick="copyBOM(${m.id})" style="font-size:11px;" title="复制所有BOM配置到新机型">📋 复制BOM</button>
+                    <button class="btn btn-danger btn-sm" onclick="onDeleteModel(${m.id})">删除机型</button>
+                </div>
+            </div>
+            <div class="model-card-body">
+                ${m.positions.length === 0 ? '<div style="font-size:12px;color:var(--gray-500);padding:8px 0;">暂无位置配置，点击"添加位置"</div>' : `
+                <div class="table-wrapper"><table>
+                    <thead><tr>
+                        <th style="width:160px;">打胶位置</th>
+                        <th>胶水型号</th><th>胶水料号</th><th>胶水描述</th>
+                        <th style="width:110px;">单套用量(支/桶)</th><th style="width:90px;">规格容量(g)</th>
+                        <th style="width:60px;">操作</th>
+                    </tr></thead>
+                    <tbody>
+                        ${m.positions.map(p => `
+                        <tr>
+                            <td><input type="text" class="wide" value="${escHtml(p.name)}" onchange="onPosChange(${m.id},${p.id},'name',this.value)" placeholder="位置名称"></td>
+                            <td><input type="text" class="mid" value="${escHtml(p.glueModel)}" onchange="onPosChange(${m.id},${p.id},'glueModel',this.value)" placeholder="胶水型号"></td>
+                            <td><input type="text" class="mid" value="${escHtml(p.gluePartNo)}" onchange="onPosChange(${m.id},${p.id},'gluePartNo',this.value)" placeholder="料号"></td>
+                            <td><input type="text" class="wide" value="${escHtml(p.glueDesc)}" onchange="onPosChange(${m.id},${p.id},'glueDesc',this.value)" placeholder="描述"></td>
+                            <td><input type="number" class="tight" value="${p.perUnitUsage}" min="0" step="0.000001" onchange="onPosChange(${m.id},${p.id},'perUnitUsage',this.value)"></td>
+                            <td><input type="number" class="tight" value="${p.containerSize}" min="0" step="0.1" onchange="onPosChange(${m.id},${p.id},'containerSize',this.value)"></td>
+                            <td><button class="btn btn-outline btn-sm" onclick="deletePosition(${m.id},${p.id})">✕</button></td>
+                        </tr>
+                        `).join('')}
+                    </tbody>
+                </table></div>`}
+            </div>
+        </div>
+    `).join('');
+}
+
+let posIdCounter = Date.now();
+function addPosition(modelId) {
+    const m = models.find(m => m.id === modelId);
+    if (!m) return;
+    m.positions.push({ id: posIdCounter++, name: '', glueModel: '', gluePartNo: '', glueDesc: '', perUnitUsage: 0, containerSize: 0 });
+    saveModelBOM(m);
+}
+
+function deletePosition(modelId, posId) {
+    const m = models.find(m => m.id === modelId);
+    if (!m) return;
+    m.positions = m.positions.filter(p => p.id !== posId);
+    saveModelBOM(m);
+}
+
+async function onPosChange(modelId, posId, field, value) {
+    const m = models.find(m => m.id === modelId);
+    if (!m) return;
+    const p = m.positions.find(p => p.id === posId);
+    if (!p) return;
+    if (field === 'perUnitUsage' || field === 'containerSize') {
+        p[field] = parseFloat(value) || 0;
+    } else {
+        p[field] = value;
+    }
+    await saveModelBOM(m);
+    // auto sync inventory
+    if (p.glueModel && p.gluePartNo) {
+        await syncInvFromPosition(p);
+    }
+}
+
+async function saveModelBOM(m) {
+    try {
+        await saveModel(m);
+        renderBOM();
+        calculate();
+    } catch(e) { showToast('保存失败'); }
+}
+
+async function syncInvFromPosition(p) {
+    let inv = inventoryList.find(i => i.glueModel === p.glueModel && i.gluePartNo === p.gluePartNo);
+    if (!inv) {
+        inv = { id: 0, glueModel: p.glueModel, gluePartNo: p.gluePartNo, glueDesc: p.glueDesc, containerSize: p.containerSize, stockMap: {} };
+        try {
+            await saveInventoryItem(inv);
+            await loadInventory();
+        } catch(e) { /* ignore */ }
+    }
+}
+
+// ==================== COPY BOM ====================
+function copyBOM(sourceId) {
+    const src = models.find(m => m.id === sourceId);
+    if (!src) return;
+    if (src.positions.length === 0) { showToast('该机型无需复制的位置配置'); return; }
+    const overlay = document.getElementById('copyBomOverlay');
+    document.getElementById('copyBomSourceInfo').textContent = src.name + '（' + src.positions.length + '个位置）';
+    const targetSelect = document.getElementById('copyBomTargetSelect');
+    targetSelect.innerHTML = '<option value="">-- 创建新机型（输入名称） --</option>';
+    models.forEach(m => {
+        if (m.id !== sourceId) {
+            targetSelect.innerHTML += '<option value="' + m.id + '">' + escHtml(m.name) + '（' + m.positions.length + '个位置）</option>';
+        }
+    });
+    document.getElementById('copyBomNewName').value = src.name + '-副本';
+    document.getElementById('copyBomNewName').style.display = 'block';
+    overlay.style.display = 'flex';
+    overlay._copySourceId = sourceId;
+}
+
+function confirmCopyBOM() {
+    const overlay = document.getElementById('copyBomOverlay');
+    const sourceId = overlay._copySourceId;
+    const targetSelect = document.getElementById('copyBomTargetSelect');
+    const newNameInput = document.getElementById('copyBomNewName');
+    const targetId = targetSelect.value ? parseInt(targetSelect.value) : null;
+
+    if (!targetId) {
+        const newName = (newNameInput.value || '').trim();
+        if (!newName) { showToast('请输入新机型名称'); return; }
+        doCopyBOM(sourceId, null, newName);
+    } else {
+        const target = models.find(m => m.id === targetId);
+        if (!target) return;
+        if (target.positions.length > 0) {
+            if (!confirm('目标机型"' + target.name + '"已有 ' + target.positions.length + ' 个位置配置，复制将覆盖现有配置。确定继续？')) return;
+        }
+        doCopyBOM(sourceId, targetId, null);
+    }
+    overlay.style.display = 'none';
+}
+
+function cancelCopyBOM() { document.getElementById('copyBomOverlay').style.display = 'none'; }
+function onCopyTargetChange() {
+    const targetSelect = document.getElementById('copyBomTargetSelect');
+    document.getElementById('copyBomNewName').style.display = targetSelect.value ? 'none' : 'block';
+}
+
+async function doCopyBOM(sourceId, targetId, newName) {
+    const src = models.find(m => m.id === sourceId);
+    if (!src) return;
+    if (targetId) {
+        const target = models.find(m => m.id === targetId);
+        if (!target) return;
+        target.positions = src.positions.map(p => ({...p, id: posIdCounter++}));
+        await saveModelBOM(target);
+        showToast('已将"' + src.name + '"的BOM复制到"' + target.name + '"');
+    } else {
+        await addModelByName(newName);
+        const newModel = models[models.length - 1];
+        newModel.positions = src.positions.map(p => ({...p, id: posIdCounter++}));
+        await saveModelBOM(newModel);
+        showToast('已创建新机型"' + newName + '"，BOM来自"' + src.name + '"');
+    }
+}
+
+// ==================== GLUE CATALOG ====================
+function toggleCatalog() {
+    const container = document.getElementById('glueCatalogContainer');
+    const btn = document.getElementById('catalogToggleBtn');
+    if (container.style.display === 'none') {
+        container.style.display = 'block';
+        btn.textContent = '▲ 收起';
+        renderGlueCatalog();
+    } else {
+        container.style.display = 'none';
+        btn.textContent = '▼ 展开';
+    }
+}
+
+function renderGlueCatalog() {
+    const tbody = document.querySelector('#glueCatalogTable tbody');
+    if (!tbody) return;
+    const search = (document.getElementById('catalogSearch') ? document.getElementById('catalogSearch').value : '').toLowerCase().trim();
+    let filtered = glueCatalog;
+    if (search) {
+        filtered = glueCatalog.filter(g =>
+            (g.name || '').toLowerCase().includes(search) ||
+            (g.partNo || '').toLowerCase().includes(search) ||
+            (g.spec || '').toLowerCase().includes(search) ||
+            (g.type || '').toLowerCase().includes(search)
+        );
+    }
+    const info = document.getElementById('catalogInfo');
+    if (info) info.textContent = '共 ' + glueCatalog.length + ' 种胶水' + (search ? '，筛选出 ' + filtered.length + ' 条' : '');
+    if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--gray-500);padding:16px;">未找到匹配的胶水</td></tr>';
+        return;
+    }
+    tbody.innerHTML = filtered.map((g, i) => {
+        return `<tr>
+            <td style="text-align:center;color:var(--gray-500);">${i + 1}</td>
+            <td style="font-weight:600;color:var(--primary-dark);">${escHtml(g.name)}</td>
+            <td style="font-family:monospace;">${escHtml(g.partNo)}</td>
+            <td style="font-size:12px;">${escHtml(g.type)}</td>
+            <td style="font-size:12px;">${escHtml(g.spec)}</td>
+            <td style="text-align:center;">${g.containerSize > 0 ? g.containerSize + ' ML' : '-'}</td>
+        </tr>`;
+    }).join('');
+}
+
+// ==================== MODULE 3: INVENTORY ====================
+function renderInventory() {
+    const tbody = document.querySelector('#inventoryTable tbody');
+    if (inventoryList.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--gray-500);padding:24px;">暂无库存数据，请点击「+ 新增胶水」手动添加或导入</td></tr>';
+        return;
+    }
+    const today = new Date();
+    tbody.innerHTML = inventoryList.map(inv => {
+        let expiryHtml = '-';
+        if (inv.expiryDate && inv.expiryDate !== '1900-12-25 00:00:00') {
+            const expDate = new Date(inv.expiryDate);
+            const daysLeft = Math.ceil((expDate - today) / (1000 * 60 * 60 * 24));
+            let color = 'var(--green)';
+            let bg = '';
+            if (daysLeft < 0) { color = 'var(--red)'; bg = 'background:var(--red-light);'; }
+            else if (daysLeft <= 10) { color = 'var(--red)'; bg = 'background:var(--red-light);'; }
+            else if (daysLeft <= 30) { color = 'var(--orange)'; bg = 'background:var(--orange-light);'; }
+            const dateStr = inv.expiryDate.split(' ')[0];
+            expiryHtml = `<div style="${bg}padding:3px 8px;border-radius:4px;font-size:12px;color:${color};font-weight:600;">${dateStr}<br><span style="font-size:10px;font-weight:400;">${daysLeft < 0 ? '已过期' + Math.abs(daysLeft) + '天' : '剩' + daysLeft + '天'}</span></div>`;
+        }
+        return `<tr>
+            <td><input type="text" class="mid" value="${escHtml(inv.glueModel)}" onchange="onInvFieldChange(${inv.id},'glueModel',this.value)" placeholder="输入胶水型号"></td>
+            <td><input type="text" class="mid" value="${escHtml(inv.gluePartNo)}" onchange="onInvFieldChange(${inv.id},'gluePartNo',this.value)" placeholder="输入料号"></td>
+            <td><input type="text" class="wide" value="${escHtml(inv.glueDesc)}" onchange="onInvFieldChange(${inv.id},'glueDesc',this.value)" placeholder="输入描述"></td>
+            <td><input type="number" class="tight" value="${inv.containerSize || 0}" min="0" step="0.1" onchange="onInvFieldChange(${inv.id},'containerSize',this.value)" style="width:70px;"></td>
+            <td><input type="number" class="tight" value="${getMonthStock(inv)}" min="0" step="1"
+                onchange="onInvStockChange(${inv.id}, this.value)"></td>
+            <td>${expiryHtml}</td>
+            <td><button class="btn btn-outline btn-sm" onclick="onDeleteInventory(${inv.id})">删除</button></td>
+        </tr>`;
+    }).join('');
+}
+
+async function onInvFieldChange(id, field, value) {
+    const inv = inventoryList.find(i => i.id === id);
+    if (!inv) return;
+    if (field === 'containerSize') {
+        inv[field] = parseFloat(value) || 0;
+    } else {
+        inv[field] = value;
+    }
+    try {
+        await saveInventoryItem(inv);
+        await loadInventory();
+        renderInventory();
+        calculate();
+    } catch(e) { showToast('保存失败'); }
+}
+
+async function onInvStockChange(id, value) {
+    const stock = parseInt(value) || 0;
+    try {
+        await saveStock(id, currentMonth, stock);
+        const inv = inventoryList.find(i => i.id === id);
+        if (inv) setMonthStock(inv, stock);
+        calculate();
+        updateMonthBadge();
+    } catch(e) { showToast('保存失败'); }
+}
+
+async function onDeleteInventory(id) {
+    if (!confirm('确定删除此库存项吗？')) return;
+    try {
+        await deleteInventoryApi(id);
+        inventoryList = inventoryList.filter(i => i.id !== id);
+        renderInventory();
+        calculate();
+    } catch(e) { showToast('删除失败'); }
+}
+
+async function addInventoryRow() {
+    const inv = { id: 0, glueModel: '', gluePartNo: '', glueDesc: '', containerSize: 0, stockMap: {} };
+    try {
+        await saveInventoryItem(inv);
+        await loadInventory();
+        renderInventory();
+        setTimeout(() => {
+            const rows = document.querySelectorAll('#inventoryTable tbody tr');
+            if (rows.length > 0) {
+                const lastRow = rows[rows.length - 1];
+                const firstInput = lastRow.querySelector('input');
+                if (firstInput) firstInput.focus();
+            }
+        }, 100);
+    } catch(e) { showToast('添加失败'); }
+}
+
+async function syncInventoryFromBOM() {
+    let added = 0;
+    for (const m of models) {
+        for (const p of m.positions) {
+            if (p.glueModel && p.gluePartNo) {
+                const exists = inventoryList.find(i => i.glueModel === p.glueModel && i.gluePartNo === p.gluePartNo);
+                if (!exists) {
+                    await saveInventoryItem({ id: 0, glueModel: p.glueModel, gluePartNo: p.gluePartNo, glueDesc: p.glueDesc, containerSize: p.containerSize, stockMap: {} });
+                    added++;
+                }
+            }
+        }
+    }
+    await loadInventory();
+    renderInventory();
+    showToast('已从BOM同步 ' + added + ' 条库存（新胶水初始库存为0）');
+}
+
+// ==================== CALCULATE ====================
+function computeDemand() {
+    const map = {};
+    models.forEach(m => {
+        const qty = getMonthQty(m);
+        if (qty <= 0) return;
+        m.positions.forEach(p => {
+            if (!p.glueModel) return;
+            const key = p.glueModel + '|' + p.gluePartNo;
+            if (!map[key]) {
+                map[key] = { glueModel: p.glueModel, gluePartNo: p.gluePartNo, glueDesc: p.glueDesc, containerSize: p.containerSize, totalDemand: 0, totalDemandCeil: 0, details: [] };
+            }
+            const exact = qty * p.perUnitUsage;
+            map[key].totalDemand += exact;
+            map[key].details.push({ modelName: m.name, posName: p.name, demand: exact, qty, perUnitUsage: p.perUnitUsage });
+        });
+    });
+    // Round up
+    Object.values(map).forEach(d => {
+        d.totalDemandCeil = Math.ceil(d.totalDemand);
+        d.details.forEach(x => { x.demandCeil = Math.ceil(x.demand); });
+    });
+    return map;
+}
+
+function calculate() {
+    const demandMap = computeDemand();
+    const monthLabel = formatMonthDisplay(currentMonth);
+    const resultLabel = document.getElementById('resultMonthLabel');
+    if (resultLabel) resultLabel.textContent = monthLabel;
+    const invLabel = document.getElementById('invMonthLabel');
+    if (invLabel) invLabel.textContent = monthLabel;
+    const detailLabel = document.getElementById('detailMonthLabel');
+    if (detailLabel) detailLabel.textContent = monthLabel;
+    const resultLabel2 = document.getElementById('resultMonthLabel2');
+    if (resultLabel2) resultLabel2.textContent = monthLabel;
+
+    renderDemandTable(demandMap);
+    renderPurchaseTable(demandMap);
+    renderDetailTable(demandMap);
+    updateChart(demandMap);
+    updateKPIs(demandMap);
+}
+
+function renderDemandTable(demandMap) {
+    const tbody = document.querySelector('#demandTable tbody');
+    if (Object.keys(demandMap).length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--gray-500);padding:24px;">请先在模块一/二配置机型产量和BOM数据</td></tr>';
+        return;
+    }
+    tbody.innerHTML = Object.entries(demandMap).map(([key, d]) => {
+        const involved = d.details.map(x => x.modelName + '/' + x.posName).join('；');
+        return `<tr>
+            <td class="fw-bold">${escHtml(d.glueModel)}</td>
+            <td>${escHtml(d.gluePartNo)}</td>
+            <td style="font-size:12px;">${escHtml(d.glueDesc)}</td>
+            <td>${d.containerSize || '-'} g</td>
+            <td class="fw-bold" style="color:var(--primary-dark);">${d.totalDemandCeil} <span style="font-size:11px;color:var(--gray-500);">(${d.totalDemand.toFixed(3)})</span></td>
+            <td style="font-size:11px;color:var(--gray-500);">${escHtml(involved)}</td>
+        </tr>`;
+    }).join('');
+}
+
+function renderPurchaseTable(demandMap) {
+    const tbody = document.querySelector('#resultTable tbody');
+    const detailTbody = document.querySelector('#detailTable tbody');
+    if (Object.keys(demandMap).length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--gray-500);padding:24px;">请先配置数据</td></tr>';
+        detailTbody.innerHTML = '';
+        updateChart([]);
+        updateKPIs();
+        return;
+    }
+    tbody.innerHTML = Object.entries(demandMap).map(([key, d]) => {
+        const inv = inventoryList.find(i => i.glueModel === d.glueModel && i.gluePartNo === d.gluePartNo);
+        const stock = inv ? getMonthStock(inv) : 0;
+        const purchaseNeed = Math.max(0, d.totalDemandCeil - stock);
+        const rowClass = purchaseNeed > 0 ? '' : 'bg-green-light';
+        const status = purchaseNeed > 0
+            ? '<span class="text-red fw-bold">需采购</span>'
+            : '<span class="text-green fw-bold">库存充足 ✓</span>';
+        return `<tr class="${rowClass}">
+            <td class="fw-bold">${escHtml(d.glueModel)}</td>
+            <td>${escHtml(d.gluePartNo)}</td>
+            <td style="font-size:12px;">${escHtml(d.glueDesc)}</td>
+            <td class="fw-bold">${d.totalDemandCeil} <span style="font-size:11px;color:var(--gray-500);">(${d.totalDemand.toFixed(3)})</span></td>
+            <td>${stock}</td>
+            <td class="fw-bold ${purchaseNeed > 0 ? 'text-red' : 'text-green'}">${purchaseNeed > 0 ? purchaseNeed : '0 ✓'}</td>
+            <td>${status}</td>
+        </tr>`;
+    }).join('');
+}
+
+function renderDetailTable(demandMap) {
+    const detailTbody = document.querySelector('#detailTable tbody');
+    const allDetails = [];
+    Object.values(demandMap).forEach(d => d.details.forEach(x => {
+        x.glueModel = d.glueModel; x.gluePartNo = d.gluePartNo;
+        x.containerSize = d.containerSize;
+        allDetails.push(x);
+    }));
+    detailTbody.innerHTML = allDetails.map(x => `<tr>
+        <td>${escHtml(x.modelName)}</td>
+        <td>${x.qty}</td>
+        <td>${escHtml(x.posName)}</td>
+        <td>${escHtml(x.glueModel)}</td>
+        <td>${escHtml(x.gluePartNo)}</td>
+        <td>${x.perUnitUsage}</td>
+        <td>${x.containerSize || '-'}</td>
+        <td>${x.demand.toFixed(3)}</td>
+        <td class="fw-bold">${x.demandCeil || Math.ceil(x.demand)}</td>
+    </tr>`).join('');
+}
+
+// ==================== KPI ====================
+function updateKPIs(demandMap) {
+    const monthLabel = formatMonthDisplay(currentMonth);
+    document.getElementById('kpiProdMonthLabel').textContent = monthLabel;
+
+    // Module 1
+    document.getElementById('kpiProdModels').textContent = models.length;
+    const scheduledCount = models.filter(m => getMonthQty(m) > 0).length;
+    document.getElementById('kpiProdScheduled').textContent = scheduledCount;
+    let totalProd = 0;
+    models.forEach(m => { totalProd += getMonthQty(m); });
+    document.getElementById('kpiProdTotal').innerHTML = totalProd + '<span class="kpi-unit">台</span>';
+
+    // Module 3
+    if (demandMap) {
+        let needBuyCount = 0, totalPurchase = 0;
+        Object.entries(demandMap).forEach(([key, d]) => {
+            const inv = inventoryList.find(i => i.glueModel === d.glueModel && i.gluePartNo === d.gluePartNo);
+            const stock = inv ? getMonthStock(inv) : 0;
+            const purchase = Math.max(0, d.totalDemandCeil - stock);
+            if (purchase > 0) { needBuyCount++; totalPurchase += purchase; }
+        });
+        document.getElementById('kpiNeedBuy').textContent = needBuyCount;
+        document.getElementById('kpiTotalPurchase').innerHTML = totalPurchase + '<span class="kpi-unit">支/桶</span>';
+    }
+    document.getElementById('kpiInvCount').textContent = inventoryList.length;
+}
+
+// ==================== CHART ====================
+function updateChart(demandMap) {
+    const entries = Object.entries(demandMap);
+    const labels = entries.map(([k, d]) => d.glueModel + '\n' + d.gluePartNo.substring(0, 8));
+    const demandData = entries.map(([k, d]) => d.totalDemandCeil);
+    const purchaseData = entries.map(([k, d]) => {
+        const inv = inventoryList.find(i => i.glueModel === d.glueModel && i.gluePartNo === d.gluePartNo);
+        return Math.max(0, d.totalDemandCeil - (inv ? getMonthStock(inv) : 0));
+    });
+
+    if (chartInstance) chartInstance.destroy();
+    const ctx = document.getElementById('purchaseChart').getContext('2d');
+    chartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels,
+            datasets: [
+                { label: '月需求量(取整)', data: demandData, backgroundColor: 'rgba(37,99,235,0.7)', borderRadius: 4 },
+                { label: '建议采购量', data: purchaseData, backgroundColor: 'rgba(245,158,11,0.7)', borderRadius: 4 }
+            ]
+        },
+        options: {
+            responsive: true, maintainRatio: true, maxHeight: 300,
+            plugins: { legend: { position: 'top' } },
+            scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
+        }
+    });
+}
+
+// ==================== REFRESH ALL ====================
+function refreshAll() {
+    renderProduction();
+    renderBOM();
+    renderInventory();
+    calculate();
+    updateMonthBadge();
+}
+
+// ==================== EXPORT ====================
+function exportDemandCSV() {
+    let csv = '\uFEFF胶水需求量_' + currentMonth + '\n\n';
+    csv += '胶水型号,胶水料号,胶水描述,规格容量(g),月需求量(精确),月需求量(取整),涉及机型/位置\n';
+    const demandMap = computeDemand();
+    Object.values(demandMap).forEach(d => {
+        const involved = d.details.map(x => x.modelName + '/' + x.posName).join('、');
+        csv += `"${d.glueModel}","${d.gluePartNo}","${d.glueDesc}",${d.containerSize || 0},${d.totalDemand.toFixed(3)},${d.totalDemandCeil},"${involved}"\n`;
+    });
+    downloadCSV(csv, '胶水需求量_' + currentMonth + '.csv');
+}
+
+function exportCSV() {
+    let csv = '\uFEFF胶水采购需求_' + currentMonth + '\n\n';
+    csv += '胶水型号,胶水料号,胶水描述,月需求量(精确),月需求量(取整),当前库存(支/桶),建议采购(支/桶),涉及机型/位置\n';
+    const demandMap = computeDemand();
+    Object.values(demandMap).forEach(d => {
+        const inv = inventoryList.find(i => i.glueModel === d.glueModel && i.gluePartNo === d.gluePartNo);
+        const stock = inv ? getMonthStock(inv) : 0;
+        const purchase = Math.max(0, d.totalDemandCeil - stock);
+        const involved = d.details.map(x => x.modelName + '/' + x.posName).join('、');
+        csv += `"${d.glueModel}","${d.gluePartNo}","${d.glueDesc}",${d.totalDemand.toFixed(3)},${d.totalDemandCeil},${stock},${purchase},"${involved}"\n`;
+    });
+    downloadCSV(csv, '胶水采购需求_' + currentMonth + '.csv');
+}
+
+function downloadCSV(csv, filename) {
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    link.click();
+    URL.revokeObjectURL(link.href);
+}
+
+// ==================== IMPORT ====================
+function openProdImport() { document.getElementById('prodImportModal').style.display = 'flex'; }
+function closeProdImport() { document.getElementById('prodImportModal').style.display = 'none'; }
+function openBomImport() { document.getElementById('bomImportModal').style.display = 'flex'; }
+function closeBomImport() { document.getElementById('bomImportModal').style.display = 'none'; }
+function openInvImport() { document.getElementById('invImportModal').style.display = 'flex'; }
+function closeInvImport() { document.getElementById('invImportModal').style.display = 'none'; }
+
+function switchTab(tabId, el) {
+    document.querySelectorAll('#' + el.closest('.modal-body').querySelector('.modal-tabs').parentElement.parentElement.id + ' .import-tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('#' + el.closest('.modal-body').querySelector('.modal-tabs').parentElement.parentElement.id + ' .modal-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    el.classList.add('active');
+}
+
+async function doImportProd() {
+    const text = document.getElementById('prodCsvText').value.trim();
+    if (!text) { showToast('请粘贴CSV数据'); return; }
+    const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+    let imported = 0;
+    for (const line of lines) {
+        const parts = line.split(',').map(s => s.trim());
+        if (parts.length < 2) continue;
+        const name = parts[0];
+        const qty = parseInt(parts[1]) || 0;
+        let m = models.find(x => x.name.toLowerCase() === name.toLowerCase());
+        if (!m) {
+            await addModelByName(name);
+            m = models[models.length - 1];
+        }
+        if (m && qty > 0) {
+            setMonthQty(m, qty);
+            await saveProduction(m.id, currentMonth, qty);
+            imported++;
+        }
+    }
+    closeProdImport();
+    refreshAll();
+    showToast('已导入 ' + imported + ' 条产量数据');
+}
+
+async function doImportBOM() {
+    const text = document.getElementById('bomCsvText').value.trim();
+    if (!text) { showToast('请粘贴CSV数据'); return; }
+    const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+    let imported = 0;
+    for (const line of lines) {
+        const parts = line.split(',').map(s => s.trim());
+        if (parts.length < 3) continue;
+        const modelName = parts[0];
+        const posName = parts[1];
+        const glueModel = parts[2];
+        const gluePartNo = parts[3] || '';
+        const glueDesc = parts[4] || '';
+        const perUnitUsage = parseFloat(parts[5]) || 0;
+        const containerSize = parseFloat(parts[6]) || 0;
+        let m = models.find(x => x.name.toLowerCase() === modelName.toLowerCase());
+        if (!m) {
+            await addModelByName(modelName);
+            m = models[models.length - 1];
+        }
+        if (m) {
+            m.positions.push({ id: posIdCounter++, name: posName, glueModel, gluePartNo, glueDesc, perUnitUsage, containerSize });
+            imported++;
+        }
+    }
+    // Save all modified models
+    for (const m of models) {
+        if (m.positions.length > 0) await saveModel(m);
+    }
+    closeBomImport();
+    refreshAll();
+    showToast('已导入 ' + imported + ' 条BOM配置');
+}
+
+async function doImportInventory() {
+    const text = document.getElementById('invCsvText').value.trim();
+    if (!text) { showToast('请粘贴CSV数据'); return; }
+    const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+    let imported = 0;
+    for (const line of lines) {
+        const parts = line.split(',').map(s => s.trim());
+        if (parts.length < 2) continue;
+        const glueModel = parts[0];
+        const gluePartNo = parts[1] || '';
+        const stock = parseInt(parts[2]) || 0;
+        let inv = inventoryList.find(i => i.glueModel === glueModel && i.gluePartNo === gluePartNo);
+        if (!inv) {
+            await saveInventoryItem({ id: 0, glueModel, gluePartNo, glueDesc: '', containerSize: 0, stockMap: {} });
+            await loadInventory();
+            inv = inventoryList.find(i => i.glueModel === glueModel && i.gluePartNo === gluePartNo);
+        }
+        if (inv && stock > 0) {
+            await saveStock(inv.id, currentMonth, stock);
+            setMonthStock(inv, stock);
+            imported++;
+        }
+    }
+    closeInvImport();
+    refreshAll();
+    showToast('已导入 ' + imported + ' 条库存数据');
+}
+
+function handleProdFile(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+        document.getElementById('prodCsvText').value = ev.target.result;
+    };
+    reader.readAsText(file);
+}
+
+function handleBomFile(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+        document.getElementById('bomCsvText').value = ev.target.result;
+    };
+    reader.readAsText(file);
+}
+
+function handleInvFile(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+        document.getElementById('invCsvText').value = ev.target.result;
+    };
+    reader.readAsText(file);
+}
+
+// ==================== UTILITIES ====================
+function escHtml(s) {
+    if (!s && s !== 0) return '';
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function escAttr(s) {
+    return String(s).replace(/'/g,"\\'").replace(/"/g,'&quot;');
+}
+function showToast(text) {
+    const t = document.getElementById('toast');
+    t.textContent = text; t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+// ==================== STARTUP ====================
+(function startup() {
+    const saved = localStorage.getItem('glue_session_user');
+    if (saved) {
+        authToken = saved;
+        // Try to verify
+        fetch(API_BASE + '/users', {
+            headers: { 'Authorization': 'Bearer ' + saved }
+        }).then(res => {
+            if (res.ok) {
+                currentUser = { username: saved, role: 'user' };
+                document.getElementById('loginOverlay').style.display = 'none';
+                updateUserBadge();
+                init();
+            } else {
+                localStorage.removeItem('glue_session_user');
+                document.getElementById('loginOverlay').style.display = 'flex';
+                showLogin();
+            }
+        }).catch(() => {
+            document.getElementById('loginOverlay').style.display = 'flex';
+            showLogin();
+        });
+    } else {
+        document.getElementById('loginOverlay').style.display = 'flex';
+        showLogin();
+    }
+})();
+</script>
+</body>
+</html>
